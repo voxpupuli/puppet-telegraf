@@ -10,5 +10,6 @@ class telegraf::service {
     ensure    => running,
     hasstatus => true,
     enable    => true,
+    require   => Package['telegraf'],
   }
 }

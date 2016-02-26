@@ -5,10 +5,8 @@
 # === Parameters
 #
 # [*ensure*]
-#   String. State of the telegraf package.
-#
-# [*version*]
-#   String.  Version of telegraf to be installed.
+#   String. State of the telegraf package. You can also specify a
+#   particular version to install.
 #
 # [*config_file*]
 #   String. Path to the configuration file.
@@ -55,8 +53,7 @@
 #
 #
 class telegraf (
-  $ensure                 = 'installed',
-  $version                = '0.10.4.1-1',
+  $ensure                 = 'present',
   $config_file            = '/etc/telegraf/telegraf.conf',
   $hostname               = $::hostname,
   $interval               = '10s',
@@ -73,7 +70,6 @@ class telegraf (
   $global_tags            = undef,
 )
 {
-  
   include ::telegraf::install
   include ::telegraf::config
   include ::telegraf::service

@@ -15,9 +15,10 @@ class telegraf::install {
         repos    => 'stable',
         key      => {
           'id'     => '05CE15085FC09D18E99EFB22684A14CF2582E0C5',
-          'server' => 'repos.influxdata.com',
+          'source' => 'https://repos.influxdata.com/influxdb.key',
         },
       }
+      ensure_packages(['telegraf'], {'ensure' => $::telegraf::ensure})
     }
     default: {
       fail('Only Ubuntu supported at this time')
