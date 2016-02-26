@@ -1,12 +1,10 @@
 # == Class: telegraf::config
 #
-# only values which are effectivly changed will be managed
+# Handles applying templated telegraf configuration
 #
-# More information on these settings available at:
-#    https://github.com/influxdb/telegraf
-#
-# DO NO CALL DIRECTLY
 class telegraf::config {
+
+  assert_private()
 
   file { '/etc/telegraf/telegraf.conf':
     ensure  => file,
@@ -14,6 +12,7 @@ class telegraf::config {
     mode    => '0640',
     owner   => 'root',
     group   => 'telegraf',
+    require => Package['telegraf'],
   }
 
 }
