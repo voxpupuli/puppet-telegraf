@@ -1,0 +1,46 @@
+# Telegraf Configuration
+#
+# THIS FILE IS MANAGED BY PUPPET
+
+<% if @global_tags -%>
+[global_tags]
+<%   @global_tags.each do |key, value| -%>
+<%= key %> = "<%= value %>"
+<%   end -%>
+<% end -%>
+
+[agent]
+  hostname = "<%= @hostname %>"
+  interval = "<%= @interval %>"
+  round_interval = "<%= @round_interval %>"
+  metric_buffer_limit = "<%= @metric_buffer_limit %>"
+  flush_buffer_when_full = "<%= @flush_buffer_when_full %>"
+  collection_jitter = "<%= @collection_jitter %>"
+  flush_interval = "<%= @flush_interval %>"
+  flush_jitter = "<%= @flush_jitter %>"
+  debug = "<%= @debug %>"
+  quiet = "<%= @quiet %>"
+
+#
+# OUTPUTS:
+#
+<% @outputs.each_pair do | output, options | -%>
+[[outputs.<%= output %>]]
+<% 	unless options == nil -%>
+<% 		options.each do | option, value | -%>
+  <%= 		option %> = <%= value %>
+<% 		end -%>
+<% 	end -%>
+<% end -%>
+
+#
+# INPUTS:
+#
+<% @inputs.each_pair do | input, options | -%>
+[[inputs.<%= input %>]]
+<% 	unless options == nil -%>
+<% 		options.each do | option, value | -%>
+  <%= 		option %> = <%= value %>
+<% 		end -%>
+<% 	end -%>
+<% end -%>
