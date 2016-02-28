@@ -6,10 +6,12 @@ class telegraf::service {
 
   assert_private()
 
-  service { 'telegraf':
-    ensure    => running,
-    hasstatus => true,
-    enable    => true,
-    require   => Package['telegraf'],
+  if $::telegraf::manage_service {
+    service { 'telegraf':
+      ensure    => running,
+      hasstatus => true,
+      enable    => true,
+      require   => Class['::telegraf::config'],
+    }
   }
 }
