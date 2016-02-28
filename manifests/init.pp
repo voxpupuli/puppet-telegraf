@@ -31,7 +31,7 @@
 #   String.  Sleep for a random time within jitter before collecting.
 #
 # [*flush_interval*]
-#   Default flushing interval for all outputs
+#   String. Default flushing interval for all outputs.
 #
 # [*flush_jitter*]
 #   String.  Jitter the flush interval by an amount.
@@ -51,6 +51,8 @@
 # [*global_tags*]
 #   Array.  Global tags as a key-value pair.
 #
+# [*service_enabled*]
+#   Boolean.  Whether to manage the telegraf service or not.
 #
 class telegraf (
   $ensure                 = 'present',
@@ -68,11 +70,12 @@ class telegraf (
   $inputs                 = undef,
   $outputs                = undef,
   $global_tags            = undef,
+  $manage_service         = true,
 )
 {
-  include ::telegraf::install
-  include ::telegraf::config
-  include ::telegraf::service
+  contain ::telegraf::install
+  contain ::telegraf::config
+  contain ::telegraf::service
 
   Class['::telegraf::install'] ->
   Class['::telegraf::config'] ->

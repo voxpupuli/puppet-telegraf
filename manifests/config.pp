@@ -12,7 +12,7 @@ class telegraf::config {
     mode    => '0640',
     owner   => 'root',
     group   => 'telegraf',
-    require => Package['telegraf'],
+    require => Class['::telegraf::install'],
   }
 
 }
