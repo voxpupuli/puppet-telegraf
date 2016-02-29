@@ -26,15 +26,6 @@ describe 'telegraf' do
                     'percpu'   => 'true',
                     'totalcpu' => 'true',
                   },
-                  'mem' => {},
-                  'io' => {},
-                  'net' => {},
-                  'disk' => {
-                    'ignore_fs' => '["tmpfs", "devtmpfs"]'
-                  },
-                  'diskio' => {},
-                  'swap' => {},
-                  'system' => {},
               }
             }
         EOS
