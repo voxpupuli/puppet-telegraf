@@ -66,6 +66,9 @@ This module has been developed and tested against Ubuntu 14.04, although
 support for other distributions / operating systems is planned.  Feel free to
 assist with development in this regard!
 
+The configuration generated with this module is only compatible with newer
+releases of Telegraf, i.e 0.10.x.
+
 ## Development
 
 Fork, hack, test, and then raise a pull request.

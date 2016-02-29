@@ -1,2 +1,4 @@
 Gemfile.lock
-log/*
+log
+pkg
+travis.log
