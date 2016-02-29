@@ -21,7 +21,7 @@
 #   Boolean. Rounds collection interval to 'interval'
 #
 # [*metric_buffer_limit*]
-#   String. Cache metric_buffer_limit metrics for each output, and flush this
+#   Integer. Cache metric_buffer_limit metrics for each output, and flush this
 #   buffer on a successful write.
 #
 # [*flush_buffer_when_full*]

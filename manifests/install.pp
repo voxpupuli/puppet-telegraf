@@ -20,7 +20,10 @@ class telegraf::install {
           'source' => 'https://repos.influxdata.com/influxdb.key',
         },
       }
-      ensure_packages(['telegraf'], {'ensure' => $::telegraf::ensure})
+      ensure_packages(['telegraf'], {
+        'ensure'  => $::telegraf::ensure,
+        'require' => Exec['apt_update'],
+      })
     }
     'RedHat': {
       yumrepo { 'influxdata':
