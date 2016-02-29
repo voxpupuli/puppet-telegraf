@@ -21,26 +21,30 @@
   debug = "<%= @debug %>"
   quiet = "<%= @quiet %>"
 
+<% if @outputs -%>
 #
 # OUTPUTS:
 #
-<% @outputs.each_pair do | output, options | -%>
-[[outputs.<%= output %>]]
-<% 	unless options == nil -%>
-<% 		options.each do | option, value | -%>
-  <%= 		option %> = <%= value %>
-<% 		end -%>
-<% 	end -%>
+  <% @outputs.each_pair do | output, options | -%>
+  [[outputs.<%= output %>]]
+  <% 	unless options == nil -%>
+  <% 		options.each do | option, value | -%>
+    <%= 		option %> = <%= value %>
+  <% 		end -%>
+  <% 	end -%>
+  <% end -%>
 <% end -%>
 
+<% if @inputs -%>
 #
 # INPUTS:
 #
-<% @inputs.each_pair do | input, options | -%>
-[[inputs.<%= input %>]]
-<% 	unless options == nil -%>
-<% 		options.each do | option, value | -%>
-  <%= 		option %> = <%= value %>
-<% 		end -%>
-<% 	end -%>
+  <% @inputs.each_pair do | input, options | -%>
+  [[inputs.<%= input %>]]
+  <% 	unless options == nil -%>
+  <% 		options.each do | option, value | -%>
+    <%= 		option %> = <%= value %>
+  <% 		end -%>
+  <% 	end -%>
+  <% end -%>
 <% end -%>
