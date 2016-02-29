@@ -5,10 +5,7 @@
 1. [Overview](#overview)
 2. [Module Description](#module-description)
 3. [Setup](#setup)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with telegraf](#beginning-with-telegraf)
 4. [Usage](#usage)
-5. [Reference](#reference)
 5. [Limitations](#limitations)
 6. [Development](#development)
 
@@ -25,34 +22,50 @@ configuration.
 
 ## Setup
 
-### Setup Requirements
-
-Dependancies for this module are as follows:
+There's a couple of fairly standard dependencies for this module, as follows:
 
 * https://github.com/puppetlabs/puppetlabs-apt
-* https://github.com/maestrodev/puppet-wget
+* https://github.com/puppetlabs/puppetlabs-stdlib
 
-### Beginning with telegraf
+### Usage
 
-TBC
+Telegraf can be installed with a very basic configuration by simply doing the
+following:
 
-## Usage
+    include ::telegraf
 
-TBC
+However, you'll probably want to override the default settings with a useful
+set of 'inputs' and 'outputs'.  The recommendation is to use Hiera, populated
+with something like the following:
 
-## Reference
-
-TBC
+	telegraf::global_tags:
+	  role: "%{::role}"
+	  domain: "%{::domain}"
+	telegraf::outputs:
+	  influxdb:
+	    urls: '["https://influxdb0.vagrant.dev:8086"]'
+	    database: 'telegraf'
+	    username: 'test'
+	    password: 'test'
+	telegraf::inputs:
+	  cpu:
+	    percpu: true
+	    totalcpu: true
+	  mem:
+	  io:
+	  net:
+	  disk: 
+	    ignore_fs: '["tmpfs", "devtmpfs"]'
+	  diskio:
+	  swap:
+	  system:
 
 ## Limitations
 
-Currently this module only supports Ubuntu.
+This module has been developed and tested against Ubuntu 14.04, although
+support for other distributions / operating systems is planned.  Feel free to
+assist with development in this regard!
 
 ## Development
 
-TBC
-
-## Release Notes/Contributors/Etc
-
-TBC
-
+Fork, hack, test, and then raise a pull request.
