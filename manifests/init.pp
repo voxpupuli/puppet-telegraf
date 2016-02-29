@@ -55,23 +55,23 @@
 #   Boolean.  Whether to manage the telegraf service or not.
 #
 class telegraf (
-  $ensure                 = 'present',
-  $config_file            = '/etc/telegraf/telegraf.conf',
-  $hostname               = $::hostname,
-  $interval               = '10s',
-  $round_interval         = true,
-  $metric_buffer_limit    = '1000',
-  $flush_buffer_when_full = true,
-  $collection_jitter      = '0s',
-  $flush_interval         = '10s',
-  $flush_jitter           = '0s',
-  $debug                  = false,
-  $quiet                  = false,
-  $inputs                 = undef,
-  $outputs                = undef,
-  $global_tags            = undef,
-  $manage_service         = true,
-)
+  $ensure                 = $telegraf::params::ensure,
+  $config_file            = $telegraf::params::config_file,
+  $hostname               = $telegraf::params::hostname,
+  $interval               = $telegraf::params::interval,
+  $round_interval         = $telegraf::params::round_interval,
+  $metric_buffer_limit    = $telegraf::params::metric_buffer_limit,
+  $flush_buffer_when_full = $telegraf::params::flush_buffer_when_full,
+  $collection_jitter      = $telegraf::params::collection_jitter,
+  $flush_interval         = $telegraf::params::flush_interval,
+  $flush_jitter           = $telegraf::params::flush_jitter,
+  $debug                  = $telegraf::params::debug,
+  $quiet                  = $telegraf::params::quiet,
+  $inputs                 = $telegraf::params::inputs,
+  $outputs                = $telegraf::params::outputs,
+  $global_tags            = $telegraf::params::global_tags,
+  $manage_service         = $telegraf::params::manage_service,
+) inherits ::telegraf::params
 {
   contain ::telegraf::install
   contain ::telegraf::config
