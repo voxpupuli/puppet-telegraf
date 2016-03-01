@@ -54,6 +54,9 @@
 # [*service_enabled*]
 #   Boolean.  Whether to manage the telegraf service or not.
 #
+# [*manage_repo*]
+#   Boolean.  Whether or not to manage InfluxData's repo.
+#
 class telegraf (
   $ensure                 = $telegraf::params::ensure,
   $config_file            = $telegraf::params::config_file,
@@ -71,6 +74,7 @@ class telegraf (
   $outputs                = $telegraf::params::outputs,
   $global_tags            = $telegraf::params::global_tags,
   $manage_service         = $telegraf::params::manage_service,
+  $manage_repo            = $telegraf::params::manage_repo,
 ) inherits ::telegraf::params
 {
   contain ::telegraf::install

@@ -18,6 +18,7 @@ class telegraf::params {
   $quiet                  = false
   $global_tags            = undef
   $manage_service         = true
+  $manage_repo            = true
 
   $outputs = {
     'influxdb'  => {
