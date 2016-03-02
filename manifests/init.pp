@@ -51,7 +51,7 @@
 # [*global_tags*]
 #   Array.  Global tags as a key-value pair.
 #
-# [*service_enabled*]
+# [*manage_service*]
 #   Boolean.  Whether to manage the telegraf service or not.
 #
 # [*manage_repo*]

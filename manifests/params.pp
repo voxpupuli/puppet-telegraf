@@ -1,6 +1,6 @@
 # == Class: telegraf::params
 #
-# Default parameters for telegraf's configuration
+# A set of default  parameters for Telegraf's configuration.
 #
 class telegraf::params {
 

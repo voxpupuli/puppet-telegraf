@@ -10,7 +10,9 @@ config = {
 }
 
 # Install latest puppet from puppetlabs.com
-on hosts, install_puppet
+hosts.each do |host|
+  on hosts, install_puppet
+end
 # Explicitly configure puppet to avoid warnings
 configure_puppet(config)
 
@@ -20,11 +22,15 @@ RSpec.configure do |c|
   c.formatter = :documentation
 
   c.before :suite do
+    on 'debian', 'apt-get -y install apt-transport-https'
+
     # Install this module for testing
     puppet_module_install(:source => module_root, :module_name => 'telegraf')
 
-    on hosts, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
-    on hosts, puppet('module', 'install', 'puppetlabs-apt'), { :acceptable_exit_codes => [0,1] }
+    hosts.each do |host|
+      on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'puppetlabs-apt'), { :acceptable_exit_codes => [0,1] }
+    end
     # Install EPEL on centos
     on 'centos', 'rpm -i http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm'
   end
