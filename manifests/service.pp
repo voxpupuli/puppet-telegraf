@@ -1,6 +1,6 @@
 # == Class: telegraf::service
 #
-# Ensure the Telegraf service is running
+# Optionally manage the Telegraf service.
 #
 class telegraf::service {
 

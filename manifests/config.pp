@@ -1,6 +1,6 @@
 # == Class: telegraf::config
 #
-# Handles applying templated telegraf configuration
+# Templated generation of telegraf.conf
 #
 class telegraf::config {
 
@@ -10,7 +10,7 @@ class telegraf::config {
     ensure  => file,
     content => template('telegraf/telegraf.conf.erb'),
     mode    => '0640',
-    owner   => 'root',
+    owner   => 'telegraf',
     group   => 'telegraf',
     require => Class['::telegraf::install'],
   }

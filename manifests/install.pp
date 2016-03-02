@@ -1,6 +1,7 @@
 # == Class: telegraf::install
 #
-# Installs the telegraf package
+# Conditionally handle InfluxData's official repos and install the necessary
+# Telegraf package.
 #
 class telegraf::install {
 
@@ -37,6 +38,7 @@ class telegraf::install {
           gpgcheck => true,
         }
       }
+      ensure_packages(['telegraf'], { 'ensure' => $::telegraf::ensure })
     }
     default: {
       fail('Only RedHat, CentOS, Debian and Ubuntu are supported at this time')
