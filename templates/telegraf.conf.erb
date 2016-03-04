@@ -1,11 +1,11 @@
 # Telegraf Configuration
 #
 # THIS FILE IS MANAGED BY PUPPET
-
+#
 <% if @global_tags -%>
 [global_tags]
 <%   @global_tags.each do |key, value| -%>
-<%= key %> = "<%= value %>"
+  <%= key %> = "<%= value %>"
 <%   end -%>
 <% end -%>
 
@@ -25,26 +25,26 @@
 #
 # OUTPUTS:
 #
-  <% @outputs.each_pair do | output, options | -%>
-  [[outputs.<%= output %>]]
-  <% 	unless options == nil -%>
-  <% 		options.each do | option, value | -%>
-    <%= 		option %> = <%= value %>
-  <% 		end -%>
-  <% 	end -%>
-  <% end -%>
+<%   @outputs.each_pair do | output, options | -%>
+[[outputs.<%= output %>]]
+<%      unless options == nil -%>
+<%          options.each do | option, value | -%>
+  <%= option -%> = <% if value.is_a?(String) %>"<%= value %>"<% else %><%= value %><% end %>
+<%          end -%>
+<%      end -%>
+<%   end -%>
 <% end -%>
 
 <% if @inputs -%>
 #
 # INPUTS:
 #
-  <% @inputs.each_pair do | input, options | -%>
-  [[inputs.<%= input %>]]
-  <% 	unless options == nil -%>
-  <% 		options.each do | option, value | -%>
-    <%= 		option %> = <%= value %>
-  <% 		end -%>
-  <% 	end -%>
-  <% end -%>
+<%   @inputs.each_pair do | input, options | -%>
+[[inputs.<%= input %>]]
+<%      unless options == nil -%>
+<%          options.each do | option, value | -%>
+  <%= option -%> = <% if value.is_a?(String) %>"<%= value %>"<% else %><%= value %><% end %>
+<%          end -%>
+<%      end -%>
+<%   end -%>
 <% end -%>
