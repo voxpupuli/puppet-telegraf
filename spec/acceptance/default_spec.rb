@@ -15,16 +15,16 @@ describe 'telegraf' do
               hostname  => $::hostname,
               outputs   => {
                   'influxdb' => {
-                    'urls'     => '["http://localhost:8086"]',
-                    'database' => '"telegraf"',
-                    'username' => '"telegraf"',
-                    'password' => '"metricsmetricsmetrics"',
+                    'urls'     => [ 'http://localhost:8086' ],
+                    'database' => 'telegraf',
+                    'username' => 'telegraf',
+                    'password' => 'metricsmetricsmetrics',
                   }
               },
               inputs    => {
                   'cpu' => {
-                    'percpu'   => 'true',
-                    'totalcpu' => 'true',
+                    'percpu'   => true,
+                    'totalcpu' => true,
                   },
               }
             }

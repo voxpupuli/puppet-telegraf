@@ -10,7 +10,8 @@
 
 ## Overview
 
-A Puppet module to manage configuration of [InfluxData's Telegraf](https://influxdata.com/time-series-platform/telegraf/) 
+A reasonably simple yet flexible Puppet module to manage configuration of
+[InfluxData's Telegraf](https://influxdata.com/time-series-platform/telegraf/)
 metrics collection agent.
 
 ## Setup
@@ -22,36 +23,62 @@ There's a couple of fairly standard dependencies for this module, as follows:
 
 ### Usage
 
-Telegraf can be installed with a very basic configuration by just including the
-class:
+Telegraf's configuration is split into four main sections - global tags,
+options specific to the agent, input plugins, and output plugins.  The
+documentation for these sections is [here](https://github.com/influxdata/telegraf/blob/master/docs/CONFIGURATION.md),
+and this module aims to be flexible enough to handle configuration of any of
+these stanzas.
+
+To get started, Telegraf can be installed with a very basic configuration by
+just including the class:
 
     include ::telegraf
 
-However, you'll probably want to override the default settings with a useful
-set of 'inputs' and 'outputs'.  The general recommendation is to use Hiera,
-populated with something such as the following:
+However, to customise your configuration you'll want to do something like the following:
 
-	telegraf::global_tags:
-	  role: "%{::role}"
-	  domain: "%{::domain}"
-	telegraf::outputs:
-	  influxdb:
-	    urls: '["https://influxdb0.vagrant.dev:8086"]'
-	    database: 'telegraf'
-	    username: 'test'
-	    password: 'test'
-	telegraf::inputs:
-	  cpu:
-	    percpu: true
-	    totalcpu: true
-	  mem:
-	  io:
-	  net:
-	  disk: 
-	    ignore_fs: '["tmpfs", "devtmpfs"]'
-	  diskio:
-	  swap:
-	  system:
+    class { '::telegraf':
+        hostname  => $::hostname,
+        outputs   => {
+            'influxdb' => {
+                'urls'     => [ "http://influxdb0.${::domain}:8086", "http://influxdb1.${::domain}:8086" ],
+                'database' => 'telegraf',
+                'username' => 'telegraf',
+                'password' => 'metricsmetricsmetrics',
+                }
+            },
+        inputs    => {
+            'cpu' => {
+                'percpu'   => true,
+                'totalcpu' => true,
+            },
+        }
+    }
+
+Or here's a Hiera-based example (which is the recommended approach):
+
+    ---
+    telegraf::global_tags:
+      role: "%{::role}"
+      hostgroup: "%{::hostgroup}"
+      domain: "%{::domain}"
+    telegraf::inputs:
+      cpu:
+        percpu: true
+        totalcpu: true
+      mem:
+      io:
+      net:
+      disk:
+      swap:
+      system:
+    telegraf::outputs:
+      influxdb:
+        urls:
+          - "http://influxdb0.%{::domain}:8086"
+          - "http://influxdb1.%{::domain}:8086"
+        database: 'influxdb'
+        username: 'telegraf'
+        password: 'telegraf'
 
 ## Limitations
 
@@ -64,4 +91,4 @@ releases of Telegraf, i.e 0.10.x.  It won't work with the 0.2.x series.
 
 ## Development
 
-Fork, hack, test, raise a PR.
+Fork, hack, test, then raise a PR.

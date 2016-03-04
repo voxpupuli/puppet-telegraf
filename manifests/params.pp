@@ -22,10 +22,10 @@ class telegraf::params {
 
   $outputs = {
     'influxdb'  => {
-      'urls'     => '["http://localhost:8086"]',
-      'database' => '"telegraf"',
-      'username' => '"telegraf"',
-      'password' => '"metricsmetricsmetrics"',
+      'urls'     => [ 'http://localhost:8086' ],
+      'database' => 'telegraf',
+      'username' => 'telegraf',
+      'password' => 'metricsmetricsmetrics',
     }
   }
 
