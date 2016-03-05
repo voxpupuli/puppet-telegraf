@@ -2,30 +2,30 @@
 #
 # THIS FILE IS MANAGED BY PUPPET
 #
-<% if @global_tags -%>
+<% if scope['telegraf::global_tags'] -%>
 [global_tags]
-<%   @global_tags.each do |key, value| -%>
+<%   scope['telegraf::global_tags'].each do |key, value| -%>
   <%= key %> = "<%= value %>"
 <%   end -%>
 <% end -%>
 
 [agent]
-  hostname = "<%= @hostname %>"
-  interval = "<%= @interval %>"
-  round_interval = <%= @round_interval %>
-  metric_buffer_limit = <%= @metric_buffer_limit %>
-  flush_buffer_when_full = <%= @flush_buffer_when_full %>
-  collection_jitter = "<%= @collection_jitter %>"
-  flush_interval = "<%= @flush_interval %>"
-  flush_jitter = "<%= @flush_jitter %>"
-  debug = <%= @debug %>
-  quiet = <%= @quiet %>
+  hostname = "<%= scope['telegraf::hostname'] %>"
+  interval = "<%= scope['telegraf::interval'] %>"
+  round_interval = <%= scope['telegraf::round_interval'] %>
+  metric_buffer_limit = <%= scope['telegraf::metric_buffer_limit'] %>
+  flush_buffer_when_full = <%= scope['telegraf::flush_buffer_when_full'] %>
+  collection_jitter = "<%= scope['telegraf::collection_jitter'] %>"
+  flush_interval = "<%= scope['telegraf::flush_interval'] %>"
+  flush_jitter = "<%= scope['telegraf::flush_jitter'] %>"
+  debug = <%= scope['telegraf::debug'] %>
+  quiet = <%= scope['telegraf::quiet'] %>
 
-<% if @outputs -%>
+<% if scope['telegraf::outputs'] -%>
 #
 # OUTPUTS:
 #
-<%   @outputs.each_pair do | output, options | -%>
+<%   scope['telegraf::outputs'].each_pair do | output, options | -%>
 [[outputs.<%= output %>]]
 <%      unless options == nil -%>
 <%          options.each do | option, value | -%>
@@ -35,11 +35,11 @@
 <%   end -%>
 <% end -%>
 
-<% if @inputs -%>
+<% if scope['telegraf::inputs'] -%>
 #
 # INPUTS:
 #
-<%   @inputs.each_pair do | input, options | -%>
+<%   scope['telegraf::inputs'].each_pair do | input, options | -%>
 [[inputs.<%= input %>]]
 <%      unless options == nil -%>
 <%          options.each do | option, value | -%>
