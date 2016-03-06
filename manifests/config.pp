@@ -2,7 +2,7 @@
 #
 # Templated generation of telegraf.conf
 #
-class telegraf::config {
+class telegraf::config inherits telegraf {
 
   assert_private()
 
