@@ -6,7 +6,7 @@ class telegraf::config inherits telegraf {
 
   assert_private()
 
-  file { '/etc/telegraf/telegraf.conf':
+  file { $::telegraf::config_file:
     ensure  => file,
     content => template('telegraf/telegraf.conf.erb'),
     mode    => '0640',

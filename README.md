@@ -37,8 +37,8 @@ just including the class:
 However, to customise your configuration you'll want to do something like the following:
 
     class { '::telegraf':
-        hostname  => $::hostname,
-        outputs   => {
+        hostname => $::hostname,
+        outputs  => {
             'influxdb' => {
                 'urls'     => [ "http://influxdb0.${::domain}:8086", "http://influxdb1.${::domain}:8086" ],
                 'database' => 'telegraf',
@@ -46,7 +46,7 @@ However, to customise your configuration you'll want to do something like the fo
                 'password' => 'metricsmetricsmetrics',
                 }
             },
-        inputs    => {
+        inputs   => {
             'cpu' => {
                 'percpu'   => true,
                 'totalcpu' => true,
