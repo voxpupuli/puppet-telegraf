@@ -1,5 +1,7 @@
 # telegraf
 
+[![Build Status](https://travis-ci.org/datacentred/puppet-telegraf.png?branch=master)](https://travis-ci.org/datacentred/puppet-telegraf)
+
 #### Table of Contents
 
 1. [Overview](#overview)
