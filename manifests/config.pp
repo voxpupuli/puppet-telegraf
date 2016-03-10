@@ -12,6 +12,7 @@ class telegraf::config inherits telegraf {
     mode    => '0640',
     owner   => 'telegraf',
     group   => 'telegraf',
+    notify  => Class['::telegraf::service'],
     require => Class['::telegraf::install'],
   }
 
