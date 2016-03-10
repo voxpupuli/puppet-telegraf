@@ -9,9 +9,9 @@ class telegraf::install {
 
   $_operatingsystem = downcase($::operatingsystem)
 
-  case $::osfamily {
-    'Debian': {
-      if $::telegraf::manage_repo {
+  if $::telegraf::manage_repo {
+    case $::osfamily {
+      'Debian': {
         apt::source { 'influxdata':
           comment  => 'Mirror for InfluxData packages',
           location => "https://repos.influxdata.com/${_operatingsystem}",
@@ -22,14 +22,9 @@ class telegraf::install {
             'source' => 'https://repos.influxdata.com/influxdb.key',
           },
         }
+        Class['apt::update'] -> Package['telegraf']
       }
-      ensure_packages(['telegraf'], {
-        'ensure'  => $::telegraf::ensure,
-        'require' => Exec['apt_update'],
-      })
-    }
-    'RedHat': {
-      if $::telegraf::manage_repo {
+      'RedHat': {
         yumrepo { 'influxdata':
           descr    => 'influxdata',
           enabled  => 1,
@@ -37,14 +32,14 @@ class telegraf::install {
           gpgkey   => 'https://repos.influxdata.com/influxdb.key',
           gpgcheck => true,
         }
+        Yumrepo['influxdata'] -> Package['telegraf']
       }
-      ensure_packages(['telegraf'], {
-        'ensure'  => $::telegraf::ensure,
-        'require' =>  Yumrepo['influxdata'],
-      })
-    }
-    default: {
-      fail('Only RedHat, CentOS, Debian and Ubuntu are supported at this time')
+      default: {
+        fail('Only RedHat, CentOS, Debian and Ubuntu are supported at this time')
+      }
     }
   }
+
+  ensure_packages(['telegraf'], { ensure => $::telegraf::ensure })
+
 }
