@@ -37,11 +37,15 @@ class telegraf::install {
           gpgkey   => 'https://repos.influxdata.com/influxdb.key',
           gpgcheck => true,
         }
+        ensure_packages(['telegraf'], {
+          'ensure'  => $::telegraf::ensure,
+          'require' =>  Yumrepo['influxdata'],
+        })
+      } else {
+        ensure_packages(['telegraf'], {
+          'ensure'  => $::telegraf::ensure,
+        })
       }
-      ensure_packages(['telegraf'], {
-        'ensure'  => $::telegraf::ensure,
-        'require' =>  Yumrepo['influxdata'],
-      })
     }
     default: {
       fail('Only RedHat, CentOS, Debian and Ubuntu are supported at this time')
