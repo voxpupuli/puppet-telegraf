@@ -11,6 +11,7 @@ class telegraf::service {
       ensure    => running,
       hasstatus => true,
       enable    => true,
+      restart   => 'pkill -HUP telegraf',
       require   => Class['::telegraf::config'],
     }
   }
