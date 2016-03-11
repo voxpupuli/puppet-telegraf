@@ -13,15 +13,14 @@
 ## Overview
 
 A reasonably simple yet flexible Puppet module to manage configuration of
-[InfluxData's Telegraf](https://influxdata.com/time-series-platform/telegraf/)
-metrics collection agent.
+[InfluxData's Telegraf](https://influxdata.com/time-series-platform/telegraf/) metrics collection agent.
 
 ## Setup
 
 There's a couple of fairly standard dependencies for this module, as follows:
 
-* https://github.com/puppetlabs/puppetlabs-apt
 * https://github.com/puppetlabs/puppetlabs-stdlib
+* https://github.com/puppetlabs/puppetlabs-apt (on Debian / Ubuntu)
 
 ### Usage
 
@@ -84,9 +83,15 @@ Or here's a Hiera-based example (which is the recommended approach):
 
 ## Limitations
 
-This module has been developed and tested against both Ubuntu 14.04 and Debian
-8.2, although support for other distributions / operating systems is planned.
-Feel free to assist with development in this regard!
+This module has been developed and tested against:
+
+ * Ubuntu 14.04
+ * Debian 8
+ * CentOS / RHEL 6
+ * CentOS / RHEL 7
+
+Support for other distributions / operating systems is planned.  Feel free to
+assist with development in this regard!
 
 The configuration generated with this module is only compatible with newer
 releases of Telegraf, i.e 0.10.x.  It won't work with the 0.2.x series.
