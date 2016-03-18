@@ -77,6 +77,25 @@ class telegraf (
   $manage_repo            = $telegraf::params::manage_repo,
 ) inherits ::telegraf::params
 {
+
+  validate_string($ensure)
+  validate_string($config_file)
+  validate_string($hostname)
+  validate_string($interval)
+  validate_bool($round_interval)
+  validate_integer($metric_buffer_limit)
+  validate_bool($flush_buffer_when_full)
+  validate_string($collection_jitter)
+  validate_string($flush_interval)
+  validate_string($flush_jitter)
+  validate_bool($debug)
+  validate_bool($quiet)
+  validate_hash($inputs)
+  validate_hash($outputs)
+  validate_array($global_tags)
+  validate_bool($manage_service)
+  validate_bool($manage_repo)
+
   contain ::telegraf::install
   contain ::telegraf::config
   contain ::telegraf::service
