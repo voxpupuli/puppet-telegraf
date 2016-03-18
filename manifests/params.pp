@@ -1,6 +1,6 @@
 # == Class: telegraf::params
 #
-# A set of default  parameters for Telegraf's configuration.
+# A set of default parameters for Telegraf's configuration.
 #
 class telegraf::params {
 
@@ -16,7 +16,7 @@ class telegraf::params {
   $flush_jitter           = '0s'
   $debug                  = false
   $quiet                  = false
-  $global_tags            = undef
+  $global_tags            = []
   $manage_service         = true
   $manage_repo            = true
 
