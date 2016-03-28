@@ -92,7 +92,7 @@ class telegraf (
   validate_bool($quiet)
   validate_hash($inputs)
   validate_hash($outputs)
-  validate_array($global_tags)
+  validate_hash($global_tags)
   validate_bool($manage_service)
   validate_bool($manage_repo)
 
