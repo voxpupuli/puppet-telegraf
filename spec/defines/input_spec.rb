@@ -4,17 +4,16 @@ describe 'telegraf::input' do
   let(:title) { 'influxdb' }
   let(:params) {{
     :options => {
-      "urls" => ['http://localhost:8086'],
+      "urls" => ["http://localhost:8086",],
     },
   }}
   let(:facts) { { :osfamily => 'RedHat' } }
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
   describe 'configuration file /etc/telegraf/telegraf.d/influxdb.conf input' do
-    it 'is declared' do
-      should contain_file(filename)
-        .with('[[inputs.influxdb]]')
-        .with('  urls = ["http://localhost:8086"]')
+    it 'is declared with the correct content' do
+      should contain_file(filename).with_content(/\[\[inputs.influxdb\]\]/)
+      should contain_file(filename).with_content(/  urls = \["http:\/\/localhost:8086"\]/)
     end
 
     it 'requires telegraf to be installed' do
@@ -31,20 +30,14 @@ describe 'telegraf::input' do
   let(:title) { 'snmp' }
   let(:params) {{
     :options => {
-      "interval" => '60s',
+      "interval" => "60s",
     },
     :sections => {
       "snmp.host" => {
-        "address"   => "snmp_host:161",
+        "address"   => "snmp_host1:161",
         "community" => "read_only",
-        "version"   => 2,
-        "get_oids"  => ['1.3.6.1.2.1.1.5',],
-      },
-        "snmp.host" => {
-        "address"   => "snmp_host:161",
-        "community" => "read_only",
-        "version"   => 2,
-        "get_oids"  => ['1.3.6.1.2.1.1.5',],
+        "version"   => "2",
+        "get_oids"  => ["1.3.6.1.2.1.1.5",],
       },
     },
   }}
@@ -52,8 +45,14 @@ describe 'telegraf::input' do
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
   describe 'configuration file /etc/telegraf/telegraf.d/snmp.conf input with sections' do
-    it 'is declared' do
-      should contain_file(filename)
+    it 'is declared with the correct content' do
+      should contain_file(filename).with_content(/\[\[inputs.snmp\]\]/)
+      should contain_file(filename).with_content(/  interval = "60s"/)
+      should contain_file(filename).with_content(/\[\[inputs.snmp.host\]\]/)
+      should contain_file(filename).with_content(/  address = "snmp_host1:161"/)
+      should contain_file(filename).with_content(/  community = "read_only"/)
+      should contain_file(filename).with_content(/  version = "2"/)
+      should contain_file(filename).with_content(/  get_oids = \["1.3.6.1.2.1.1.5"\]/)
     end
 
     it 'requires telegraf to be installed' do

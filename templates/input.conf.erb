@@ -1,15 +1,23 @@
-[[input.<%= @name %> ]]
+[[inputs.<%= @name %>]]
 <% if defined?(@options)
      @options.keys.sort.each do |k| -%>
-<%= "#{k} = #{@options[k]}" %>
+<% if @options[k].kind_of?(Array) -%>
+<%= "  #{k} = #{@options[k]}" %>
+<% else -%>
+<%= "  #{k} = \"#{@options[k]}\"" %>
+<% end -%>
 <%   end
    end -%>
 <% if defined?(@sections)
      @sections.keys.each do |k| -%>
 
-[[input.<%= "#{k}" %>]]
+[[inputs.<%= "#{k}" %>]]
 <%     @sections[k].keys.sort.each do |v| -%>
-<%= "#{v} = #{@sections[k][v]}" %>
+<% if @sections[k][v].kind_of?(Array) -%>
+<%= "  #{v} = #{@sections[k][v]}\"" %>
+<% else -%>
+<%= "  #{v} = \"#{@sections[k][v]}\"" %>
+<% end -%>
 <%     end
      end
    end -%>
