@@ -49,7 +49,7 @@
 #   Hash.  Specify input plugins and their options.
 #
 # [*global_tags*]
-#   Array.  Global tags as a key-value pair.
+#   Hash.  Global tags as a key-value pair.
 #
 # [*manage_service*]
 #   Boolean.  Whether to manage the telegraf service or not.

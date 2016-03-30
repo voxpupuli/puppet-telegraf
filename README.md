@@ -81,6 +81,44 @@ Or here's a Hiera-based example (which is the recommended approach):
         username: 'telegraf'
         password: 'telegraf'
 
+To configure individual inputs, you can use `telegraf::input`
+
+    telegraf::input { 'influxdb': 
+        "options" => {
+            "urls" => ["http://localhost:8086",],
+        },
+    }
+
+Will create the file `/etc/telegraf/telegraf.d/influxdb.conf`
+
+    [[inputs.influxdb]]
+      urls = ["http://localhost:8086"]
+
+    telegraf::input { 'snmp':
+        options => {
+            "interval" => "60s",
+        },
+        "sections" => {
+            "snmp.host" => {
+                "address"   => "snmp_host1:161",
+                "community" => "read_only",
+                "version"   => "2",
+                "get_oids"  => ["1.3.6.1.2.1.1.5",],
+            },
+        },
+    }
+
+Will create the file `/etc/telegraf/telegraf.d/snmp.conf`
+
+    [[inputs.snmp]]
+      interval = "60s"
+
+    [[inputs.snmp.host]]
+      address = "snmp_host1:161"
+      community = "read_only"
+      version = 2
+      get_oids = ["1.3.6.1.2.1.1.5"]
+
 ## Limitations
 
 This module has been developed and tested against:

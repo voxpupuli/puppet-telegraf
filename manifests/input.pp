@@ -6,6 +6,9 @@
 # [*options*]
 #   Options for use the the input template
 #
+# [*sections*]
+#   Some inputs take multiple sections
+
 define telegraf::input (
   $options  = undef,
   $sections = undef,
