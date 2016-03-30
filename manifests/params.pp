@@ -16,7 +16,7 @@ class telegraf::params {
   $flush_jitter           = '0s'
   $debug                  = false
   $quiet                  = false
-  $global_tags            = []
+  $global_tags            = {}
   $manage_service         = true
   $manage_repo            = true
 
