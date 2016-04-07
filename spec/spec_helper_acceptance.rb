@@ -17,10 +17,11 @@ RSpec.configure do |c|
   c.before :suite do
     # Install module
     # We assume the module is in auto load layout
-    puppet_module_install(:source => proj_root, :module_name => "#{File.basename(proj_root)}")
+    puppet_module_install(:source => proj_root, :module_name => 'telegraf')
     # Install dependancies
     hosts.each do |host|
-      on host, puppet('module', 'install', 'puppetlabs-stdlib', '-v 4.3.2')
+      on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'puppetlabs-apt'), { :acceptable_exit_codes => [0,1] }
     end
   end
 end
