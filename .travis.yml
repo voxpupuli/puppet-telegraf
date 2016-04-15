@@ -7,9 +7,11 @@ script:
   - bundle exec rake lint
   - bundle exec rake validate
   - bundle exec rake beaker
-matrix:
-  include:
-  - rvm: default
-    env: BEAKER_set="debian-8-x86_64_docker"
-  - rvm: default
-    env: BEAKER_set="centos-7-x86_64_docker"
+rvm:
+  - 2.0.0
+  - 2.1.6
+env:
+  - BEAKER_set="debian-8-x86_64_docker"
+  - BEAKER_set="centos-7-x86_64_docker"
+  - PUPPET_VERSION="~> 3.8.0" STRICT_VARIABLES=yes
+  - PUPPET_VERSION="~> 4.0" STRICT_VARIABLES=yes
