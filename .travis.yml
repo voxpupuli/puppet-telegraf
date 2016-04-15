@@ -3,6 +3,10 @@ language: ruby
 sudo: required
 services:
   - docker
+addons:
+ apt:
+   packages:
+   - wget
 script:
   - bundle exec rake lint
   - bundle exec rake validate
