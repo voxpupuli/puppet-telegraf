@@ -4,3 +4,4 @@ pkg
 travis.log
 .vagrant
 spec/fixtures/*
+junit

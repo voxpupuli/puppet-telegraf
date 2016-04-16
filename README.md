@@ -81,21 +81,21 @@ Or here's a Hiera-based example (which is the recommended approach):
         username: 'telegraf'
         password: 'telegraf'
 
-To configure individual inputs, you can use `telegraf::input`
+To configure individual inputs, you can use `telegraf::input`.
 
 Example 1
 
     telegraf::input { 'my_exec':
       plugin_type => 'exec'
-      options => {
+      options     => {
         'commands'    => ['/usr/local/bin/my_input.py',],
         'name_suffix' => '_my_input',
         'data_format' => 'json',
       },
-      require => File['/usr/local/bin/my_input.py'],
+      require     => File['/usr/local/bin/my_input.py'],
     }
 
-Will create the file `/etc/telegraf/telegraf.d/my_exec.conf`
+Will create the file `/etc/telegraf/telegraf.d/my_exec.conf`:
 
     [[inputs.exec]]
       commands = ['/usr/local/bin/my_input.py']
@@ -111,7 +111,7 @@ Example 2
       },
     }
 
-Will create the file `/etc/telegraf/telegraf.d/influxdb-dc.conf`
+Will create the file `/etc/telegraf/telegraf.d/influxdb-dc.conf`:
 
     [[inputs.influxdb]]
       urls = ["http://remote-dc:8086"]
@@ -119,12 +119,12 @@ Will create the file `/etc/telegraf/telegraf.d/influxdb-dc.conf`
 Example 3
 
     telegraf::input { 'my_snmp':
-      plugin_type = 'snmp',
-      options => {
+      plugin_type => 'snmp',
+      options     => {
         'interval' => '60s',
       },
-      sections => {
-        'snmp.host' => {
+      sections    => {
+        'snmp.host'   => {
           'address'   => 'snmp_host1:161',
           'community' => 'read_only',
           'version'   => 2,
@@ -133,7 +133,7 @@ Example 3
       },
     }
 
-Will create the file `/etc/telegraf/telegraf.d/snmp.conf`
+Will create the file `/etc/telegraf/telegraf.d/snmp.conf`:
 
     [[inputs.snmp]]
       interval = "60s"

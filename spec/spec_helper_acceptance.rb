@@ -15,8 +15,9 @@ RSpec.configure do |c|
 
   # Configure all nodes in nodeset
   c.before :suite do
+    # Required on Debian to install from HTTPS-enabled repos, i.e InfluxData
+    on 'debian', 'apt-get -y install apt-transport-https'
     # Install module
-    # We assume the module is in auto load layout
     puppet_module_install(:source => proj_root, :module_name => 'telegraf')
     # Install dependancies
     hosts.each do |host|
