@@ -1,0 +1,20 @@
+[[inputs.<%= @plugin_type %>]]
+<% @options.keys.sort.each do |key| -%>
+<% if @options[key].is_a?(String) -%>
+  <%= key %> = "<%= @options[key] %>"
+<% else -%>
+  <%= key %> = <%= @options[key] %>
+<% end -%>
+<% end -%>
+<% if @sections -%>
+<% @sections.keys.sort.each do |key| -%>
+[[inputs.<%= key %>]]
+<% @sections[key].keys.sort.each do |value| -%>
+<% if @sections[key][value].is_a?(String) -%>
+  <%= value %> = "<%= @sections[key][value] %>"
+<% else -%>
+  <%= value %> = <%= @sections[key][value] %>
+<% end -%>
+<% end -%>
+<% end -%>
+<% end -%>
