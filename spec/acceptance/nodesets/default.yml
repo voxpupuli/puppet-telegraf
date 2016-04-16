@@ -4,8 +4,6 @@ HOSTS:
     image: ubuntu:14.04
     hypervisor: docker
     docker_preserve_image: true
-    docker_image_commands:
-      - 'apt-get install -y apt-transport-https'
 CONFIG:
   log_level: verbose
   masterless: true

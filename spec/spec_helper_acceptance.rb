@@ -2,6 +2,7 @@ require 'beaker-rspec/spec_helper'
 require 'beaker-rspec/helpers/serverspec'
 
 hosts.each do |host|
+  on 'debian', 'apt-get -y install wget'
   # Install Puppet
   install_puppet
 end
