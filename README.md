@@ -81,21 +81,21 @@ Or here's a Hiera-based example (which is the recommended approach):
         username: 'telegraf'
         password: 'telegraf'
 
-To configure individual inputs, you can use `telegraf::input`
+To configure individual inputs, you can use `telegraf::input`.
 
 Example 1
 
     telegraf::input { 'my_exec':
       plugin_type => 'exec'
-      options => {
+      options     => {
         'commands'    => ['/usr/local/bin/my_input.py',],
         'name_suffix' => '_my_input',
         'data_format' => 'json',
       },
-      require => File['/usr/local/bin/my_input.py'],
+      require     => File['/usr/local/bin/my_input.py'],
     }
 
-Will create the file `/etc/telegraf/telegraf.d/my_exec.conf`
+Will create the file `/etc/telegraf/telegraf.d/my_exec.conf`:
 
     [[inputs.exec]]
       commands = ['/usr/local/bin/my_input.py']
@@ -106,12 +106,12 @@ Example 2
 
     telegraf::input { 'influxdb-dc':
       plugin_type => 'influxdb',
-      options => {
+      options     => {
         'urls' => ['http://remote-dc:8086',],
       },
     }
 
-Will create the file `/etc/telegraf/telegraf.d/influxdb-dc.conf`
+Will create the file `/etc/telegraf/telegraf.d/influxdb-dc.conf`:
 
     [[inputs.influxdb]]
       urls = ["http://remote-dc:8086"]
@@ -119,11 +119,11 @@ Will create the file `/etc/telegraf/telegraf.d/influxdb-dc.conf`
 Example 3
 
     telegraf::input { 'my_snmp':
-      plugin_type = 'snmp',
-      options => {
+      plugin_type => 'snmp',
+      options     => {
         'interval' => '60s',
       },
-      sections => {
+      sections    => {
         'snmp.host' => {
           'address'   => 'snmp_host1:161',
           'community' => 'read_only',
@@ -133,7 +133,7 @@ Example 3
       },
     }
 
-Will create the file `/etc/telegraf/telegraf.d/snmp.conf`
+Will create the file `/etc/telegraf/telegraf.d/snmp.conf`:
 
     [[inputs.snmp]]
       interval = "60s"
@@ -157,7 +157,7 @@ Support for other distributions / operating systems is planned.  Feel free to
 assist with development in this regard!
 
 The configuration generated with this module is only compatible with newer
-releases of Telegraf, i.e 0.10.x.  It won't work with the 0.2.x series.
+releases of Telegraf, i.e 0.11.x.  It won't work with the 0.2.x series.
 
 ## Development
 
