@@ -12,6 +12,7 @@ class telegraf::install {
   if $::telegraf::manage_repo {
     case $::osfamily {
       'Debian': {
+        ensure_packages(['apt-transport-https'])
         apt::source { 'influxdata':
           comment  => 'Mirror for InfluxData packages',
           location => "https://repos.influxdata.com/${_operatingsystem}",
@@ -21,6 +22,7 @@ class telegraf::install {
             'id'     => '05CE15085FC09D18E99EFB22684A14CF2582E0C5',
             'source' => 'https://repos.influxdata.com/influxdb.key',
           },
+          require => Package['apt-transport-https'],
         }
         Class['apt::update'] -> Package['telegraf']
       }
