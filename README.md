@@ -22,6 +22,10 @@ There's a couple of fairly standard dependencies for this module, as follows:
 * https://github.com/puppetlabs/puppetlabs-stdlib
 * https://github.com/puppetlabs/puppetlabs-apt (on Debian / Ubuntu)
 
+*NB:* On some apt-based distributions you'll need to ensure you have support
+for TLS-enabled repos in place.  This can be achieved by installing the
+`apt-transport-https` package.
+
 ### Usage
 
 Telegraf's configuration is split into four main sections - global tags,
