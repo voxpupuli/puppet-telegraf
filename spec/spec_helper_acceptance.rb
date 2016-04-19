@@ -21,6 +21,9 @@ RSpec.configure do |c|
     puppet_module_install(:source => proj_root, :module_name => 'telegraf')
     # Install dependancies
     hosts.each do |host|
+      if fact('osfamily') == 'Debian'
+        on host, 'apt-get -y install apt-transport-https'
+      end
       on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
       on host, puppet('module', 'install', 'puppetlabs-apt'), { :acceptable_exit_codes => [0,1] }
     end
