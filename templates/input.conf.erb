@@ -2,6 +2,8 @@
 <% @options.keys.sort.each do |key| -%>
 <% if @options[key].is_a?(String) -%>
   <%= key %> = "<%= @options[key] %>"
+<% elsif @options[key].kind_of?(Array) -%>
+  <%= key %> = [<% @options[key].join ('", "').each do |val| %>"<%= val %>"<% end -%>]
 <% else -%>
   <%= key %> = <%= @options[key] %>
 <% end -%>
@@ -12,6 +14,8 @@
 <% @sections[key].keys.sort.each do |value| -%>
 <% if @sections[key][value].is_a?(String) -%>
   <%= value %> = "<%= @sections[key][value] %>"
+<% elsif @sections[key].kind_of?(Array) -%>
+  <%= key %> = [<% @sections[key].join ('", "').each do |val| %>"<%= val %>"<% end -%>]
 <% else -%>
   <%= value %> = <%= @sections[key][value] %>
 <% end -%>
