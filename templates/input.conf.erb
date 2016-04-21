@@ -3,7 +3,7 @@
 <% if @options[key].is_a?(String) -%>
   <%= key %> = "<%= @options[key] %>"
 <% elsif @options[key].kind_of?(Array) -%>
-  <%= key %> = [<% @options[key].join ('", "').each do |val| %>"<%= val %>"<% end -%>]
+  <%= key %> = <%= @options[key].inspect %>
 <% else -%>
   <%= key %> = <%= @options[key] %>
 <% end -%>
@@ -15,7 +15,7 @@
 <% if @sections[key][value].is_a?(String) -%>
   <%= value %> = "<%= @sections[key][value] %>"
 <% elsif @sections[key].kind_of?(Array) -%>
-  <%= key %> = [<% @sections[key].join ('", "').each do |val| %>"<%= val %>"<% end -%>]
+  <%= value %> = <%= @sections[key][value].inspect %>
 <% else -%>
   <%= value %> = <%= @sections[key][value] %>
 <% end -%>
