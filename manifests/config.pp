@@ -4,10 +4,6 @@
 #
 class telegraf::config inherits telegraf {
 
-  $purge = $::telegraf::params::purge
-
-  validate_bool($purge)
-
   assert_private()
 
   file { $::telegraf::config_file:
@@ -20,13 +16,4 @@ class telegraf::config inherits telegraf {
     require => Class['::telegraf::install'],
   }
 
-  if $purge {
-    tidy {
-      'purge_inputs':
-        path    => '/etc/telegraf/telegraf.d/',
-        matches => [ '*.conf' ],
-        recurse => 1,
-        rmdirs  => false,
-    }
-  }
 }
