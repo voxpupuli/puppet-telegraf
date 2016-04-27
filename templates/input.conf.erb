@@ -1,9 +1,13 @@
 [[inputs.<%= @plugin_type %>]]
+<% if @options -%>
 <% @options.keys.sort.each do |key| -%>
 <% if @options[key].is_a?(String) -%>
   <%= key %> = "<%= @options[key] %>"
+<% elsif @options[key].kind_of?(Array) -%>
+  <%= key %> = <%= @options[key].inspect %>
 <% else -%>
   <%= key %> = <%= @options[key] %>
+<% end -%>
 <% end -%>
 <% end -%>
 <% if @sections -%>
@@ -12,6 +16,8 @@
 <% @sections[key].keys.sort.each do |value| -%>
 <% if @sections[key][value].is_a?(String) -%>
   <%= value %> = "<%= @sections[key][value] %>"
+<% elsif @sections[key].kind_of?(Array) -%>
+  <%= value %> = <%= @sections[key][value].inspect %>
 <% else -%>
   <%= value %> = <%= @sections[key][value] %>
 <% end -%>

@@ -5,6 +5,7 @@
 class telegraf::params {
 
   $ensure                 = 'present'
+  $purge                  = true
   $config_file            = '/etc/telegraf/telegraf.conf'
   $hostname               = $::hostname
   $interval               = '10s'

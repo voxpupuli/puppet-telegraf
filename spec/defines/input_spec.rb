@@ -66,3 +66,26 @@ describe 'telegraf::input' do
     end
   end
 end
+
+describe 'telegraf::input' do
+  let(:title) { 'my_postqueue' }
+  let(:params) {{
+    :plugin_type => 'postqueue'
+  }}
+  let(:facts) { { :osfamily => 'RedHat' } }
+  let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
+
+  describe 'configuration file /etc/telegraf/telegraf.d/my_postqueue.conf input without options or sections' do
+    it 'is declared with the correct content' do
+      should contain_file(filename).with_content(/\[\[inputs.postqueue\]\]/)
+    end
+
+    it 'requires telegraf to be installed' do
+      should contain_file(filename).that_requires('Class[telegraf::install]')
+    end
+
+    it 'notifies the telegraf daemon' do
+      should contain_file(filename).that_notifies("Class[telegraf::service]")
+    end
+  end
+end

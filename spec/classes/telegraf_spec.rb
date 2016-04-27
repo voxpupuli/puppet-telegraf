@@ -20,6 +20,7 @@ describe 'telegraf' do
           it { should contain_class('telegraf')
             .with(
               :ensure         => '0.11.1-1',
+              :purge          => true,
               :interval       => '60s',
               :flush_interval => '60s',
               :global_tags    => {
@@ -77,6 +78,7 @@ describe 'telegraf' do
           it { should contain_file('/etc/telegraf/telegraf.conf') }
           it { should contain_package('telegraf') }
           it { should contain_service('telegraf') }
+          it { should contain_tidy('purge_inputs') }
           it { should contain_yumrepo('influxdata') }
         end
       end

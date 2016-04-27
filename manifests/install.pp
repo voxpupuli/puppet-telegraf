@@ -7,6 +7,10 @@ class telegraf::install {
 
   assert_private()
 
+  $purge = $::telegraf::params::purge
+
+  validate_bool($purge)
+
   $_operatingsystem = downcase($::operatingsystem)
 
   if $::telegraf::manage_repo {
@@ -41,5 +45,15 @@ class telegraf::install {
   }
 
   ensure_packages(['telegraf'], { ensure => $::telegraf::ensure })
+
+  if $purge {
+    tidy {
+      'purge_inputs':
+        path    => '/etc/telegraf/telegraf.d/',
+        matches => [ '*.conf' ],
+        recurse => 1,
+        rmdirs  => false,
+    }
+  }
 
 }
