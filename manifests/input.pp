@@ -10,7 +10,7 @@
 #   Some inputs take multiple sections
 
 define telegraf::input (
-  $plugin_type = undef,
+  $plugin_type = $name,
   $options    = undef,
   $sections   = undef,
 ) {
