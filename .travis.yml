@@ -8,8 +8,7 @@ script:
   - bundle exec rake validate
   - bundle exec rake beaker
 rvm:
-  - 2.0.0
-  - 2.1.6
+  - 2.2.3
 env:
   - BEAKER_set="default"
   - PUPPET_VERSION="~> 3.8.0" STRICT_VARIABLES=yes
