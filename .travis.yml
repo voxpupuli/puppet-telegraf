@@ -1,14 +1,13 @@
 ---
 language: ruby
+cache: bundler
 sudo: required
 services:
   - docker
 script:
-  - bundle exec rake lint
-  - bundle exec rake validate
-  - bundle exec rake beaker
+  - bundle exec rake validate lint beaker
 rvm:
-  - 2.2.3
+  - 2.1.6
 env:
   - BEAKER_set="default"
   - PUPPET_VERSION="~> 3.8.0" STRICT_VARIABLES=yes
