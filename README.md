@@ -37,67 +37,75 @@ these stanzas.
 To get started, Telegraf can be installed with a very basic configuration by
 just including the class:
 
-    include ::telegraf
+```puppet
+include ::telegraf
+```
 
 However, to customise your configuration you'll want to do something like the following:
 
-    class { '::telegraf':
-        hostname => $::hostname,
-        outputs  => {
-            'influxdb' => {
-                'urls'     => [ "http://influxdb0.${::domain}:8086", "http://influxdb1.${::domain}:8086" ],
-                'database' => 'telegraf',
-                'username' => 'telegraf',
-                'password' => 'metricsmetricsmetrics',
-                }
-            },
-        inputs   => {
-            'cpu' => {
-                'percpu'   => true,
-                'totalcpu' => true,
-            },
-        }
+```puppet
+class { '::telegraf':
+    hostname => $::hostname,
+    outputs  => {
+        'influxdb' => {
+            'urls'     => [ "http://influxdb0.${::domain}:8086", "http://influxdb1.${::domain}:8086" ],
+            'database' => 'telegraf',
+            'username' => 'telegraf',
+            'password' => 'metricsmetricsmetrics',
+            }
+        },
+    inputs   => {
+        'cpu' => {
+            'percpu'   => true,
+            'totalcpu' => true,
+        },
     }
+}
+```
 
 Or here's a Hiera-based example (which is the recommended approach):
 
-    ---
-    telegraf::global_tags:
-      role: "%{::role}"
-      hostgroup: "%{::hostgroup}"
-      domain: "%{::domain}"
-    telegraf::inputs:
-      cpu:
-        percpu: true
-        totalcpu: true
-      mem:
-      io:
-      net:
-      disk:
-      swap:
-      system:
-    telegraf::outputs:
-      influxdb:
-        urls:
-          - "http://influxdb0.%{::domain}:8086"
-          - "http://influxdb1.%{::domain}:8086"
-        database: 'influxdb'
-        username: 'telegraf'
-        password: 'telegraf'
+```yaml
+---
+telegraf::global_tags:
+  role: "%{::role}"
+  hostgroup: "%{::hostgroup}"
+  domain: "%{::domain}"
+telegraf::inputs:
+  cpu:
+    percpu: true
+    totalcpu: true
+  mem:
+  io:
+  net:
+  disk:
+  swap:
+  system:
+telegraf::outputs:
+  influxdb:
+    urls:
+      - "http://influxdb0.%{::domain}:8086"
+      - "http://influxdb1.%{::domain}:8086"
+    database: 'influxdb'
+    username: 'telegraf'
+    password: 'telegraf'
+```
 
 To configure individual inputs, you can use `telegraf::input`.
 
 Example 1
 
-    telegraf::input { 'my_exec':
-      plugin_type => 'exec'
-      options     => {
-        'commands'    => ['/usr/local/bin/my_input.py',],
-        'name_suffix' => '_my_input',
-        'data_format' => 'json',
-      },
-      require     => File['/usr/local/bin/my_input.py'],
-    }
+```puppet
+telegraf::input { 'my_exec':
+  plugin_type => 'exec'
+  options     => {
+    'commands'    => ['/usr/local/bin/my_input.py',],
+    'name_suffix' => '_my_input',
+    'data_format' => 'json',
+  },
+  require     => File['/usr/local/bin/my_input.py'],
+}
+```
 
 Will create the file `/etc/telegraf/telegraf.d/my_exec.conf`:
 
@@ -108,12 +116,13 @@ Will create the file `/etc/telegraf/telegraf.d/my_exec.conf`:
 
 Example 2
 
-    telegraf::input { 'influxdb-dc':
-      plugin_type => 'influxdb',
-      options     => {
-        'urls' => ['http://remote-dc:8086',],
-      },
-    }
+```puppet
+telegraf::input { 'influxdb-dc':
+  plugin_type => 'influxdb',
+  options     => {
+    'urls' => ['http://remote-dc:8086',],
+  },
+}
 
 Will create the file `/etc/telegraf/telegraf.d/influxdb-dc.conf`:
 
@@ -122,20 +131,22 @@ Will create the file `/etc/telegraf/telegraf.d/influxdb-dc.conf`:
 
 Example 3
 
-    telegraf::input { 'my_snmp':
-      plugin_type => 'snmp',
-      options     => {
-        'interval' => '60s',
-      },
-      sections    => {
-        'snmp.host' => {
-          'address'   => 'snmp_host1:161',
-          'community' => 'read_only',
-          'version'   => 2,
-          'get_oids'  => ['1.3.6.1.2.1.1.5',],
-        },
-      },
-    }
+```puppet
+telegraf::input { 'my_snmp':
+  plugin_type => 'snmp',
+  options     => {
+    'interval' => '60s',
+  },
+  sections    => {
+    'snmp.host' => {
+      'address'   => 'snmp_host1:161',
+      'community' => 'read_only',
+      'version'   => 2,
+      'get_oids'  => ['1.3.6.1.2.1.1.5',],
+    },
+  },
+}
+```
 
 Will create the file `/etc/telegraf/telegraf.d/snmp.conf`:
 
