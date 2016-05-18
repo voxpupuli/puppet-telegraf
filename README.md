@@ -159,6 +159,47 @@ Will create the file `/etc/telegraf/telegraf.d/snmp.conf`:
       version = 2
       get_oids = ["1.3.6.1.2.1.1.5"]
 
+## Hierarchical configuration from multiple files
+
+Hiera YAML and JSON backends support deep hash merging which is needed for inheriting configuration from multiple files.
+
+First of all, make sure that `gem 'deep_merge'` is installed on your Puppet master.
+
+An example of `hiera.yaml`:
+```yaml
+---
+:hierarchy:
+    - "roles/%{role}"
+    - "type/%{virtual}"
+    - "domain/%{domain}"
+    - "os/%{osfamily}"
+    - "common"
+:backends:
+    - yaml
+:yaml:
+    :datadir: /etc/puppet/hiera
+:merge_behavior: deeper
+```
+
+Then you can define configuration shared for all `physical` servers and place it into `type/physical.yaml`:
+```yaml
+telegraf::inputs:
+  cpu:
+    percpu: true
+    totalcpu: true
+  mem:
+  io:
+  net:
+  disk:
+```
+specific roles will include some extra plugins, e.g. `role/frontend.yaml`:
+
+```yaml
+telegraf::inputs:
+  nginx:
+    urls: ["http://localhost/server_status"]
+```
+
 ## Limitations
 
 This module has been developed and tested against:
