@@ -20,20 +20,22 @@ class telegraf::params {
   $manage_service         = true
   $manage_repo            = true
 
-  $outputs = {
+  # currently the only way how to obtain merged hashes
+  # from multiple files (`:merge_behavior: deep` needs to be
+  # set in your `hiera.yaml`)
+  $outputs = hiera_hash('telegraf::outputs', {
     'influxdb'  => {
       'urls'     => [ 'http://localhost:8086' ],
       'database' => 'telegraf',
       'username' => 'telegraf',
       'password' => 'metricsmetricsmetrics',
     }
-  }
+  })
 
-  $inputs = {
+  $inputs = hiera_hash('telegraf::inputs', {
     'cpu'  => {
       'percpu'   => true,
       'totalcpu' => true,
     }
-  }
-
+  })
 }
