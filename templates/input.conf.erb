@@ -4,7 +4,6 @@
   <%= option -%> = <% if value.is_a?(String) %>"<%= value %>"<% elsif value.is_a?(Array) %><%= value.inspect %><% else %><%= value %><% end %>
 <%          end -%>
 <%      end -%>
-<%   end -%>
 <% if @sections -%>
 <% @sections.sort.each do |section, option| -%>
 [[inputs.<%= section %>]]
