@@ -21,11 +21,11 @@
   debug = <%= @debug %>
   quiet = <%= @quiet %>
 
-<% if @outputs -%>
+<% if @_outputs -%>
 #
 # OUTPUTS:
 #
-<%   @outputs.sort.each do | output, options | -%>
+<%   @_outputs.sort.each do | output, options | -%>
 [[outputs.<%= output %>]]
 <%      unless options == nil -%>
 <%          options.sort.each do | option, value | -%>
@@ -35,11 +35,11 @@
 <%   end -%>
 <% end -%>
 
-<% if @inputs -%>
+<% if @_inputs -%>
 #
 # INPUTS:
 #
-<%   @inputs.sort.each do | input, options | -%>
+<%   @_inputs.sort.each do | input, options | -%>
 [[inputs.<%= input %>]]
 <%      unless options == nil -%>
 <%          options.sort.each do | option, value | -%>
