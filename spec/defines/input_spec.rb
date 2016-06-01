@@ -53,8 +53,31 @@ describe 'telegraf::input' do
       should contain_file(filename).with_content(/\[\[inputs.snmp.host\]\]/)
       should contain_file(filename).with_content(/  address = "snmp_host1:161"/)
       should contain_file(filename).with_content(/  community = "read_only"/)
-      should contain_file(filename).with_content(/  version = 2/)
       should contain_file(filename).with_content(/  get_oids = \["1.3.6.1.2.1.1.5"\]/)
+      should contain_file(filename).with_content(/  version = "2"/)
+    end
+
+    it 'requires telegraf to be installed' do
+      should contain_file(filename).that_requires('Class[telegraf::install]')
+    end
+
+    it 'notifies the telegraf daemon' do
+      should contain_file(filename).that_notifies("Class[telegraf::service]")
+    end
+  end
+end
+
+describe 'telegraf::input' do
+  let(:title) { 'my_haproxy' }
+  let(:params) {{
+    :plugin_type => 'haproxy',
+  }}
+  let(:facts) { { :osfamily => 'RedHat' } }
+  let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
+
+  describe 'configuration file /etc/telegraf/telegraf.d/my_haproxy.conf input with no options or sections' do
+    it 'is declared with the correct content' do
+      should contain_file(filename).with_content(/\[\[inputs.haproxy\]\]/)
     end
 
     it 'requires telegraf to be installed' do
