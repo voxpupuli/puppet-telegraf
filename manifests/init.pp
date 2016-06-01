@@ -96,6 +96,12 @@ class telegraf (
   validate_bool($manage_service)
   validate_bool($manage_repo)
 
+  # currently the only way how to obtain merged hashes
+  # from multiple files (`:merge_behavior: deeper` needs to be
+  # set in your `hiera.yaml`)
+  $_outputs = hiera_hash('telegraf::outputs', $outputs)
+  $_inputs = hiera_hash('telegraf::inputs', $inputs)
+
   contain ::telegraf::install
   contain ::telegraf::config
   contain ::telegraf::service
