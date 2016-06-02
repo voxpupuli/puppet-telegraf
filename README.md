@@ -91,9 +91,9 @@ telegraf::outputs:
     password: 'telegraf'
 ```
 
-To configure individual inputs, you can use `telegraf::input`.
+`telegraf::inputs` accepts a hash of any inputs that you'd like to configure. However, you can also optionally define individual inputs using the `telegraf::input` type - this suits installations where, for example, a core module sets the defaults and other modules import it.
 
-Example 1
+Example 1:
 
 ```puppet
 telegraf::input { 'my_exec':
@@ -114,7 +114,7 @@ Will create the file `/etc/telegraf/telegraf.d/my_exec.conf`:
       name_suffix = '_my_input'
       data_format = 'json'
 
-Example 2
+Example 2:
 
 ```puppet
 telegraf::input { 'influxdb-dc':
@@ -123,13 +123,16 @@ telegraf::input { 'influxdb-dc':
     'urls' => ['http://remote-dc:8086',],
   },
 }
+```
 
 Will create the file `/etc/telegraf/telegraf.d/influxdb-dc.conf`:
 
-    [[inputs.influxdb]]
-      urls = ["http://remote-dc:8086"]
+```
+[[inputs.influxdb]]
+  urls = ["http://remote-dc:8086"]
+```
 
-Example 3
+Example 3:
 
 ```puppet
 telegraf::input { 'my_snmp':
@@ -161,11 +164,12 @@ Will create the file `/etc/telegraf/telegraf.d/snmp.conf`:
 
 ## Hierarchical configuration from multiple files
 
-Hiera YAML and JSON backends support deep hash merging which is needed for inheriting configuration from multiple files.
+Hiera YAML and JSON backends support [deep hash merging](https://docs.puppet.com/hiera/3.1/configuring.html#mergebehavior) which is needed for inheriting configuration from multiple files.
 
-First of all, make sure that `gem 'deep_merge'` is installed on your Puppet master.
+First of all, make sure that the `deep_merge` gem is installed on your Puppet Master.
 
 An example of `hiera.yaml`:
+
 ```yaml
 ---
 :hierarchy:
@@ -182,6 +186,7 @@ An example of `hiera.yaml`:
 ```
 
 Then you can define configuration shared for all `physical` servers and place it into `type/physical.yaml`:
+
 ```yaml
 telegraf::inputs:
   cpu:
@@ -192,7 +197,8 @@ telegraf::inputs:
   net:
   disk:
 ```
-specific roles will include some extra plugins, e.g. `role/frontend.yaml`:
+
+Specific roles will include some extra plugins, e.g. `role/frontend.yaml`:
 
 ```yaml
 telegraf::inputs:
@@ -209,12 +215,16 @@ This module has been developed and tested against:
  * CentOS / RHEL 6
  * CentOS / RHEL 7
 
-Support for other distributions / operating systems is planned.  Feel free to
-assist with development in this regard!
+Support for other distributions / operating systems is planned.  Feel free to assist with development in this regard!
 
-The configuration generated with this module is only compatible with newer
-releases of Telegraf, i.e 0.11.x.  It won't work with the 0.2.x series.
+The configuration generated with this module is only compatible with newer releases of Telegraf, i.e 0.11.x.  It won't work with the 0.2.x series.
 
 ## Development
 
-Fork, hack, test, then raise a PR.
+Please fork this repository, hack away on your branch, run the tests:
+
+```shell
+$ bundle exec rake test acceptance
+```
+
+And then submit a pull request.  [Succinct, well-described and atomic commits preferred](http://chris.beams.io/posts/git-commit/).

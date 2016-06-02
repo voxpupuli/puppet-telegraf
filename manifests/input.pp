@@ -1,18 +1,19 @@
 # == Define: telegraf::input
 #
-# A puppet wrapper for the input files
+# A Puppet wrapper for discrete Telegraf input files
 #
 # === Parameters
+#
 # [*options*]
-#   Options for use the the input template
+#   Hash. Plugin options for use the the input template.
 #
 # [*sections*]
-#   Some inputs take multiple sections
-
+#   Hash. Some inputs take multiple sections.
+#
 define telegraf::input (
   $plugin_type = $name,
-  $options    = undef,
-  $sections   = undef,
+  $options     = undef,
+  $sections    = undef,
 ) {
   include telegraf
 
@@ -24,11 +25,11 @@ define telegraf::input (
     validate_hash($sections)
   }
 
-  Class['telegraf::config']
+  Class['::telegraf::config']
   ->
   file {"/etc/telegraf/telegraf.d/${name}.conf":
     content => template('telegraf/input.conf.erb')
   }
   ~>
-  Class['telegraf::service']
+  Class['::telegraf::service']
 }
