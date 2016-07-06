@@ -57,6 +57,9 @@
 # [*manage_repo*]
 #   Boolean.  Whether or not to manage InfluxData's repo.
 #
+# [*repo_type*]
+#   String.  Which repo (stable, unstable, nightly) to use
+#
 class telegraf (
   $ensure                 = $telegraf::params::ensure,
   $config_file            = $telegraf::params::config_file,
@@ -75,6 +78,7 @@ class telegraf (
   $global_tags            = $telegraf::params::global_tags,
   $manage_service         = $telegraf::params::manage_service,
   $manage_repo            = $telegraf::params::manage_repo,
+  $repo_type              = $telegraf::params::repo_type,
 ) inherits ::telegraf::params
 {
 
@@ -95,6 +99,7 @@ class telegraf (
   validate_hash($global_tags)
   validate_bool($manage_service)
   validate_bool($manage_repo)
+  validate_string($repo_type)
 
   # currently the only way how to obtain merged hashes
   # from multiple files (`:merge_behavior: deeper` needs to be

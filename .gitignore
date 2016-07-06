@@ -5,3 +5,5 @@ travis.log
 .vagrant
 spec/fixtures/*
 junit
+.bundle/
+vendor/
