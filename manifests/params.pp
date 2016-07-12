@@ -19,6 +19,7 @@ class telegraf::params {
   $global_tags            = {}
   $manage_service         = true
   $manage_repo            = true
+  $repo_type              = 'stable'
 
   $outputs = {
     'influxdb'  => {

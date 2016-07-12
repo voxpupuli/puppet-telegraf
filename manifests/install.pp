@@ -16,7 +16,7 @@ class telegraf::install {
           comment  => 'Mirror for InfluxData packages',
           location => "https://repos.influxdata.com/${_operatingsystem}",
           release  => $::distcodename,
-          repos    => 'stable',
+          repos    => $::telegraf::repo_type,
           key      => {
             'id'     => '05CE15085FC09D18E99EFB22684A14CF2582E0C5',
             'source' => 'https://repos.influxdata.com/influxdb.key',
@@ -28,7 +28,7 @@ class telegraf::install {
         yumrepo { 'influxdata':
           descr    => 'influxdata',
           enabled  => 1,
-          baseurl  => "https://repos.influxdata.com/rhel/${::operatingsystemmajrelease}/${::architecture}/stable",
+          baseurl  => "https://repos.influxdata.com/rhel/${::operatingsystemmajrelease}/${::architecture}/${::telegraf::repo_type}",
           gpgkey   => 'https://repos.influxdata.com/influxdb.key',
           gpgcheck => true,
         }
