@@ -97,7 +97,7 @@ Example 1:
 
 ```puppet
 telegraf::input { 'my_exec':
-  plugin_type => 'exec'
+  plugin_type => 'exec',
   options     => {
     'commands'    => ['/usr/local/bin/my_input.py',],
     'name_suffix' => '_my_input',
