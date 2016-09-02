@@ -6,6 +6,19 @@ class telegraf::service {
 
   assert_private()
 
+  case $::operatingsystem {
+    'Ubuntu' : {
+      if $::operatingsystemmajrelease >= '16.04' {
+        $service_provider = 'systemd'
+      } else {
+        $service_provider = undef
+      }
+    }
+    default : {
+      $service_provider = undef
+    }
+  }
+
   if $::telegraf::manage_service {
     service { 'telegraf':
       ensure    => running,
@@ -13,6 +26,7 @@ class telegraf::service {
       enable    => true,
       restart   => 'pkill -HUP telegraf',
       require   => Class['::telegraf::config'],
+      provider  => $service_provider,
     }
   }
 }
