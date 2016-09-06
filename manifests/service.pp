@@ -8,7 +8,7 @@ class telegraf::service {
 
   case $::operatingsystem {
     'Ubuntu' : {
-      if $::operatingsystemmajrelease >= '16.04' {
+      if versioncmp($::operatingsystemmajrelease, '16.04') >= 0 {
         $service_provider = 'systemd'
       } else {
         $service_provider = undef
