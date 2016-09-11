@@ -14,6 +14,9 @@
 # [*hostname*]
 #   String. Override default hostname used to identify this agent.
 #
+# [*omit_hostname*]
+#   Boolean. Do no set the "host" tag in the telegraf agent.
+#
 # [*interval*]
 #   String. Default data collection interval for all inputs.
 #
@@ -64,6 +67,7 @@ class telegraf (
   $ensure                 = $telegraf::params::ensure,
   $config_file            = $telegraf::params::config_file,
   $hostname               = $telegraf::params::hostname,
+  $omit_hostname          = $telegraf::params::omit_hostname,
   $interval               = $telegraf::params::interval,
   $round_interval         = $telegraf::params::round_interval,
   $metric_buffer_limit    = $telegraf::params::metric_buffer_limit,
@@ -85,6 +89,7 @@ class telegraf (
   validate_string($ensure)
   validate_string($config_file)
   validate_string($hostname)
+  validate_bool($omit_hostname)
   validate_string($interval)
   validate_bool($round_interval)
   validate_integer($metric_buffer_limit)
