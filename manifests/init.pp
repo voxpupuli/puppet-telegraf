@@ -15,7 +15,7 @@
 #   String. Override default hostname used to identify this agent.
 #
 # [*omit_hostname*]
-#   Boolean. Do no set the "host" tag in the telegraf agent.
+#   Boolean. Do not set the "host" tag in the telegraf agent.
 #
 # [*interval*]
 #   String. Default data collection interval for all inputs.
