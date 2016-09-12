@@ -1,11 +1,9 @@
-require 'beaker-rspec/spec_helper'
-require 'beaker-rspec/helpers/serverspec'
+require 'beaker-rspec'
+require 'beaker/puppet_install_helper'
 
-hosts.each do |host|
-  on 'debian', 'apt-get -y install wget'
-  # Install Puppet
-  install_puppet
-end
+on 'debian', 'apt-get -y install wget'
+
+run_puppet_install_helper
 
 RSpec.configure do |c|
   # Project root
