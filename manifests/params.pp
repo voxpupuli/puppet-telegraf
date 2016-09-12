@@ -7,6 +7,7 @@ class telegraf::params {
   $ensure                 = 'present'
   $config_file            = '/etc/telegraf/telegraf.conf'
   $hostname               = $::hostname
+  $omit_hostname          = false
   $interval               = '10s'
   $round_interval         = true
   $metric_buffer_limit    = '1000'
