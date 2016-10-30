@@ -11,8 +11,14 @@
 # [*config_file*]
 #   String. Path to the configuration file.
 #
-# [*config_fragment_dir*]
-#   String. Path to the configuration fragment directory.
+# [*config_file_owner*]
+#   String. User to own the telegraf config file.
+#
+# [*config_file_group*]
+#   String. Group to own the telegraf config file.
+#
+# [*config_folder*]
+#   String. Path of additional telegraf config files.
 #
 # [*hostname*]
 #   String. Override default hostname used to identify this agent.
@@ -69,10 +75,15 @@
 # [*repo_type*]
 #   String.  Which repo (stable, unstable, nightly) to use
 #
+# [*windows_package_url*]
+#   String.  URL for windows telegraf chocolatey repo
+#
 class telegraf (
   $ensure                 = $telegraf::params::ensure,
   $config_file            = $telegraf::params::config_file,
-  $config_fragment_dir    = $telegraf::params::config_fragment_dir,
+  $config_file_owner      = $telegraf::params::config_file_owner,
+  $config_file_group      = $telegraf::params::config_file_group,
+  $config_folder          = $telegraf::params::config_folder,
   $hostname               = $telegraf::params::hostname,
   $omit_hostname          = $telegraf::params::omit_hostname,
   $interval               = $telegraf::params::interval,
@@ -91,12 +102,18 @@ class telegraf (
   $manage_repo            = $telegraf::params::manage_repo,
   $purge_config_fragments = $telegraf::params::purge_config_fragments,
   $repo_type              = $telegraf::params::repo_type,
+  $windows_package_url    = $telegraf::params::windows_package_url,
 ) inherits ::telegraf::params
 {
 
+  $service_hasstatus = $telegraf::params::service_hasstatus
+  $service_restart   = $telegraf::params::service_restart
+
   validate_string($ensure)
   validate_string($config_file)
-  validate_absolute_path($config_fragment_dir)
+  validate_string($config_file_owner)
+  validate_string($config_file_group)
+  validate_absolute_path($config_folder)
   validate_string($hostname)
   validate_bool($omit_hostname)
   validate_string($interval)
@@ -115,6 +132,9 @@ class telegraf (
   validate_bool($manage_repo)
   validate_bool($purge_config_fragments)
   validate_string($repo_type)
+  validate_string($windows_package_url)
+  validate_bool($service_hasstatus)
+  validate_string($service_restart)
 
   # currently the only way how to obtain merged hashes
   # from multiple files (`:merge_behavior: deeper` needs to be

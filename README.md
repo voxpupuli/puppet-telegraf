@@ -26,6 +26,12 @@ There's a couple of fairly standard dependencies for this module, as follows:
 for TLS-enabled repos in place.  This can be achieved by installing the
 `apt-transport-https` package.
 
+In addition, for Windows, the following dependencies must be met:
+
+* Chocolatey installed
+* [`chocolatey/chocolatey`](https://forge.puppet.com/chocolatey/chocolatey) OR [`puppetlabs/chocolatey`](https://forge.puppet.com/puppetlabs/chocolatey)
+  * **Note:** either or both of these modules can handle ensuring the install of Chocolatey.
+
 ### Usage
 
 Telegraf's configuration is split into four main sections - global tags,
@@ -162,6 +168,18 @@ Will create the file `/etc/telegraf/telegraf.d/snmp.conf`:
       version = 2
       get_oids = ["1.3.6.1.2.1.1.5"]
 
+Example 4:
+
+```puppet
+class { '::telegraf':
+    ensure              => '1.0.1',
+    hostname            => $::hostname,
+    windows_package_url => http://internal_repo:8080/chocolatey,
+}
+```
+
+Will install telegraf version 1.0.1 on Windows using an internal chocolatey repo
+
 ## Hierarchical configuration from multiple files
 
 Hiera YAML and JSON backends support [deep hash merging](https://docs.puppet.com/hiera/3.1/configuring.html#mergebehavior) which is needed for inheriting configuration from multiple files.
@@ -214,6 +232,7 @@ This module has been developed and tested against:
  * Debian 8
  * CentOS / RHEL 6
  * CentOS / RHEL 7
+ * Windows 2008, 2008 R2, 2012, 2012 R2
 
 Support for other distributions / operating systems is planned.  Feel free to assist with development in this regard!
 
