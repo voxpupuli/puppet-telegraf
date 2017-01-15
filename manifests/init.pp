@@ -11,6 +11,9 @@
 # [*config_file*]
 #   String. Path to the configuration file.
 #
+# [*config_fragment_dir*]
+#   String. Path to the configuration fragment directory.
+#
 # [*hostname*]
 #   String. Override default hostname used to identify this agent.
 #
@@ -60,12 +63,16 @@
 # [*manage_repo*]
 #   Boolean.  Whether or not to manage InfluxData's repo.
 #
+# [*purge_config_fragments*]
+#   Boolean. Whether unmanaged configuration fragments should be removed.
+#
 # [*repo_type*]
 #   String.  Which repo (stable, unstable, nightly) to use
 #
 class telegraf (
   $ensure                 = $telegraf::params::ensure,
   $config_file            = $telegraf::params::config_file,
+  $config_fragment_dir    = $telegraf::params::config_fragment_dir,
   $hostname               = $telegraf::params::hostname,
   $omit_hostname          = $telegraf::params::omit_hostname,
   $interval               = $telegraf::params::interval,
@@ -82,12 +89,14 @@ class telegraf (
   $global_tags            = $telegraf::params::global_tags,
   $manage_service         = $telegraf::params::manage_service,
   $manage_repo            = $telegraf::params::manage_repo,
+  $purge_config_fragments = $telegraf::params::purge_config_fragments,
   $repo_type              = $telegraf::params::repo_type,
 ) inherits ::telegraf::params
 {
 
   validate_string($ensure)
   validate_string($config_file)
+  validate_absolute_path($config_fragment_dir)
   validate_string($hostname)
   validate_bool($omit_hostname)
   validate_string($interval)
@@ -104,6 +113,7 @@ class telegraf (
   validate_hash($global_tags)
   validate_bool($manage_service)
   validate_bool($manage_repo)
+  validate_bool($purge_config_fragments)
   validate_string($repo_type)
 
   # currently the only way how to obtain merged hashes

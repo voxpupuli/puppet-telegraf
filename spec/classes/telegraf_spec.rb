@@ -73,6 +73,9 @@ describe 'telegraf' do
             )
           }
           it { should contain_file('/etc/telegraf/telegraf.conf') }
+          it { should contain_file('/etc/telegraf/telegraf.d')
+            .with_purge(false)
+          }
           it { should contain_package('telegraf') }
           it { should contain_service('telegraf') }
           it { should contain_yumrepo('influxdata')
