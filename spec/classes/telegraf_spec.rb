@@ -6,13 +6,9 @@ describe 'telegraf' do
       [6,7].each do |releasenum|
         context "RedHat #{releasenum} release specifics" do
           let(:facts) {{
-            :osfamily                  => 'RedHat',
-            :architecture              => 'x86_64',
-            :kernel                    => 'Linux',
             :operatingsystem           => osfamily,
             :operatingsystemrelease    => releasenum,
             :operatingsystemmajrelease => releasenum,
-            :role                      => 'telegraf'
           }}
           it { should compile.with_all_deps }
           it { should contain_class('telegraf::config') }
@@ -81,7 +77,7 @@ describe 'telegraf' do
           it { should contain_service('telegraf') }
           it { should contain_yumrepo('influxdata')
             .with(
-              :baseurl => "https://repos.influxdata.com/rhel/#{facts[:operatingsystemmajrelease]}/#{facts[:architecture]}/stable",
+              :baseurl => "https://repos.influxdata.com/rhel/#{releasenum}/x86_64/stable",
             )
           }
 
@@ -89,7 +85,7 @@ describe 'telegraf' do
             let(:params) { {:repo_type => 'unstable' } }
             it { should contain_yumrepo('influxdata')
               .with(
-                :baseurl => "https://repos.influxdata.com/rhel/#{facts[:operatingsystemmajrelease]}/#{facts[:architecture]}/unstable",
+                :baseurl => "https://repos.influxdata.com/rhel/#{releasenum}/x86_64/unstable",
               )
             }
           end
