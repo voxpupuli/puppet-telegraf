@@ -6,6 +6,16 @@ RSpec.configure do |c|
     Puppet.features.stubs(:root? => true)
   end
 
+  c.default_facts = {
+    :osfamily                  => 'RedHat',
+    :architecture              => 'x86_64',
+    :kernel                    => 'Linux',
+    :operatingsystem           => 'RedHat',
+    :operatingsystemrelease    => 7,
+    :operatingsystemmajrelease => 7,
+    :role                      => 'telegraf'
+  }
+
   c.hiera_config = 'spec/hiera.yaml'
 
 end

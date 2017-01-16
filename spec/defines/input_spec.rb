@@ -8,7 +8,6 @@ describe 'telegraf::input' do
       "urls" => ["http://localhost:8086",],
     },
   }}
-  let(:facts) { { :osfamily => 'RedHat' } }
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
   describe "configuration file /etc/telegraf/telegraf.d/my_influxdb.conf input" do
@@ -43,7 +42,6 @@ describe 'telegraf::input' do
       },
     },
   }}
-  let(:facts) { { :osfamily => 'RedHat' } }
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
   describe 'configuration file /etc/telegraf/telegraf.d/my_snmp.conf input with sections' do
@@ -54,7 +52,7 @@ describe 'telegraf::input' do
       should contain_file(filename).with_content(/  address = "snmp_host1:161"/)
       should contain_file(filename).with_content(/  community = "read_only"/)
       should contain_file(filename).with_content(/  get_oids = \["1.3.6.1.2.1.1.5"\]/)
-      should contain_file(filename).with_content(/  version = "2"/)
+      should contain_file(filename).with_content(/  version = 2/)
     end
 
     it 'requires telegraf to be installed' do
@@ -72,7 +70,6 @@ describe 'telegraf::input' do
   let(:params) {{
     :plugin_type => 'haproxy',
   }}
-  let(:facts) { { :osfamily => 'RedHat' } }
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
   describe 'configuration file /etc/telegraf/telegraf.d/my_haproxy.conf input with no options or sections' do
