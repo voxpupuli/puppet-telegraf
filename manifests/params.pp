@@ -6,6 +6,7 @@ class telegraf::params {
 
   $ensure                 = 'present'
   $config_file            = '/etc/telegraf/telegraf.conf'
+  $config_fragment_dir    = '/etc/telegraf/telegraf.d'
   $hostname               = $::hostname
   $omit_hostname          = false
   $interval               = '10s'
@@ -20,6 +21,7 @@ class telegraf::params {
   $global_tags            = {}
   $manage_service         = true
   $manage_repo            = true
+  $purge_config_fragments = false
   $repo_type              = 'stable'
 
   $outputs = {
