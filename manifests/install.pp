@@ -26,9 +26,9 @@ class telegraf::install {
       }
       'RedHat': {
         yumrepo { 'influxdata':
-          descr    => 'influxdata',
+          descr    => 'InfluxData Repository - RHEL $releasever',
           enabled  => 1,
-          baseurl  => "https://repos.influxdata.com/rhel/${::operatingsystemmajrelease}/${::architecture}/${::telegraf::repo_type}",
+          baseurl  => "https://repos.influxdata.com/${_operatingsystem}/\$releasever/\$basearch/${::telegraf::repo_type}",
           gpgkey   => 'https://repos.influxdata.com/influxdb.key',
           gpgcheck => true,
         }
