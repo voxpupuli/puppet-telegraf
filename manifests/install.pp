@@ -34,12 +34,27 @@ class telegraf::install {
         }
         Yumrepo['influxdata'] -> Package['telegraf']
       }
+      'windows': {
+        # repo is not applicable to windows
+      }
       default: {
-        fail('Only RedHat, CentOS, Debian and Ubuntu are supported at this time')
+        fail('Only RedHat, CentOS, Debian, Ubuntu and Windows are supported at this time')
       }
     }
   }
 
-  ensure_packages(['telegraf'], { ensure => $::telegraf::ensure })
+  if $::osfamily == 'windows' {
+    # required to install telegraf on windows
+    require chocolatey
+
+    # package install
+    package { 'telegraf':
+      ensure   => $::telegraf::ensure,
+      provider => chocolatey,
+      source   => $::telegraf::windows_package_url,
+    }
+  } else {
+    ensure_packages(['telegraf'], { ensure => $::telegraf::ensure })
+  }
 
 }

@@ -10,16 +10,16 @@ class telegraf::config inherits telegraf {
     $::telegraf::config_file:
       ensure  => file,
       content => template('telegraf/telegraf.conf.erb'),
-      owner   => 'telegraf',
-      group   => 'telegraf',
+      owner   => $::telegraf::config_file_owner,
+      group   => $::telegraf::config_file_group,
       mode    => '0640',
       notify  => Class['::telegraf::service'],
       require => Class['::telegraf::install'],
     ;
-    $::telegraf::config_fragment_dir:
+    $::telegraf::config_folder:
       ensure  => directory,
-      owner   => 'telegraf',
-      group   => 'telegraf',
+      owner   => $::telegraf::config_file_owner,
+      group   => $::telegraf::config_file_group,
       mode    => '0750',
       purge   => $::telegraf::purge_config_fragments,
       recurse => true,

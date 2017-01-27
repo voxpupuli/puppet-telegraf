@@ -4,9 +4,25 @@
 #
 class telegraf::params {
 
+  if $::osfamily == 'windows' {
+    $config_file          = 'C:/Program Files/telegraf/telegraf.conf'
+    $config_file_owner    = 'Administrator'
+    $config_file_group    = 'Administrators'
+    $config_folder        = 'C:/Program Files/telegraf/telegraf.d'
+    $manage_repo          = false
+    $service_hasstatus    = false
+    $service_restart      = undef
+  } else {
+    $config_file          = '/etc/telegraf/telegraf.conf'
+    $config_file_owner    = 'telegraf'
+    $config_file_group    = 'telegraf'
+    $config_folder        = '/etc/telegraf/telegraf.d'
+    $manage_repo          = true
+    $service_hasstatus    = true
+    $service_restart      = 'pkill -HUP telegraf'
+  }
+
   $ensure                 = 'present'
-  $config_file            = '/etc/telegraf/telegraf.conf'
-  $config_fragment_dir    = '/etc/telegraf/telegraf.d'
   $hostname               = $::hostname
   $omit_hostname          = false
   $interval               = '10s'
@@ -20,9 +36,9 @@ class telegraf::params {
   $quiet                  = false
   $global_tags            = {}
   $manage_service         = true
-  $manage_repo            = true
   $purge_config_fragments = false
   $repo_type              = 'stable'
+  $windows_package_url    = 'https://chocolatey.org/api/v2/'
 
   $outputs = {
     'influxdb'  => {

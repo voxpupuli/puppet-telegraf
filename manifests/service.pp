@@ -9,9 +9,9 @@ class telegraf::service {
   if $::telegraf::manage_service {
     service { 'telegraf':
       ensure    => running,
-      hasstatus => true,
+      hasstatus => $telegraf::service_hasstatus,
       enable    => true,
-      restart   => 'pkill -HUP telegraf',
+      restart   => $telegraf::service_restart,
       require   => Class['::telegraf::config'],
     }
   }
