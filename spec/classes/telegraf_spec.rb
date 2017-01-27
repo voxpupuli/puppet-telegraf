@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe 'telegraf' do
   context 'Supported operating systems' do
-    ['RedHat', ].each do |osfamily|
+    ['RedHat', 'CentOS'].each do |operatingsystem|
       [6,7].each do |releasenum|
-        context "RedHat #{releasenum} release specifics" do
+        context "#{osfamily} #{releasenum} release specifics" do
           let(:facts) {{
-            :operatingsystem           => osfamily,
+            :operatingsystem           => operatingsystem,
             :operatingsystemrelease    => releasenum,
             :operatingsystemmajrelease => releasenum,
           }}
@@ -80,7 +80,7 @@ describe 'telegraf' do
           it { should contain_service('telegraf') }
           it { should contain_yumrepo('influxdata')
             .with(
-              :baseurl => "https://repos.influxdata.com/rhel/#{releasenum}/x86_64/stable",
+              :baseurl => "https://repos.influxdata.com/#{operatingsystem.downcase}/\$releasever/\$basearch/stable",
             )
           }
 
@@ -88,7 +88,7 @@ describe 'telegraf' do
             let(:params) { {:repo_type => 'unstable' } }
             it { should contain_yumrepo('influxdata')
               .with(
-                :baseurl => "https://repos.influxdata.com/rhel/#{releasenum}/x86_64/unstable",
+                :baseurl => "https://repos.influxdata.com/#{operatingsystem.downcase}/\$releasever/\$basearch/unstable",
               )
             }
           end
