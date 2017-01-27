@@ -80,7 +80,7 @@ describe 'telegraf' do
           it { should contain_service('telegraf') }
           it { should contain_yumrepo('influxdata')
             .with(
-              :baseurl => "https://repos.influxdata.com/#{Facter['::operatingsystem'].value.downcase}/\$releasever/\$basearch/\$basearch/stable",
+              :baseurl => "https://repos.influxdata.com/#{Facter['::operatingsystem'].value.downcase}/\$releasever/\$basearch/stable",
             )
           }
 
