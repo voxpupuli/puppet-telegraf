@@ -26,9 +26,9 @@ define telegraf::output (
     validate_hash($sections)
   }
 
-  Class['::telegraf::config']
-  -> file { "${telegraf::config_folder}/output-${name}.conf":
-    content => template('telegraf/output.conf.erb'),
+  file {"${telegraf::config_folder}/${name}.conf ${title}":
+    path    => "${telegraf::config_folder}/${name}.conf",
+    content => template('telegraf/output.conf.erb')
   }
   ~> Class['::telegraf::service']
 }
