@@ -103,6 +103,8 @@ class telegraf (
   $purge_config_fragments = $telegraf::params::purge_config_fragments,
   $repo_type              = $telegraf::params::repo_type,
   $windows_package_url    = $telegraf::params::windows_package_url,
+  $service_enable         = $telegraf::params::service_enable,
+  $service_ensure         = $telegraf::params::service_ensure,
 ) inherits ::telegraf::params
 {
 
@@ -135,6 +137,8 @@ class telegraf (
   validate_string($windows_package_url)
   validate_bool($service_hasstatus)
   validate_string($service_restart)
+  validate_bool($service_enable)
+  validate_string($service_ensure)
 
   # currently the only way how to obtain merged hashes
   # from multiple files (`:merge_behavior: deeper` needs to be

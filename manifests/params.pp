@@ -10,6 +10,8 @@ class telegraf::params {
     $config_file_group    = 'Administrators'
     $config_folder        = 'C:/Program Files/telegraf/telegraf.d'
     $manage_repo          = false
+    $service_enable       = true
+    $service_ensure       = running
     $service_hasstatus    = false
     $service_restart      = undef
   } else {
@@ -18,6 +20,8 @@ class telegraf::params {
     $config_file_group    = 'telegraf'
     $config_folder        = '/etc/telegraf/telegraf.d'
     $manage_repo          = true
+    $service_enable       = true
+    $service_ensure       = running
     $service_hasstatus    = true
     $service_restart      = 'pkill -HUP telegraf'
   }
