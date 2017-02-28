@@ -29,7 +29,7 @@ class telegraf::install {
           name     => 'influxdata',
           descr    => "InfluxData Repository - ${::operatingsystem} \$releasever",
           enabled  => 1,
-          baseurl  => "https://repos.influxdata.com/${_operatingsystem}/\$releasever/\$basearch/${::telegraf::repo_type}",
+          baseurl  => "https://repos.influxdata.com/rhel/\$releasever/\$basearch/${::telegraf::repo_type}",
           gpgkey   => 'https://repos.influxdata.com/influxdb.key',
           gpgcheck => 1,
         }
