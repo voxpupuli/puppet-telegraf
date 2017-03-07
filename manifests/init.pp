@@ -4,6 +4,9 @@
 #
 # === Parameters
 #
+# [*package_name*]
+#   String. Package name.
+#
 # [*ensure*]
 #   String. State of the telegraf package. You can also specify a
 #   particular version to install.
@@ -79,6 +82,7 @@
 #   String.  URL for windows telegraf chocolatey repo
 #
 class telegraf (
+  $package_name           = $telegraf::params::package_name,
   $ensure                 = $telegraf::params::ensure,
   $config_file            = $telegraf::params::config_file,
   $config_file_owner      = $telegraf::params::config_file_owner,
@@ -111,6 +115,7 @@ class telegraf (
   $service_hasstatus = $telegraf::params::service_hasstatus
   $service_restart   = $telegraf::params::service_restart
 
+  validate_string($package_name)
   validate_string($ensure)
   validate_string($config_file)
   validate_string($config_file_owner)
