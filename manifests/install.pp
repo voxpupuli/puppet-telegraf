@@ -39,7 +39,7 @@ class telegraf::install {
         # repo is not applicable to windows
       }
       default: {
-        fail('Only RedHat, CentOS, Debian, Ubuntu and Windows are supported at this time')
+        fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu and Windows are supported at this time')
       }
     }
   }
