@@ -25,7 +25,7 @@ class telegraf::params {
     $service_hasstatus    = true
     $service_restart      = 'pkill -HUP telegraf'
   }
-
+  $package_name           = 'telegraf'
   $ensure                 = 'present'
   $hostname               = $::hostname
   $omit_hostname          = false

@@ -22,7 +22,7 @@ class telegraf::install {
             'source' => 'https://repos.influxdata.com/influxdb.key',
           },
         }
-        Class['apt::update'] -> Package['telegraf']
+        Class['apt::update'] -> Package[$::telegraf::package_name]
       }
       'RedHat': {
         yumrepo { 'influxdata':
@@ -33,7 +33,7 @@ class telegraf::install {
           gpgkey   => 'https://repos.influxdata.com/influxdb.key',
           gpgcheck => 1,
         }
-        Yumrepo['influxdata'] -> Package['telegraf']
+        Yumrepo['influxdata'] -> Package[$::telegraf::package_name]
       }
       'windows': {
         # repo is not applicable to windows
@@ -49,13 +49,13 @@ class telegraf::install {
     require chocolatey
 
     # package install
-    package { 'telegraf':
+    package { $::telegraf::package_name:
       ensure   => $::telegraf::ensure,
       provider => chocolatey,
       source   => $::telegraf::windows_package_url,
     }
   } else {
-    ensure_packages(['telegraf'], { ensure => $::telegraf::ensure })
+    ensure_packages([$::telegraf::package_name], { ensure => $::telegraf::ensure })
   }
 
 }
