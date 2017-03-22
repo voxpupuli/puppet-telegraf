@@ -18,6 +18,10 @@
       "operatingsystemrelease": [ "8" ]
     },
     {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [ "6", "7" ]
+    },
+    {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [ "6", "7" ]
     },

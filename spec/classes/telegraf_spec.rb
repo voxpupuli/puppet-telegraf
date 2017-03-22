@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'telegraf' do
   context 'Supported operating systems' do
-    ['RedHat', 'CentOS'].each do |operatingsystem|
+    ['RedHat', 'CentOS', 'OracleLinux'].each do |operatingsystem|
       [6,7].each do |releasenum|
         context "#{osfamily} #{releasenum} release specifics" do
           let(:facts) {{
