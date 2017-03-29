@@ -72,6 +72,9 @@
 # [*manage_repo*]
 #   Boolean.  Whether or not to manage InfluxData's repo.
 #
+# [*install_options*]
+#   String or Array. Additional options to pass when installing package
+#
 # [*purge_config_fragments*]
 #   Boolean. Whether unmanaged configuration fragments should be removed.
 #
@@ -109,6 +112,7 @@ class telegraf (
   $windows_package_url    = $telegraf::params::windows_package_url,
   $service_enable         = $telegraf::params::service_enable,
   $service_ensure         = $telegraf::params::service_ensure,
+  $install_options        = $telegraf::params::install_options,
 ) inherits ::telegraf::params
 {
 

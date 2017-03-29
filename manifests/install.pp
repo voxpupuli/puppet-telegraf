@@ -50,12 +50,13 @@ class telegraf::install {
 
     # package install
     package { $::telegraf::package_name:
-      ensure   => $::telegraf::ensure,
-      provider => chocolatey,
-      source   => $::telegraf::windows_package_url,
+      ensure          => $::telegraf::ensure,
+      provider        => chocolatey,
+      source          => $::telegraf::windows_package_url,
+      install_options => $::telegraf::install_options,
     }
   } else {
-    ensure_packages([$::telegraf::package_name], { ensure => $::telegraf::ensure })
+    ensure_packages([$::telegraf::package_name], { ensure => $::telegraf::ensure, install_options => $::telegraf::install_options })
   }
 
 }
