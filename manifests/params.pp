@@ -6,6 +6,7 @@ class telegraf::params {
 
   if $::osfamily == 'windows' {
     $config_file          = 'C:/Program Files/telegraf/telegraf.conf'
+    $log_file             = 'C:/Program Files/telegraf/telegraf.log'
     $config_file_owner    = 'Administrator'
     $config_file_group    = 'Administrators'
     $config_folder        = 'C:/Program Files/telegraf/telegraf.d'
@@ -16,6 +17,7 @@ class telegraf::params {
     $service_restart      = undef
   } else {
     $config_file          = '/etc/telegraf/telegraf.conf'
+    $log_file             = ''
     $config_file_owner    = 'telegraf'
     $config_file_group    = 'telegraf'
     $config_folder        = '/etc/telegraf/telegraf.d'

@@ -14,6 +14,9 @@
 # [*config_file*]
 #   String. Path to the configuration file.
 #
+# [*log_file*]
+#   String. Path to the log file.
+#
 # [*config_file_owner*]
 #   String. User to own the telegraf config file.
 #
@@ -85,6 +88,7 @@ class telegraf (
   $package_name           = $telegraf::params::package_name,
   $ensure                 = $telegraf::params::ensure,
   $config_file            = $telegraf::params::config_file,
+  $log_file               = $telegraf::params::log_file,
   $config_file_owner      = $telegraf::params::config_file_owner,
   $config_file_group      = $telegraf::params::config_file_group,
   $config_folder          = $telegraf::params::config_folder,
@@ -118,6 +122,7 @@ class telegraf (
   validate_string($package_name)
   validate_string($ensure)
   validate_string($config_file)
+  validate_string($log_file)
   validate_string($config_file_owner)
   validate_string($config_file_group)
   validate_absolute_path($config_folder)
