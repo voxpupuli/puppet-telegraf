@@ -14,7 +14,7 @@
 # [*config_file*]
 #   String. Path to the configuration file.
 #
-# [*log_file*]
+# [*logfile*]
 #   String. Path to the log file.
 #
 # [*config_file_owner*]
@@ -88,7 +88,6 @@ class telegraf (
   $package_name           = $telegraf::params::package_name,
   $ensure                 = $telegraf::params::ensure,
   $config_file            = $telegraf::params::config_file,
-  $log_file               = $telegraf::params::log_file,
   $config_file_owner      = $telegraf::params::config_file_owner,
   $config_file_group      = $telegraf::params::config_file_group,
   $config_folder          = $telegraf::params::config_folder,
@@ -101,6 +100,7 @@ class telegraf (
   $collection_jitter      = $telegraf::params::collection_jitter,
   $flush_interval         = $telegraf::params::flush_interval,
   $flush_jitter           = $telegraf::params::flush_jitter,
+  $logfile                = $telegraf::params::logfile,
   $debug                  = $telegraf::params::debug,
   $quiet                  = $telegraf::params::quiet,
   $inputs                 = $telegraf::params::inputs,
@@ -122,7 +122,7 @@ class telegraf (
   validate_string($package_name)
   validate_string($ensure)
   validate_string($config_file)
-  validate_string($log_file)
+  validate_string($logfile)
   validate_string($config_file_owner)
   validate_string($config_file_group)
   validate_absolute_path($config_folder)
