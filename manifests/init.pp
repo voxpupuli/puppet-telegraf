@@ -66,6 +66,9 @@
 # [*inputs*]
 #   Hash.  Specify input plugins and their options.
 #
+# [*input_plugins*]
+#   Hash.  Specify input plugins of the same type and their options.
+#
 # [*global_tags*]
 #   Hash.  Global tags as a key-value pair.
 #
@@ -107,6 +110,7 @@ class telegraf (
   $debug                  = $telegraf::params::debug,
   $quiet                  = $telegraf::params::quiet,
   $inputs                 = $telegraf::params::inputs,
+  $input_plugins          = $telegraf::params::input_plugins,
   $outputs                = $telegraf::params::outputs,
   $global_tags            = $telegraf::params::global_tags,
   $manage_service         = $telegraf::params::manage_service,
@@ -159,6 +163,7 @@ class telegraf (
   # set in your `hiera.yaml`)
   $_outputs = hiera_hash('telegraf::outputs', $outputs)
   $_inputs = hiera_hash('telegraf::inputs', $inputs)
+  $_input_plugins = hiera_hash('telegraf::input_plugins', $input_plugins)
 
   contain ::telegraf::install
   contain ::telegraf::config

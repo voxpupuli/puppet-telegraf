@@ -62,4 +62,5 @@ class telegraf::params {
       'totalcpu' => true,
     }
   }
+  $input_plugins = {}
 }
