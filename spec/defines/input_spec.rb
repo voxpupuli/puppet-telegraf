@@ -33,6 +33,11 @@ describe 'telegraf::input' do
     :options => {
       "interval" => "60s",
     },
+    :single_section => {
+      "snmp.tags" => {
+        "environment" => "development",
+      },
+    },
     :sections => {
       "snmp.host" => {
         "address"   => "snmp_host1:161",
@@ -48,6 +53,8 @@ describe 'telegraf::input' do
     it 'is declared with the correct content' do
       should contain_file(filename).with_content(/\[\[inputs.snmp\]\]/)
       should contain_file(filename).with_content(/  interval = "60s"/)
+      should contain_file(filename).with_content(/\[inputs.snmp.tags\]/)
+      should contain_file(filename).with_content(/  environment = "development"/)
       should contain_file(filename).with_content(/\[\[inputs.snmp.host\]\]/)
       should contain_file(filename).with_content(/  address = "snmp_host1:161"/)
       should contain_file(filename).with_content(/  community = "read_only"/)
