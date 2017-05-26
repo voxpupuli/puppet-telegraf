@@ -164,7 +164,7 @@ class telegraf (
   contain ::telegraf::config
   contain ::telegraf::service
 
-  Class['::telegraf::install'] ->
-  Class['::telegraf::config'] ->
-  Class['::telegraf::service']
+  Class['::telegraf::install']
+  -> Class['::telegraf::config']
+  -> Class['::telegraf::service']
 }
