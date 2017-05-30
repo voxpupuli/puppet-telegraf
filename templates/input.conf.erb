@@ -14,3 +14,13 @@
 <%      end -%>
 <%   end -%>
 <% end -%>
+<% if @subsections -%>
+<% @subsections.sort.each do |section, option| -%>
+[inputs.<%= section %>]
+<%      unless option == nil -%>
+<%          option.sort.each do | suboption, value | -%>
+  <%= suboption -%> = <% if value.is_a?(String) %>"<%= value %>"<% elsif value.is_a?(Array) %><%= value.inspect %><% else %><%= value %><% end %>
+<%          end -%>
+<%      end -%>
+<%   end -%>
+<% end -%>
