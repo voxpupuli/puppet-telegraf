@@ -10,10 +10,15 @@
 # [*sections*]
 #   Hash. Some inputs take multiple sections.
 #
+# [*subsections*]
+#   Hash. Some inputs take multiple sections. This one does single brackets
+#
+
 define telegraf::input (
   $plugin_type = $name,
   $options     = undef,
   $sections    = undef,
+  $subsections    = undef,
 ) {
   include telegraf
 
@@ -23,6 +28,9 @@ define telegraf::input (
 
   if $sections {
     validate_hash($sections)
+  }
+  if $subsections {
+    validate_hash($subsections)
   }
 
   Class['::telegraf::config']
