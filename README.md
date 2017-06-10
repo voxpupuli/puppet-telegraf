@@ -142,16 +142,21 @@ Example 3:
 
 ```puppet
 telegraf::input { 'my_snmp':
-  plugin_type => 'snmp',
-  options     => {
+  plugin_type    => 'snmp',
+  options        => {
     'interval' => '60s',
   },
-  sections    => {
+  sections       => {
     'snmp.host' => {
       'address'   => 'snmp_host1:161',
       'community' => 'read_only',
       'version'   => 2,
       'get_oids'  => ['1.3.6.1.2.1.1.5',],
+    },
+  },
+  single_section => {
+    'snmp.tags' => {
+      'environment' => 'development',
     },
   },
 }
@@ -167,6 +172,9 @@ Will create the file `/etc/telegraf/telegraf.d/snmp.conf`:
       community = "read_only"
       version = 2
       get_oids = ["1.3.6.1.2.1.1.5"]
+
+    [inputs.snmp.tags]
+      environment = "development"
 
 Example 4:
 
