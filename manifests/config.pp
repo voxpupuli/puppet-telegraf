@@ -20,7 +20,7 @@ class telegraf::config inherits telegraf {
       ensure  => directory,
       owner   => $::telegraf::config_file_owner,
       group   => $::telegraf::config_file_group,
-      mode    => '0750',
+      mode    => '0770',
       purge   => $::telegraf::purge_config_fragments,
       recurse => true,
       notify  => Class['::telegraf::service'],
