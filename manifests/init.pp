@@ -94,6 +94,8 @@ class telegraf (
   $config_file_owner      = $telegraf::params::config_file_owner,
   $config_file_group      = $telegraf::params::config_file_group,
   $config_folder          = $telegraf::params::config_folder,
+  $config_file_mode       = $telegraf::params::config_file_mode,
+  $config_folder_mode     = $telegraf::params::config_folder_mode,
   $hostname               = $telegraf::params::hostname,
   $omit_hostname          = $telegraf::params::omit_hostname,
   $interval               = $telegraf::params::interval,
