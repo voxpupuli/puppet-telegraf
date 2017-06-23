@@ -74,6 +74,9 @@
 #
 # [*manage_repo*]
 #   Boolean.  Whether or not to manage InfluxData's repo.
+
+# [*repo_location*]
+#   String. Alternate repo location. E.g. an interal mirror.
 #
 # [*install_options*]
 #   String or Array. Additional options to pass when installing package
@@ -111,6 +114,7 @@ class telegraf (
   $global_tags            = $telegraf::params::global_tags,
   $manage_service         = $telegraf::params::manage_service,
   $manage_repo            = $telegraf::params::manage_repo,
+  $repo_location          = $telegraf::params::repo_location,
   $purge_config_fragments = $telegraf::params::purge_config_fragments,
   $repo_type              = $telegraf::params::repo_type,
   $windows_package_url    = $telegraf::params::windows_package_url,
@@ -146,6 +150,7 @@ class telegraf (
   validate_hash($global_tags)
   validate_bool($manage_service)
   validate_bool($manage_repo)
+  validate_string($repo_location)
   validate_bool($purge_config_fragments)
   validate_string($repo_type)
   validate_string($windows_package_url)
