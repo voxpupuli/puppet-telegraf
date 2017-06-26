@@ -38,6 +38,9 @@
 # [*round_interval*]
 #   Boolean. Rounds collection interval to 'interval'
 #
+# [*metric_batch_size*]
+#   Integer. Telegraf will limit each output batch to this size.
+#
 # [*metric_buffer_limit*]
 #   Integer. Cache metric_buffer_limit metrics for each output, and flush this
 #   buffer on a successful write.
@@ -98,6 +101,7 @@ class telegraf (
   $omit_hostname          = $telegraf::params::omit_hostname,
   $interval               = $telegraf::params::interval,
   $round_interval         = $telegraf::params::round_interval,
+  $metric_batch_size      = $telegraf::params::metric_batch_size,
   $metric_buffer_limit    = $telegraf::params::metric_buffer_limit,
   $flush_buffer_when_full = $telegraf::params::flush_buffer_when_full,
   $collection_jitter      = $telegraf::params::collection_jitter,
@@ -134,6 +138,7 @@ class telegraf (
   validate_bool($omit_hostname)
   validate_string($interval)
   validate_bool($round_interval)
+  validate_integer($metric_batch_size)
   validate_integer($metric_buffer_limit)
   validate_bool($flush_buffer_when_full)
   validate_string($collection_jitter)
