@@ -38,15 +38,11 @@
 # [*round_interval*]
 #   Boolean. Rounds collection interval to 'interval'
 #
-# [*metric_batch_size*]
-#   Integer. Telegraf will limit each output batch to this size.
+# [*metric_batch_size*] Integer. The maximum batch size to allow to
+#   accumulate before sending a flush to the configured outputs
 #
-# [*metric_buffer_limit*]
-#   Integer. Cache metric_buffer_limit metrics for each output, and flush this
-#   buffer on a successful write.
-#
-# [*flush_buffer_when_full*]
-#   Boolean. Flush buffer whenever full, regardless of flush_interval
+# [*metric_buffer_limit*] Integer.  The absolute maximum number of
+#   metrics that will accumulate before metrics are dropped.
 #
 # [*collection_jitter*]
 #   String.  Sleep for a random time within jitter before collecting.
@@ -103,7 +99,6 @@ class telegraf (
   $round_interval         = $telegraf::params::round_interval,
   $metric_batch_size      = $telegraf::params::metric_batch_size,
   $metric_buffer_limit    = $telegraf::params::metric_buffer_limit,
-  $flush_buffer_when_full = $telegraf::params::flush_buffer_when_full,
   $collection_jitter      = $telegraf::params::collection_jitter,
   $flush_interval         = $telegraf::params::flush_interval,
   $flush_jitter           = $telegraf::params::flush_jitter,
@@ -140,7 +135,6 @@ class telegraf (
   validate_bool($round_interval)
   validate_integer($metric_batch_size)
   validate_integer($metric_buffer_limit)
-  validate_bool($flush_buffer_when_full)
   validate_string($collection_jitter)
   validate_string($flush_interval)
   validate_string($flush_jitter)

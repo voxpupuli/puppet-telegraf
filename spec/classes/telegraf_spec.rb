@@ -17,9 +17,11 @@ describe 'telegraf' do
           it { should contain_class('telegraf::service') }
           it { should contain_class('telegraf')
             .with(
-              :ensure         => '0.11.1-1',
-              :interval       => '60s',
-              :flush_interval => '60s',
+              :ensure              => '1.3.5-1',
+              :interval            => '60s',
+              :metric_batch_size   => '1000',
+              :metric_buffer_limit => '10000',
+              :flush_interval      => '60s',
               :global_tags    => {
                 "dc"   => "dc",
                 "env"  => "production",
