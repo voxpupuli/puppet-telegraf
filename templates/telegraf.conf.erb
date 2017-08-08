@@ -28,7 +28,7 @@
 # OUTPUTS:
 #
 <%   @_outputs.sort.each do | output, options | -%>
-<%if options.empty? -%>
+<%if options.empty? or options == 'undef' -%>
 <% next -%>
 <% end -%>
 [[outputs.<%= output %>]]
@@ -45,7 +45,7 @@
 # INPUTS:
 #
 <%   @_inputs.sort.each do | input, options | -%>
-<%if options.nil? -%>
+<%if options.nil? or options == 'undef' -%>
 <% next -%>
 <% end -%>
 [[inputs.<%= input %>]]
