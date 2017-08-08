@@ -28,6 +28,9 @@
 # OUTPUTS:
 #
 <%   @_outputs.sort.each do | output, options | -%>
+<%if options.empty? -%>
+<% next -%>
+<% end -%>
 [[outputs.<%= output %>]]
 <%      unless options == nil -%>
 <%          options.sort.each do | option, value | -%>
@@ -42,6 +45,9 @@
 # INPUTS:
 #
 <%   @_inputs.sort.each do | input, options | -%>
+<%if options.nil? -%>
+<% next -%>
+<% end -%>
 [[inputs.<%= input %>]]
 <%      unless options == nil -%>
 <%          options.sort.each do | option, value | -%>
