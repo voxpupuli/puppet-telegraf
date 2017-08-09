@@ -28,6 +28,9 @@
 # OUTPUTS:
 #
 <%   @_outputs.sort.each do | output, options | -%>
+<%if options.empty? or options == 'undef' -%>
+<% next -%>
+<% end -%>
 [[outputs.<%= output %>]]
 <%      unless options == nil -%>
 <%          options.sort.each do | option, value | -%>
