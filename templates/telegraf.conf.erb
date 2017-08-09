@@ -45,9 +45,6 @@
 # INPUTS:
 #
 <%   @_inputs.sort.each do | input, options | -%>
-<%if options.nil? or options == 'undef' -%>
-<% next -%>
-<% end -%>
 [[inputs.<%= input %>]]
 <%      unless options == nil -%>
 <%          options.sort.each do | option, value | -%>
