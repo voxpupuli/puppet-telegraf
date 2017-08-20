@@ -8,7 +8,7 @@ class telegraf::params {
     $config_file          = 'C:/Program Files/telegraf/telegraf.conf'
     $config_file_owner    = 'Administrator'
     $config_file_group    = 'Administrators'
-    $config_file_mode     = '660'
+    $config_file_mode     = '640'
     $config_folder_mode   = '770'
     $config_folder        = 'C:/Program Files/telegraf/telegraf.d'
     $logfile              = 'C:/Program Files/telegraf/telegraf.log'
@@ -22,7 +22,7 @@ class telegraf::params {
     $config_file_owner    = 'telegraf'
     $config_file_group    = 'telegraf'
     $config_file_mode     = '640'
-    $config_folder_mode   = '750'
+    $config_folder_mode   = '770'
     $config_folder        = '/etc/telegraf/telegraf.d'
     $logfile              = ''
     $manage_repo          = true
