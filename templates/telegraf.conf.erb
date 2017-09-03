@@ -27,26 +27,12 @@
 #
 # OUTPUTS:
 #
-<%   @_outputs.sort.each do | output, options | -%>
-[[outputs.<%= output %>]]
-<%      unless options == nil -%>
-<%          options.sort.each do | option, value | -%>
-  <%= option -%> = <% if value.is_a?(String) %>"<%= value %>"<% elsif value.is_a?(Array) %><%= value.inspect %><% else %><%= value %><% end %>
-<%          end -%>
-<%      end -%>
-<%   end -%>
+<%= require 'toml-rb'; TomlRB.dump({'outputs'=>@_outputs}) %>
 <% end -%>
 
 <% if @_inputs -%>
 #
 # INPUTS:
 #
-<%   @_inputs.sort.each do | input, options | -%>
-[[inputs.<%= input %>]]
-<%      unless options == nil -%>
-<%          options.sort.each do | option, value | -%>
-  <%= option -%> = <% if value.is_a?(String) %>"<%= value %>"<% elsif value.is_a?(Array) %><%= value.inspect %><% else %><%= value %><% end %>
-<%          end -%>
-<%      end -%>
-<%   end -%>
+<%= require 'toml-rb'; TomlRB.dump({'inputs'=>@_inputs}) %>
 <% end -%>

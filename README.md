@@ -17,7 +17,7 @@ A reasonably simple yet flexible Puppet module to manage configuration of
 
 ## Setup
 
-There's a couple of fairly standard dependencies for this module, as follows:
+This module has the following dependencies:
 
 * https://github.com/puppetlabs/puppetlabs-stdlib
 * https://github.com/puppetlabs/puppetlabs-apt (on Debian / Ubuntu)
@@ -25,6 +25,16 @@ There's a couple of fairly standard dependencies for this module, as follows:
 *NB:* On some apt-based distributions you'll need to ensure you have support
 for TLS-enabled repos in place.  This can be achieved by installing the
 `apt-transport-https` package.
+
+This module **requires** the [toml-rb](https://github.com/eMancu/toml-rb) gem. Either install the gem using puppet's native gem provider, [puppetserver_gem](https://forge.puppetlabs.com/puppetlabs/puppetserver_gem), [pe_gem](https://forge.puppetlabs.com/puppetlabs/pe_gem), [pe_puppetserver_gem](https://forge.puppetlabs.com/puppetlabs/pe_puppetserver_gem), or manually using one of the following:
+```
+  # apply or puppet-master
+  gem install toml-rb
+  # PE apply
+  /opt/puppet/bin/gem install toml
+  # AIO or PE puppetserver
+  /opt/puppet/bin/puppetserver gem install toml-rb
+```
 
 In addition, for Windows, the following dependencies must be met:
 
@@ -53,18 +63,22 @@ However, to customise your configuration you'll want to do something like the fo
 class { '::telegraf':
     hostname => $::hostname,
     outputs  => {
-        'influxdb' => {
-            'urls'     => [ "http://influxdb0.${::domain}:8086", "http://influxdb1.${::domain}:8086" ],
-            'database' => 'telegraf',
-            'username' => 'telegraf',
-            'password' => 'metricsmetricsmetrics',
+        'influxdb' => [
+            {
+                'urls'     => [ "http://influxdb0.${::domain}:8086", "http://influxdb1.${::domain}:8086" ],
+                'database' => 'telegraf',
+                'username' => 'telegraf',
+                'password' => 'metricsmetricsmetrics',
             }
-        },
+        ]
+    },
     inputs   => {
-        'cpu' => {
-            'percpu'   => true,
-            'totalcpu' => true,
-        },
+        'cpu' => [
+            {
+                'percpu'   => true,
+                'totalcpu' => true,
+            }
+        ]
     }
 }
 ```
@@ -79,22 +93,22 @@ telegraf::global_tags:
   domain: "%{::domain}"
 telegraf::inputs:
   cpu:
-    percpu: true
-    totalcpu: true
-  mem:
-  io:
-  net:
-  disk:
-  swap:
-  system:
+    - percpu: true
+      totalcpu: true
+  mem: []
+  io: []
+  net: []
+  disk: []
+  swap: []
+  system: []
 telegraf::outputs:
   influxdb:
-    urls:
-      - "http://influxdb0.%{::domain}:8086"
-      - "http://influxdb1.%{::domain}:8086"
-    database: 'influxdb'
-    username: 'telegraf'
-    password: 'telegraf'
+    - urls:
+        - "http://influxdb0.%{::domain}:8086"
+        - "http://influxdb1.%{::domain}:8086"
+      database: 'influxdb'
+      username: 'telegraf'
+      password: 'telegraf'
 ```
 
 `telegraf::inputs` accepts a hash of any inputs that you'd like to configure. However, you can also optionally define individual inputs using the `telegraf::input` type - this suits installations where, for example, a core module sets the defaults and other modules import it.
@@ -104,11 +118,11 @@ Example 1:
 ```puppet
 telegraf::input { 'my_exec':
   plugin_type => 'exec',
-  options     => {
+  options     => [{
     'commands'    => ['/usr/local/bin/my_input.py',],
     'name_suffix' => '_my_input',
     'data_format' => 'json',
-  },
+  }],
   require     => File['/usr/local/bin/my_input.py'],
 }
 ```
@@ -125,9 +139,9 @@ Example 2:
 ```puppet
 telegraf::input { 'influxdb-dc':
   plugin_type => 'influxdb',
-  options     => {
-    'urls' => ['http://remote-dc:8086',],
-  },
+  options     => [
+    {'urls' => ['http://remote-dc:8086',],},
+  ],
 }
 ```
 
@@ -145,17 +159,15 @@ telegraf::input { 'my_snmp':
   plugin_type    => 'snmp',
   options        => {
     'interval' => '60s',
-  },
-  sections       => {
-    'snmp.host' => {
-      'address'   => 'snmp_host1:161',
-      'community' => 'read_only',
-      'version'   => 2,
-      'get_oids'  => ['1.3.6.1.2.1.1.5',],
-    },
-  },
-  single_section => {
-    'snmp.tags' => {
+    'host' => [
+      {
+        'address'   => 'snmp_host1:161',
+        'community' => 'read_only',
+        'version'   => 2,
+        'get_oids'  => ['1.3.6.1.2.1.1.5',],
+      }
+    ],
+    'tags' => {
       'environment' => 'development',
     },
   },
@@ -216,12 +228,12 @@ Then you can define configuration shared for all `physical` servers and place it
 ```yaml
 telegraf::inputs:
   cpu:
-    percpu: true
-    totalcpu: true
-  mem:
-  io:
-  net:
-  disk:
+    - percpu: true
+      totalcpu: true
+  mem: []
+  io: []
+  net: []
+  disk: []
 ```
 
 Specific roles will include some extra plugins, e.g. `role/frontend.yaml`:
@@ -229,7 +241,7 @@ Specific roles will include some extra plugins, e.g. `role/frontend.yaml`:
 ```yaml
 telegraf::inputs:
   nginx:
-    urls: ["http://localhost/server_status"]
+    - urls: ["http://localhost/server_status"]
 ```
 
 ## Limitations

@@ -5,30 +5,21 @@
 # === Parameters
 #
 # [*options*]
-#   Hash. Plugin options for use the the output template.
-#
-# [*sections*]
-#   Hash. Some outputs take multiple sections.
-#
+#   List. Plugin options for use in the output template.
+
 define telegraf::output (
   $plugin_type = $name,
   $options     = undef,
-  $suboptions  = undef,
-  $sections    = undef,
 ) {
   include telegraf
 
   if $options {
-    validate_hash($options)
-  }
-
-  if $sections {
-    validate_hash($sections)
+    validate_array($options)
   }
 
   Class['::telegraf::config']
-  -> file { "${telegraf::config_folder}/output-${name}.conf":
-    content => template('telegraf/output.conf.erb'),
+  -> file {"${telegraf::config_folder}/${name}.conf":
+    content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'outputs'=>{'${plugin_type}'=>@options}}) %>")
   }
   ~> Class['::telegraf::service']
 }
