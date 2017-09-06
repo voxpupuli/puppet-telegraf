@@ -15,7 +15,11 @@ define telegraf::input (
 
   Class['::telegraf::config']
   -> file {"${telegraf::config_folder}/${name}.conf":
-    content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'inputs'=>{'${plugin_type}'=>@options}}) %>")
+    ensure  => file,
+    content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'inputs'=>{'${plugin_type}'=>@options}}) %>"),
+    owner   => $::telegraf::config_file_owner,
+    group   => $::telegraf::config_file_group,
+    mode    => '0640',
   }
   ~> Class['::telegraf::service']
 }
