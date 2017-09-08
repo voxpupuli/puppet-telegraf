@@ -23,7 +23,9 @@ define telegraf::output (
   }
 
   if $sections {
-    validate_hash($sections)
+    unless is_array($sections) or is_hash($sections) {
+      fail("'sections' must be a hash or an array")
+    }
   }
 
   Class['::telegraf::config']
