@@ -5,7 +5,7 @@
 <%          end -%>
 <%      end -%>
 <% if @sections -%>
-<% @suboptions.sort.each do |section, option| -%>
+<% @sections.sort.each do |section, option| -%>
   [outputs.<%= @plugin_type %>.<%= section %>]
 <%      unless option == nil -%>
 <%          option.sort.each do | suboption, value | -%>
