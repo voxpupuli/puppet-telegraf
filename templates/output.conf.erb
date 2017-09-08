@@ -4,8 +4,8 @@
   <%= option -%> = <% if value.is_a?(String) %>"<%= value %>"<% elsif value.is_a?(Array) %><%= value.inspect %><% else %><%= value %><% end %>
 <%          end -%>
 <%      end -%>
-<% if @sections -%>
-<% @suboptions.sort.each do |section, option| -%>
+<% if @sections.is_a?(Hash) or @sections.is_a?(Array) -%>
+<% @sections.instance_eval { is_a?(Hash) ? sort : self }.each do |section, option| -%>
   [outputs.<%= @plugin_type %>.<%= section %>]
 <%      unless option == nil -%>
 <%          option.sort.each do | suboption, value | -%>
