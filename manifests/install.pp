@@ -44,19 +44,20 @@ class telegraf::install {
     }
   }
 
-  if $::osfamily == 'windows' {
-    # required to install telegraf on windows
-    require chocolatey
-
-    # package install
-    package { $::telegraf::package_name:
-      ensure          => $::telegraf::ensure,
-      provider        => chocolatey,
-      source          => $::telegraf::windows_package_url,
-      install_options => $::telegraf::install_options,
+  if $::telegraf::install_packages {
+    if $::osfamily == 'windows' {
+      # required to install telegraf on windows
+      require chocolatey
+  
+      # package install
+      package { $::telegraf::package_name:
+        ensure          => $::telegraf::ensure,
+        provider        => chocolatey,
+        source          => $::telegraf::windows_package_url,
+        install_options => $::telegraf::install_options,
+      }
+    } else {
+      ensure_packages([$::telegraf::package_name], { ensure => $::telegraf::ensure, install_options => $::telegraf::install_options })
     }
-  } else {
-    ensure_packages([$::telegraf::package_name], { ensure => $::telegraf::ensure, install_options => $::telegraf::install_options })
   }
-
 }

@@ -116,6 +116,7 @@ class telegraf (
   $service_enable         = $telegraf::params::service_enable,
   $service_ensure         = $telegraf::params::service_ensure,
   $install_options        = $telegraf::params::install_options,
+  $install_packages       = $telegraf::params::install_packages,
 ) inherits ::telegraf::params
 {
 
@@ -152,6 +153,7 @@ class telegraf (
   validate_string($service_restart)
   validate_bool($service_enable)
   validate_string($service_ensure)
+  validate_bool($install_packages)
 
   # currently the only way how to obtain merged hashes
   # from multiple files (`:merge_behavior: deeper` needs to be

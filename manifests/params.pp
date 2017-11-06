@@ -30,6 +30,7 @@ class telegraf::params {
   $package_name           = 'telegraf'
   $ensure                 = 'present'
   $install_options        = []
+  $install_packages       = true
   $hostname               = $::hostname
   $omit_hostname          = false
   $interval               = '10s'
