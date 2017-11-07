@@ -97,7 +97,7 @@ telegraf::outputs:
     password: 'telegraf'
 ```
 
-`telegraf::inputs` accepts a hash of any inputs that you'd like to configure. However, you can also optionally define individual inputs using the `telegraf::input` type - this suits installations where, for example, a core module sets the defaults and other modules import it.
+`telegraf::inputs` accepts a hash of any inputs that you'd like to configure. However, you can also optionally define individual inputs and outputs using the `telegraf::input` and `telegraf::output` types respectively - this suits installations where, for example, a core module sets the defaults and other modules import it.
 
 Example 1:
 
@@ -187,6 +187,25 @@ class { '::telegraf':
 ```
 
 Will install telegraf version 1.0.1 on Windows using an internal chocolatey repo
+
+Example 5:
+
+```puppet
+telegraf::output { 'influxdb_1':
+  plugin_type => 'influxdb',
+  options     => {
+    'urls'       => [ "http://server1.example.com:8086" ],
+    'tagexclude' => [ 'influxdb_database' ],
+  },
+  sections    => {
+     'tagpass' => {
+       'influxdb_database' => [ 'server1' ],
+     },
+  },
+}
+```
+
+Will create an InfluxDB output that only gets sent data that has the tag `influxdb_database` with value `server1`.
 
 ## Hierarchical configuration from multiple files
 

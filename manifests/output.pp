@@ -13,7 +13,6 @@
 define telegraf::output (
   $plugin_type = $name,
   $options     = undef,
-  $suboptions  = undef,
   $sections    = undef,
 ) {
   include telegraf
