@@ -1,6 +1,6 @@
 # telegraf
 
-[![Build Status](https://travis-ci.org/datacentred/puppet-telegraf.png?branch=master)](https://travis-ci.org/datacentred/puppet-telegraf)
+[![Build Status](https://travis-ci.org/mauricio-sousa/puppet-telegraf.svg?branch=master)](https://travis-ci.org/mauricio-sousa/puppet-telegraf)
 
 #### Table of Contents
 
