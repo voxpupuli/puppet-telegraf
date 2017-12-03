@@ -18,6 +18,7 @@ define telegraf::input (
   $options        = undef,
   $single_section = undef,
   $sections       = undef,
+  $ensure         = present,
 ) {
   include telegraf
 
@@ -35,6 +36,7 @@ define telegraf::input (
 
   Class['::telegraf::config']
   -> file {"${telegraf::config_folder}/${name}.conf":
+    ensure  => $ensure,
     content => template('telegraf/input.conf.erb')
   }
   ~> Class['::telegraf::service']
