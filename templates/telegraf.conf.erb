@@ -31,7 +31,7 @@
 [[outputs.<%= output %>]]
 <%      unless options == nil -%>
 <%          options.sort.each do | option, value | -%>
-  <%= option -%> = <%= value.inspect %>
+  <%= option -%> = <% if value.is_a?(String) %>"<%= value %>"<% elsif value.is_a?(Array) %><%= value.inspect %><% else %><%= value %><% end %>
 <%          end -%>
 <%      end -%>
 <%   end -%>
@@ -45,7 +45,7 @@
 [[inputs.<%= input %>]]
 <%      unless options == nil -%>
 <%          options.sort.each do | option, value | -%>
-  <%= option -%> = <%= value.inspect %>
+  <%= option -%> = <% if value.is_a?(String) %>"<%= value %>"<% elsif value.is_a?(Array) %><%= value.inspect %><% else %><%= value %><% end %>
 <%          end -%>
 <%      end -%>
 <%   end -%>
