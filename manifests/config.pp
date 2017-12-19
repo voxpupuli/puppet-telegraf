@@ -28,4 +28,6 @@ class telegraf::config inherits telegraf {
     ;
   }
 
+  create_resources(::telegraf::input, $::telegraf::_input_plugins)
+  create_resources(::telegraf::output, $::telegraf::_output_plugins)
 }

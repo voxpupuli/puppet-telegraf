@@ -47,6 +47,13 @@ class telegraf::params {
   $repo_type              = 'stable'
   $windows_package_url    = 'https://chocolatey.org/api/v2/'
 
+  $inputs = {
+    'cpu'  => {
+      'percpu'   => true,
+      'totalcpu' => true,
+    }
+  }
+  $inputs_merge_strategy = 'deep'
   $outputs = {
     'influxdb'  => {
       'urls'     => [ 'http://localhost:8086' ],
@@ -55,11 +62,9 @@ class telegraf::params {
       'password' => 'metricsmetricsmetrics',
     }
   }
-
-  $inputs = {
-    'cpu'  => {
-      'percpu'   => true,
-      'totalcpu' => true,
-    }
-  }
+  $outputs_merge_strategy = 'deep'
+  $input_plugins = {}
+  $input_plugins_merge_strategy = 'deep'
+  $output_plugins = {}
+  $output_plugins_merge_strategy = 'deep'
 }
