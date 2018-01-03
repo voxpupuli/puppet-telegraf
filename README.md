@@ -95,12 +95,19 @@ telegraf::inputs:
   cpu:
     - percpu: true
       totalcpu: true
-  mem: []
-  io: []
-  net: []
-  disk: []
-  swap: []
-  system: []
+  exec:
+    - commands:
+        - who | wc -l
+  exec-uptime:
+    - commands:
+        - cat /proc/uptime | awk '{print $1}'
+      plugin_type: exec
+  mem: [{}]
+  io: [{}]
+  net: [{}]
+  disk: [{}]
+  swap: [{}]
+  system: [{}]
 telegraf::outputs:
   influxdb:
     - urls:
@@ -230,10 +237,10 @@ telegraf::inputs:
   cpu:
     - percpu: true
       totalcpu: true
-  mem: []
-  io: []
-  net: []
-  disk: []
+  mem: [{}]
+  io: [{}]
+  net: [{}]
+  disk: [{}]
 ```
 
 Specific roles will include some extra plugins, e.g. `role/frontend.yaml`:

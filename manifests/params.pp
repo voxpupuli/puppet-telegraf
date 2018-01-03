@@ -39,6 +39,7 @@ class telegraf::params {
   $collection_jitter      = '0s'
   $flush_interval         = '10s'
   $flush_jitter           = '0s'
+  $precision              = ''
   $debug                  = false
   $quiet                  = false
   $global_tags            = {}

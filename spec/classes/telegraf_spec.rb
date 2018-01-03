@@ -36,14 +36,21 @@ describe 'telegraf' do
                 "disk" => [{
                   "ignore_fs" => ['tmpfs','devtmpfs'],
                 }],
-                "diskio"      => [],
-                "kernel"      => [],
-                "mem"         => [],
+                "diskio"      => [{}],
+                "kernel"      => [{}],
+                "exec"        => [{
+                  "commands" => ['who | wc -l'],
+                }],
+                "exec-uptime" => [{
+                  "commands"    => ["cat /proc/uptime | awk '{print $1}'"],
+                  "plugin_type" => 'exec',
+                }],
+                "mem"         => [{}],
                 "net"         => [{
                   "interfaces" => ['eth0'],
                   "drop"       => ['net_icmp'],
                 }],
-                "netstat"     => [],
+                "netstat"     => [{}],
                 "ping"        => [{
                   "urls"    => ['10.10.10.1'],
                   "count"   => 1,
@@ -61,8 +68,8 @@ describe 'telegraf' do
                   "percentile_limit"         => 1000,
                   "udp_packet_size"          => 1500,
                 }],
-                "swap"        => [],
-                "system"      => [],
+                "swap"        => [{}],
+                "system"      => [{}],
               }],
               :outputs        => [{
                 "influxdb" => [{
