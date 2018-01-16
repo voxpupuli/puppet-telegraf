@@ -8,14 +8,10 @@
 #   List. Plugin options for use in the output template.
 
 define telegraf::output (
-  $plugin_type = $name,
-  $options     = undef,
+  String                $plugin_type = $name,
+  Variant[Undef, Array] $options     = undef,
 ) {
   include telegraf
-
-  if $options {
-    validate_array($options)
-  }
 
   Class['::telegraf::config']
   -> file {"${telegraf::config_folder}/${name}.conf":
