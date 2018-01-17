@@ -27,29 +27,36 @@ describe 'telegraf' do
                 "env"  => "production",
                 "role" => "telegraf",
               },
-              :inputs         => {
-                "cpu" => {
+              :inputs         => [{
+                "cpu" => [{
                   "percpu"    => true,
                   "totalcpu"  => true,
                   "fielddrop" => ["time_*"],
-                },
-                "disk" => {
+                }],
+                "disk" => [{
                   "ignore_fs" => ['tmpfs','devtmpfs'],
-                },
-                "diskio"      => nil,
-                "kernel"      => nil,
-                "mem"         => nil,
-                "net"         => {
+                }],
+                "diskio"      => [{}],
+                "kernel"      => [{}],
+                "exec"        => [{
+                  "commands" => ['who | wc -l'],
+                }],
+                "exec-uptime" => [{
+                  "commands"    => ["cat /proc/uptime | awk '{print $1}'"],
+                  "plugin_type" => 'exec',
+                }],
+                "mem"         => [{}],
+                "net"         => [{
                   "interfaces" => ['eth0'],
                   "drop"       => ['net_icmp'],
-                },
-                "netstat"     => nil,
-                "ping"        => {
+                }],
+                "netstat"     => [{}],
+                "ping"        => [{
                   "urls"    => ['10.10.10.1'],
                   "count"   => 1,
                   "timeout" => 1.0,
-                },
-                "statsd"      => {
+                }],
+                "statsd"      => [{
                   "service_address"          => ':8125',
                   "delete_gauges"            => false,
                   "delete_counters"          => false,
@@ -60,18 +67,18 @@ describe 'telegraf' do
                   "convert_names"            => true,
                   "percentile_limit"         => 1000,
                   "udp_packet_size"          => 1500,
-                },
-                "swap"        => nil,
-                "system"      => nil,
-              },
-              :outputs        => {
-                "influxdb" => {
+                }],
+                "swap"        => [{}],
+                "system"      => [{}],
+              }],
+              :outputs        => [{
+                "influxdb" => [{
                   "urls"     => ["http://influxdb.example.com:8086"],
                   "database" => 'telegraf',
                   "username" => 'telegraf',
                   "password" => 'telegraf',
-                },
-              },
+                }],
+              }],
             )
           }
           it { should contain_file('/etc/telegraf/telegraf.conf') }

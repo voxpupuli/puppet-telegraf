@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'safe_yaml', '~> 1.0.4'
 gem 'metadata-json-lint'
+gem 'toml-rb'
 
 group :test do
   gem "beaker"

@@ -105,6 +105,7 @@ class telegraf (
   $collection_jitter      = $telegraf::params::collection_jitter,
   $flush_interval         = $telegraf::params::flush_interval,
   $flush_jitter           = $telegraf::params::flush_jitter,
+  $precision              = $telegraf::params::precision,
   $logfile                = $telegraf::params::logfile,
   $debug                  = $telegraf::params::debug,
   $quiet                  = $telegraf::params::quiet,
@@ -142,6 +143,7 @@ class telegraf (
   validate_string($collection_jitter)
   validate_string($flush_interval)
   validate_string($flush_jitter)
+  validate_string($precision)
   validate_bool($debug)
   validate_bool($quiet)
   validate_hash($inputs)

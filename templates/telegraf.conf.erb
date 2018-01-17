@@ -19,6 +19,7 @@
   collection_jitter = "<%= @collection_jitter %>"
   flush_interval = "<%= @flush_interval %>"
   flush_jitter = "<%= @flush_jitter %>"
+  precision = "<%= @precision %>"
   logfile = "<%= @logfile %>"
   debug = <%= @debug %>
   quiet = <%= @quiet %>
@@ -27,26 +28,38 @@
 #
 # OUTPUTS:
 #
-<%   @_outputs.sort.each do | output, options | -%>
-[[outputs.<%= output %>]]
-<%      unless options == nil -%>
-<%          options.sort.each do | option, value | -%>
-  <%= option -%> = <% if value.is_a?(String) %>"<%= value %>"<% elsif value.is_a?(Array) %><%= value.inspect %><% else %><%= value %><% end %>
-<%          end -%>
-<%      end -%>
-<%   end -%>
+<% require 'toml-rb'
+
+@_outputs.sort.each do |key, values|
+  @new_values = {}
+  values[0].each do |k, v|
+    if k == 'plugin_type' then
+      key = v
+    else
+      @new_values[k] = v
+    end
+  end
+  @new_output = {key=>Array.new().push(@new_values)} -%>
+<%= TomlRB.dump({'outputs'=>@new_output}) %>
+<% end -%>
 <% end -%>
 
 <% if @_inputs -%>
 #
 # INPUTS:
 #
-<%   @_inputs.sort.each do | input, options | -%>
-[[inputs.<%= input %>]]
-<%      unless options == nil -%>
-<%          options.sort.each do | option, value | -%>
-  <%= option -%> = <% if value.is_a?(String) %>"<%= value %>"<% elsif value.is_a?(Array) %><%= value.inspect %><% else %><%= value %><% end %>
-<%          end -%>
-<%      end -%>
-<%   end -%>
+<% require 'toml-rb'
+
+@_inputs.sort.each do |key, values|
+  @new_values = {}
+  values[0].each do |k, v|
+    if k == 'plugin_type' then
+      key = v
+    else
+      @new_values[k] = v
+    end
+  end
+  @new_input = {key=>Array.new().push(@new_values)} -%>
+<%= TomlRB.dump({'inputs'=>@new_input}) %>
+<% end -%>
 <% end -%>
