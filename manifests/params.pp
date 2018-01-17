@@ -22,6 +22,7 @@ class telegraf::params {
     $config_folder        = '/etc/telegraf/telegraf.d'
     $logfile              = ''
     $manage_repo          = true
+    $repo_location        = 'https://repos.influxdata.com/'
     $service_enable       = true
     $service_ensure       = running
     $service_hasstatus    = true

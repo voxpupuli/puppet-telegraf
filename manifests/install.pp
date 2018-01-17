@@ -14,12 +14,12 @@ class telegraf::install {
       'Debian': {
         apt::source { 'influxdata':
           comment  => 'Mirror for InfluxData packages',
-          location => "https://repos.influxdata.com/${_operatingsystem}",
+          location => "${::telegraf::repo_location}${_operatingsystem}",
           release  => $::lsbdistcodename,
           repos    => $::telegraf::repo_type,
           key      => {
             'id'     => '05CE15085FC09D18E99EFB22684A14CF2582E0C5',
-            'source' => 'https://repos.influxdata.com/influxdb.key',
+            'source' => "${::telegraf::repo_location}influxdb.key",
           },
         }
         Class['apt::update'] -> Package[$::telegraf::package_name]
@@ -29,8 +29,8 @@ class telegraf::install {
           name     => 'influxdata',
           descr    => "InfluxData Repository - ${::operatingsystem} \$releasever",
           enabled  => 1,
-          baseurl  => "https://repos.influxdata.com/rhel/\$releasever/\$basearch/${::telegraf::repo_type}",
-          gpgkey   => 'https://repos.influxdata.com/influxdb.key',
+          baseurl  => "${::telegraf::repo_location}rhel/\$releasever/\$basearch/${::telegraf::repo_type}",
+          gpgkey   => '${::telegraf::repo_location}influxdb.key',
           gpgcheck => 1,
         }
         Yumrepo['influxdata'] -> Package[$::telegraf::package_name]
