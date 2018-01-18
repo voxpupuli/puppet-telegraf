@@ -1,6 +1,6 @@
 # telegraf
 
-[![Build Status](https://travis-ci.org/datacentred/puppet-telegraf.png?branch=master)](https://travis-ci.org/datacentred/puppet-telegraf)
+[![Build Status](https://travis-ci.org/yankcrime/puppet-telegraf.png?branch=master)](https://travis-ci.org/yankcrime/puppet-telegraf)
 
 #### Table of Contents
 
@@ -26,12 +26,12 @@ This module has the following dependencies:
 for TLS-enabled repos in place.  This can be achieved by installing the
 `apt-transport-https` package.
 
-This module **requires** the [toml-rb](https://github.com/eMancu/toml-rb) gem. Either install the gem using puppet's native gem provider, [puppetserver_gem](https://forge.puppetlabs.com/puppetlabs/puppetserver_gem), [pe_gem](https://forge.puppetlabs.com/puppetlabs/pe_gem), [pe_puppetserver_gem](https://forge.puppetlabs.com/puppetlabs/pe_puppetserver_gem), or manually using one of the following:
+This module **requires** the [toml-rb](https://github.com/eMancu/toml-rb) gem. Either install the gem using puppet's native gem provider, [puppetserver_gem](https://forge.puppetlabs.com/puppetlabs/puppetserver_gem), [pe_gem](https://forge.puppetlabs.com/puppetlabs/pe_gem), [pe_puppetserver_gem](https://forge.puppetlabs.com/puppetlabs/pe_puppetserver_gem), or manually using one of the following methods:
 ```
   # apply or puppet-master
   gem install toml-rb
   # PE apply
-  /opt/puppet/bin/gem install toml
+  /opt/puppetlabs/puppet/bin/gem install toml-rb
   # AIO or PE puppetserver
   /opt/puppet/bin/puppetserver gem install toml-rb
 ```

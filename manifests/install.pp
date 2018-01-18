@@ -30,7 +30,7 @@ class telegraf::install {
           descr    => "InfluxData Repository - ${::operatingsystem} \$releasever",
           enabled  => 1,
           baseurl  => "${::telegraf::repo_location}rhel/\$releasever/\$basearch/${::telegraf::repo_type}",
-          gpgkey   => '${::telegraf::repo_location}influxdb.key',
+          gpgkey   => "${::telegraf::repo_location}influxdb.key",
           gpgcheck => 1,
         }
         Yumrepo['influxdata'] -> Package[$::telegraf::package_name]
