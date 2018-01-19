@@ -8,14 +8,10 @@
 #   List. Plugin options for use in the input template.
 
 define telegraf::input (
-  $plugin_type = $name,
-  $options     = [],
+  String                $plugin_type = $name,
+  Variant[Undef, Array] $options     = [],
 ) {
   include telegraf
-
-  if $options {
-    validate_array($options)
-  }
 
   Class['::telegraf::config']
   -> file {"${telegraf::config_folder}/${name}.conf":
