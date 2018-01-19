@@ -17,7 +17,7 @@ class telegraf::params {
     $service_restart      = undef
   } else {
     $config_file          = '/etc/telegraf/telegraf.conf'
-    $config_file_owner    = 'telegraf'
+    $config_file_owner    = 'root'
     $config_file_group    = 'telegraf'
     $config_folder        = '/etc/telegraf/telegraf.d'
     $logfile              = ''
