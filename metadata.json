@@ -1,6 +1,6 @@
 {
-  "name": "datacentred-telegraf",
-  "version": "1.5.0",
+  "name": "yankcrime-telegraf",
+  "version": "2.0.0",
   "author": "Nick Jones",
   "summary": "Configuration and management of InfluxData's Telegraf metrics collection agent",
   "license": "GPL-3.0",
@@ -12,6 +12,10 @@
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [ "14.04" ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [ "16.04" ]
     },
     {
       "operatingsystem": "Debian",
@@ -39,6 +43,6 @@
     { "name": "puppetlabs-apt", "version_requirement": ">= 2.0.0 < 5.0.0" }
   ],
   "requirements": [
-    { "name": "puppet", "version_requirement": "> = 3.0.0 < 5.0.0" }
+    { "name": "puppet", "version_requirement": "> = 4.0.0 < 5.0.0" }
   ]
 }

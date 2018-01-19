@@ -253,9 +253,14 @@ telegraf::inputs:
 
 ## Limitations
 
+The latest version (2.0) of this module requires Puppet 4 or newer.  If you're looking for support under Puppet 3.x, then you'll want to make use of [an older release](https://github.com/yankcrime/puppet-telegraf/releases/tag/1.5.0).
+
+Furthermore, the introduction of toml-rb means that Ruby 1.9 or newer is also a requirement.
+
 This module has been developed and tested against:
 
  * Ubuntu 14.04
+ * Ubuntu 16.04
  * Debian 8
  * CentOS / RHEL 6
  * CentOS / RHEL 7
