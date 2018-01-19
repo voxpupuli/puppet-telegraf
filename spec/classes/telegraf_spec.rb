@@ -38,13 +38,14 @@ describe 'telegraf' do
                 }],
                 "diskio"      => [{}],
                 "kernel"      => [{}],
-                "exec"        => [{
-                  "commands" => ['who | wc -l'],
-                }],
-                "exec-uptime" => [{
-                  "commands"    => ["cat /proc/uptime | awk '{print $1}'"],
-                  "plugin_type" => 'exec',
-                }],
+                "exec"        => [
+                  {
+                    "commands" => ['who | wc -l'],
+                  },
+                  {
+                    "commands"    => ["cat /proc/uptime | awk '{print $1}'"],
+                  }
+                ],
                 "mem"         => [{}],
                 "net"         => [{
                   "interfaces" => ['eth0'],

@@ -98,10 +98,8 @@ telegraf::inputs:
   exec:
     - commands:
         - who | wc -l
-  exec-uptime:
     - commands:
         - cat /proc/uptime | awk '{print $1}'
-      plugin_type: exec
   mem: [{}]
   io: [{}]
   net: [{}]
