@@ -129,13 +129,11 @@ class telegraf (
 
   $_outputs = lookup({
     name          => 'telegraf::outputs',
-    default_value => $outputs,
-    merge         => deep
+    default_value => $outputs
   })
   $_inputs = lookup({
     name          => 'telegraf::inputs',
-    default_value => $inputs,
-    merge         => deep,
+    default_value => $inputs
   })
 
   contain ::telegraf::install

@@ -1,0 +1,10 @@
+---
+lookup_options:
+  telegraf::inputs:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+  telegraf::outputs:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
