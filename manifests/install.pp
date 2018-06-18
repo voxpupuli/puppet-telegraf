@@ -25,11 +25,16 @@ class telegraf::install {
         Class['apt::update'] -> Package[$::telegraf::package_name]
       }
       'RedHat': {
+        if $_operatingsystem == 'amazon' {
+            $_baseurl = "https://repos.influxdata.com/rhel/6/\$basearch/${::telegraf::repo_type}"
+        } else {
+            $_baseurl = "https://repos.influxdata.com/rhel/\$releasever/\$basearch/${::telegraf::repo_type}"
+        }
         yumrepo { 'influxdata':
           name     => 'influxdata',
           descr    => "InfluxData Repository - ${::operatingsystem} \$releasever",
           enabled  => 1,
-          baseurl  => "${::telegraf::repo_location}rhel/\$releasever/\$basearch/${::telegraf::repo_type}",
+          baseurl  => $_baseurl,
           gpgkey   => "${::telegraf::repo_location}influxdb.key",
           gpgcheck => 1,
         }
