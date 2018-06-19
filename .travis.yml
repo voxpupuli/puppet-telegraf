@@ -7,7 +7,7 @@ services:
 script:
   - bundle exec rake validate lint beaker
 rvm:
-  - 2.2.6
+  - "2.4"
 env:
   - BEAKER_set="default"
   - BEAKER_set="default" PUPPET_INSTALL_TYPE="agent" PUPPET_INSTALL_VERSION="1.6.2"
