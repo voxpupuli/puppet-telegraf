@@ -1,12 +1,12 @@
 {
-  "name": "yankcrime-telegraf",
-  "version": "2.0.0",
+  "name": "ouroboros8-telegraf",
+  "version": "2.0.1",
   "author": "Nick Jones",
   "summary": "Configuration and management of InfluxData's Telegraf metrics collection agent",
   "license": "GPL-3.0",
-  "source": "https://github.com/yankcrime/puppet-telegraf",
-  "project_page": "https://github.com/yankcrime/puppet-telegraf",
-  "issues_url": "https://github.com/yankcrime/puppet-telegraf/issues",
+  "source": "https://github.com/ouroboros8/puppet-telegraf",
+  "project_page": "https://github.com/ouroboros8/puppet-telegraf",
+  "issues_url": "https://github.com/ouroboros8/puppet-telegraf/issues",
   "tags": ["telegraf","influxdb","influxdata"],
   "operatingsystem_support": [
     {
@@ -34,8 +34,8 @@
       "operatingsystemrelease": [ "6", "7" ]
     },
     {
-      "operatingsystem": "Windows",
-      "operatingsystemrelease": [ "Server 2008", "Server 2008 R2", "Server 2012", "Server 2012 R2" ]
+      "operatingsystem": "Amazon",
+      "operatingsystemrelease": [ "2014.03", "2014.09", "2015.03", "2015.09", "2016.03", "2016.03" ]
     }
   ],
   "dependencies": [
@@ -43,6 +43,6 @@
     { "name": "puppetlabs-apt", "version_requirement": ">= 2.0.0 < 5.0.0" }
   ],
   "requirements": [
-    { "name": "puppet", "version_requirement": "> = 4.0.0 < 5.0.0" }
+    { "name": "puppet", "version_requirement": "> = 4.0.0" }
   ]
 }
