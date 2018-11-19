@@ -20,7 +20,9 @@ class telegraf::params {
     $config_file          = '/etc/telegraf/telegraf.conf'
     $config_file_owner    = 'telegraf'
     $config_file_group    = 'telegraf'
+    $config_file_mode     = '0640'
     $config_folder        = '/etc/telegraf/telegraf.d'
+    $config_folder_mode   = '0770'
     $logfile              = ''
     $manage_repo          = true
     $repo_location        = 'https://repos.influxdata.com/'

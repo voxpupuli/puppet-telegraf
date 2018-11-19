@@ -23,8 +23,14 @@
 # [*config_file_group*]
 #   String. Group to own the telegraf config file.
 #
+# [*config_file_mode*]
+#   String. File mode for the telegraf config file.
+#
 # [*config_folder*]
-#   String. Path of additional telegraf config files.
+#   String. Path of additional telegraf config folder.
+#
+# [*config_folder_mode*]
+#   String. File mode for the telegraf config folder.
 #
 # [*hostname*]
 #   String. Override default hostname used to identify this agent.
@@ -95,7 +101,9 @@ class telegraf (
   String  $config_file            = $telegraf::params::config_file,
   String  $config_file_owner      = $telegraf::params::config_file_owner,
   String  $config_file_group      = $telegraf::params::config_file_group,
+  String  $config_file_mode       = $telegraf::params::config_file_mode,
   String  $config_folder          = $telegraf::params::config_folder,
+  String  $config_folder_mode     = $telegraf::params::config_folder_mode,
   String  $hostname               = $telegraf::params::hostname,
   Boolean $omit_hostname          = $telegraf::params::omit_hostname,
   String  $interval               = $telegraf::params::interval,
