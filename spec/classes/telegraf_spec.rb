@@ -5,7 +5,7 @@ describe 'telegraf' do
     ['RedHat', 'CentOS', 'OracleLinux'].each do |operatingsystem|
       [6, 7].each do |releasenum|
         context "#{operatingsystem} #{releasenum} release specifics" do
-          let(:facts) {{
+          let(:facts) { {
             operatingsystem: operatingsystem,
             operatingsystemrelease: releasenum,
             operatingsystemmajrelease: releasenum,
