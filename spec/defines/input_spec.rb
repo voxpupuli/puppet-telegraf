@@ -2,12 +2,13 @@ require 'spec_helper'
 
 describe 'telegraf::input' do
   let(:title) { 'my_influxdb' }
-  let(:params) { {
+  let(:params) do {
     plugin_type: 'influxdb',
     options: [
       { 'urls' => ['http://localhost:8086'] }
     ]
-  }}
+  }
+  end
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
   describe 'configuration file /etc/telegraf/telegraf.d/my_influxdb.conf input' do
@@ -28,7 +29,7 @@ end
 
 describe 'telegraf::input' do
   let(:title) { 'my_snmp' }
-  let(:params) { {
+  let(:params) do {
     plugin_type: 'snmp',
     options: [
       {
@@ -46,7 +47,8 @@ describe 'telegraf::input' do
         ]
       }
     ]
-  }}
+  }
+  end
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
   describe 'configuration file /etc/telegraf/telegraf.d/my_snmp.conf input with sections' do
@@ -74,9 +76,10 @@ end
 
 describe 'telegraf::input' do
   let(:title) { 'my_haproxy' }
-  let(:params) { {
+  let(:params) do {
     plugin_type: 'haproxy'
-  }}
+  }
+  end
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
   describe 'configuration file /etc/telegraf/telegraf.d/my_haproxy.conf input with no options or sections' do

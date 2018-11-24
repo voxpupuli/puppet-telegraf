@@ -5,11 +5,12 @@ describe 'telegraf' do
     ['RedHat', 'CentOS', 'OracleLinux'].each do |operatingsystem|
       [6, 7].each do |releasenum|
         context "#{operatingsystem} #{releasenum} release specifics" do
-          let(:facts) { {
+          let(:facts) do {
             operatingsystem: operatingsystem,
             operatingsystemrelease: releasenum,
             operatingsystemmajrelease: releasenum
-          }}
+          }
+          end
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_class('telegraf::config') }
           it { is_expected.to contain_class('telegraf::install') }
