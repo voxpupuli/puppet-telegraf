@@ -14,7 +14,7 @@ describe 'telegraf::input' do
 
   describe 'configuration file /etc/telegraf/telegraf.d/my_influxdb.conf input' do
     it 'is declared with the correct content' do
-      is_expected.to contain_file(filename).with_content(/\[\[inputs.influxdb\]\]/)
+      is_expected.to contain_file(filename).with_content(%r{\[\[inputs.influxdb\]\]})
       is_expected.to contain_file(filename).with_content(/urls = \["http:\/\/localhost:8086"\]/)
     end
 
@@ -55,15 +55,15 @@ describe 'telegraf::input' do
 
   describe 'configuration file /etc/telegraf/telegraf.d/my_snmp.conf input with sections' do
     it 'is declared with the correct content' do
-      is_expected.to contain_file(filename).with_content(/\[\[inputs.snmp\]\]/)
-      is_expected.to contain_file(filename).with_content(/interval = "60s"/)
-      is_expected.to contain_file(filename).with_content(/\[inputs.snmp.tags\]/)
-      is_expected.to contain_file(filename).with_content(/environment = "development"/)
-      is_expected.to contain_file(filename).with_content(/\[\[inputs.snmp.host\]\]/)
-      is_expected.to contain_file(filename).with_content(/address = "snmp_host1:161"/)
-      is_expected.to contain_file(filename).with_content(/community = "read_only"/)
-      is_expected.to contain_file(filename).with_content(/get_oids = \["1.3.6.1.2.1.1.5"\]/)
-      is_expected.to contain_file(filename).with_content(/version = 2/)
+      is_expected.to contain_file(filename).with_content(%r{\[\[inputs.snmp\]\]})
+      is_expected.to contain_file(filename).with_content(%r{interval = "60s"})
+      is_expected.to contain_file(filename).with_content(%r{\[inputs.snmp.tags\]})
+      is_expected.to contain_file(filename).with_content(%r{environment = "development"})
+      is_expected.to contain_file(filename).with_content(%r{\[\[inputs.snmp.host\]\]})
+      is_expected.to contain_file(filename).with_content(%r{address = "snmp_host1:161"})
+      is_expected.to contain_file(filename).with_content(%r{community = "read_only"})
+      is_expected.to contain_file(filename).with_content(%r{get_oids = \["1.3.6.1.2.1.1.5"\]})
+      is_expected.to contain_file(filename).with_content(%r{version = 2})
     end
 
     it 'requires telegraf to be installed' do
@@ -87,8 +87,8 @@ describe 'telegraf::input' do
 
   describe 'configuration file /etc/telegraf/telegraf.d/my_haproxy.conf input with no options or sections' do
     it 'is declared with the correct content' do
-      is_expected.to contain_file(filename).with_content(/\[inputs\]/)
-      is_expected.to contain_file(filename).with_content(/haproxy = \[\]/)
+      is_expected.to contain_file(filename).with_content(%r{\[inputs\]})
+      is_expected.to contain_file(filename).with_content(%r{haproxy = \[\]})
     end
 
     it 'requires telegraf to be installed' do
