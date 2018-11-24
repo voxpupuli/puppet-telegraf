@@ -6,9 +6,9 @@ describe 'telegraf' do
       [6,7].each do |releasenum|
         context "#{operatingsystem} #{releasenum} release specifics" do
           let(:facts) {{
-            :operatingsystem           => operatingsystem,
-            :operatingsystemrelease    => releasenum,
-            :operatingsystemmajrelease => releasenum,
+            operatingsystem: operatingsystem,
+            operatingsystemrelease: releasenum,
+            operatingsystemmajrelease: releasenum,
           }}
           it { should compile.with_all_deps }
           it { should contain_class('telegraf::config') }
@@ -17,17 +17,17 @@ describe 'telegraf' do
           it { should contain_class('telegraf::service') }
           it { should contain_class('telegraf')
             .with(
-              :ensure              => '1.3.5-1',
-              :interval            => '60s',
-              :metric_batch_size   => '1000',
-              :metric_buffer_limit => '10000',
-              :flush_interval      => '60s',
-              :global_tags    => {
+              ensure: '1.3.5-1',
+              interval: '60s',
+              metric_batch_size: '1000',
+              metric_buffer_limit: '10000',
+              flush_interval: '60s',
+              global_tags: {
                 "dc"   => "dc",
                 "env"  => "production",
                 "role" => "telegraf",
               },
-              :inputs         => [{
+              inputs: [{
                 "cpu" => [{
                   "percpu"    => true,
                   "totalcpu"  => true,
@@ -72,7 +72,7 @@ describe 'telegraf' do
                 "swap"        => [{}],
                 "system"      => [{}],
               }],
-              :outputs        => [{
+              outputs: [{
                 "influxdb" => [{
                   "urls"     => ["http://influxdb.example.com:8086"],
                   "database" => 'telegraf',
@@ -90,15 +90,15 @@ describe 'telegraf' do
           it { should contain_service('telegraf') }
           it { should contain_yumrepo('influxdata')
             .with(
-              :baseurl => "https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable",
+              baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable",
             )
           }
 
           describe 'allow custom repo_type' do
-            let(:params) { {:repo_type => 'unstable' } }
+            let(:params) { {repo_type: 'unstable' } }
             it { should contain_yumrepo('influxdata')
               .with(
-                :baseurl => "https://repos.influxdata.com/rhel/\$releasever/\$basearch/unstable",
+                baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/unstable",
               )
             }
           end

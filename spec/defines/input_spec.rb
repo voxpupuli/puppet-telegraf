@@ -3,8 +3,8 @@ require 'spec_helper'
 describe 'telegraf::input' do
   let(:title) { 'my_influxdb' }
   let(:params) {{
-    :plugin_type => 'influxdb',
-    :options => [
+    plugin_type: 'influxdb',
+    options: [
       {"urls" => ["http://localhost:8086",],},
     ],
   }}
@@ -29,8 +29,8 @@ end
 describe 'telegraf::input' do
   let(:title) { 'my_snmp' }
   let(:params) {{
-    :plugin_type => 'snmp',
-    :options => [
+    plugin_type: 'snmp',
+    options: [
       {
         "interval" => "60s",
         "tags" => {
@@ -75,7 +75,7 @@ end
 describe 'telegraf::input' do
   let(:title) { 'my_haproxy' }
   let(:params) {{
-    :plugin_type => 'haproxy',
+    plugin_type: 'haproxy',
   }}
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
