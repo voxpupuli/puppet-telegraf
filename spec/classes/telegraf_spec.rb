@@ -44,7 +44,7 @@ describe 'telegraf' do
                     'commands' => ['who | wc -l']
                   },
                   {
-                    'commands'    => ["cat /proc/uptime | awk '{print $1}'"]
+                    'commands' => ["cat /proc/uptime | awk '{print $1}'"]
                   }
                 ],
                 'mem'         => [{}],
@@ -58,7 +58,7 @@ describe 'telegraf' do
                   'count'   => 1,
                   'timeout' => 1.0
                 }],
-                'statsd'      => [{
+                'statsd' => [{
                   'service_address'          => ':8125',
                   'delete_gauges'            => false,
                   'delete_counters'          => false,
