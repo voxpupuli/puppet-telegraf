@@ -40,7 +40,7 @@ describe 'telegraf' do
       it { is_expected.to be_running }
     end
 
-    describe file ('/etc/telegraf/telegraf.conf') do
+    describe file '/etc/telegraf/telegraf.conf' do
       it { is_expected.to be_file }
       it { is_expected.to contain '[agent]' }
       it { is_expected.to contain 'hostname = "test.vagrant.dev"' }
