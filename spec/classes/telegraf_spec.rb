@@ -16,8 +16,8 @@ describe 'telegraf' do
           it { is_expected.to contain_class('telegraf::install') }
           it { is_expected.to contain_class('telegraf::params') }
           it { is_expected.to contain_class('telegraf::service') }
-          it { is_expected.to contain_class('telegraf')
-            .with(
+          it { is_expected.to contain_class('telegraf').
+            with(
               ensure: '1.3.5-1',
               interval: '60s',
               metric_batch_size: '1000',
@@ -84,21 +84,21 @@ describe 'telegraf' do
             )
           }
           it { is_expected.to contain_file('/etc/telegraf/telegraf.conf') }
-          it { is_expected.to contain_file('/etc/telegraf/telegraf.d')
-            .with_purge(false)
+          it { is_expected.to contain_file('/etc/telegraf/telegraf.d').
+            with_purge(false)
           }
           it { is_expected.to contain_package('telegraf') }
           it { is_expected.to contain_service('telegraf') }
-          it { is_expected.to contain_yumrepo('influxdata')
-            .with(
+          it { is_expected.to contain_yumrepo('influxdata').
+            with(
               baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable"
             )
           }
 
           describe 'allow custom repo_type' do
             let(:params) { { repo_type: 'unstable' } }
-            it { is_expected.to contain_yumrepo('influxdata')
-              .with(
+            it { is_expected.to contain_yumrepo('influxdata').
+              with(
                 baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/unstable"
               )
             }
