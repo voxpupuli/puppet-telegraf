@@ -11,6 +11,7 @@ describe 'telegraf' do
             operatingsystemmajrelease: releasenum
           }
           end
+
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_class('telegraf::config') }
           it { is_expected.to contain_class('telegraf::install') }
@@ -97,6 +98,7 @@ describe 'telegraf' do
 
           describe 'allow custom repo_type' do
             let(:params) { { repo_type: 'unstable' } }
+
             it { is_expected.to contain_yumrepo('influxdata').
               with(
                 baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/unstable"
