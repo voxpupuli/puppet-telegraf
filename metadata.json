@@ -1,12 +1,12 @@
 {
-  "name": "yankcrime-telegraf",
-  "version": "2.0.0",
-  "author": "Nick Jones",
+  "name": "puppet-telegraf",
+  "version": "2.1.0-rc0",
+  "author": "Vox Pupuli",
   "summary": "Configuration and management of InfluxData's Telegraf metrics collection agent",
   "license": "GPL-3.0",
-  "source": "https://github.com/yankcrime/puppet-telegraf",
-  "project_page": "https://github.com/yankcrime/puppet-telegraf",
-  "issues_url": "https://github.com/yankcrime/puppet-telegraf/issues",
+  "source": "https://github.com/voxpupuli/puppet-telegraf",
+  "project_page": "https://github.com/voxpupuli/puppet-telegraf",
+  "issues_url": "https://github.com/voxpupuli/puppet-telegraf/issues",
   "tags": ["telegraf","influxdb","influxdata"],
   "operatingsystem_support": [
     {
