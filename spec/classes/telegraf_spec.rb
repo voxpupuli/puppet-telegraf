@@ -79,7 +79,7 @@ describe 'telegraf' do
                   'username' => 'telegraf',
                   'password' => 'telegraf'
                 }]
-              }],
+              }]
             )
           }
           it { is_expected.to contain_file('/etc/telegraf/telegraf.conf') }
@@ -90,7 +90,7 @@ describe 'telegraf' do
           it { is_expected.to contain_service('telegraf') }
           it { is_expected.to contain_yumrepo('influxdata')
             .with(
-              baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable",
+              baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable"
             )
           }
 
@@ -98,7 +98,7 @@ describe 'telegraf' do
             let(:params) { { repo_type: 'unstable' } }
             it { is_expected.to contain_yumrepo('influxdata')
               .with(
-                baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/unstable",
+                baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/unstable"
               )
             }
           end
