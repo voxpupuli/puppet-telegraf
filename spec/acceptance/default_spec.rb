@@ -2,7 +2,7 @@ require 'spec_helper_acceptance'
 
 describe 'telegraf' do
   context 'default server' do
-    it 'should work with no errors' do
+    it 'works with no errors' do
       pp = <<-EOS
             Exec {
               path => '/bin:/usr/bin:/sbin:/usr/sbin',
