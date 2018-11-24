@@ -68,7 +68,7 @@ describe 'telegraf' do
                     'delete_sets'              => false,
                     'delete_timings'           => true,
                     'percentiles'              => [90],
-                    'allowed_pending_messages' => 10000,
+                    'allowed_pending_messages' => 10_000,
                     'convert_names'            => true,
                     'percentile_limit'         => 1000,
                     'udp_packet_size'          => 1500
