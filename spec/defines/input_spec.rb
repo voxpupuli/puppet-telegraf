@@ -5,8 +5,8 @@ describe 'telegraf::input' do
   let(:params) { {
     plugin_type: 'influxdb',
     options: [
-      { 'urls' => ['http://localhost:8086',], },
-    ],
+      { 'urls' => ['http://localhost:8086'] }
+    ]
   }}
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
@@ -34,18 +34,18 @@ describe 'telegraf::input' do
       {
         'interval' => '60s',
         'tags' => {
-          'environment' => 'development',
+          'environment' => 'development'
         },
         'host' => [
           {
             'address'   => 'snmp_host1:161',
             'community' => 'read_only',
             'version'   => 2,
-            'get_oids'  => ['1.3.6.1.2.1.1.5',],
-          },
-        ],
-      },
-    ],
+            'get_oids'  => ['1.3.6.1.2.1.1.5']
+          }
+        ]
+      }
+    ]
   }}
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
@@ -75,7 +75,7 @@ end
 describe 'telegraf::input' do
   let(:title) { 'my_haproxy' }
   let(:params) { {
-    plugin_type: 'haproxy',
+    plugin_type: 'haproxy'
   }}
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 

@@ -8,7 +8,7 @@ describe 'telegraf' do
           let(:facts) { {
             operatingsystem: operatingsystem,
             operatingsystemrelease: releasenum,
-            operatingsystemmajrelease: releasenum,
+            operatingsystemmajrelease: releasenum
           }}
           it { is_expected.to compile.with_all_deps }
           it { is_expected.to contain_class('telegraf::config') }
@@ -25,37 +25,37 @@ describe 'telegraf' do
               global_tags: {
                 'dc'   => 'dc',
                 'env'  => 'production',
-                'role' => 'telegraf',
+                'role' => 'telegraf'
               },
               inputs: [{
                 'cpu' => [{
                   'percpu'    => true,
                   'totalcpu'  => true,
-                  'fielddrop' => ['time_*'],
+                  'fielddrop' => ['time_*']
                 }],
                 'disk' => [{
-                  'ignore_fs' => ['tmpfs', 'devtmpfs'],
+                  'ignore_fs' => ['tmpfs', 'devtmpfs']
                 }],
                 'diskio'      => [{}],
                 'kernel'      => [{}],
                 'exec'        => [
                   {
-                    'commands' => ['who | wc -l'],
+                    'commands' => ['who | wc -l']
                   },
                   {
-                    'commands'    => ["cat /proc/uptime | awk '{print $1}'"],
+                    'commands'    => ["cat /proc/uptime | awk '{print $1}'"]
                   }
                 ],
                 'mem'         => [{}],
                 'net'         => [{
                   'interfaces' => ['eth0'],
-                  'drop'       => ['net_icmp'],
+                  'drop'       => ['net_icmp']
                 }],
                 'netstat'     => [{}],
                 'ping'        => [{
                   'urls'    => ['10.10.10.1'],
                   'count'   => 1,
-                  'timeout' => 1.0,
+                  'timeout' => 1.0
                 }],
                 'statsd'      => [{
                   'service_address'          => ':8125',
@@ -67,18 +67,18 @@ describe 'telegraf' do
                   'allowed_pending_messages' => 10000,
                   'convert_names'            => true,
                   'percentile_limit'         => 1000,
-                  'udp_packet_size'          => 1500,
+                  'udp_packet_size'          => 1500
                 }],
                 'swap'        => [{}],
-                'system'      => [{}],
+                'system'      => [{}]
               }],
               outputs: [{
                 'influxdb' => [{
                   'urls'     => ['http://influxdb.example.com:8086'],
                   'database' => 'telegraf',
                   'username' => 'telegraf',
-                  'password' => 'telegraf',
-                }],
+                  'password' => 'telegraf'
+                }]
               }],
             )
           }
