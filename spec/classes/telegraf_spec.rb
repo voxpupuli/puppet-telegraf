@@ -23,61 +23,61 @@ describe 'telegraf' do
               metric_buffer_limit: '10000',
               flush_interval: '60s',
               global_tags: {
-                "dc"   => "dc",
-                "env"  => "production",
-                "role" => "telegraf",
+                'dc'   => 'dc',
+                'env'  => 'production',
+                'role' => 'telegraf',
               },
               inputs: [{
-                "cpu" => [{
-                  "percpu"    => true,
-                  "totalcpu"  => true,
-                  "fielddrop" => ["time_*"],
+                'cpu' => [{
+                  'percpu'    => true,
+                  'totalcpu'  => true,
+                  'fielddrop' => ['time_*'],
                 }],
-                "disk" => [{
-                  "ignore_fs" => ['tmpfs','devtmpfs'],
+                'disk' => [{
+                  'ignore_fs' => ['tmpfs','devtmpfs'],
                 }],
-                "diskio"      => [{}],
-                "kernel"      => [{}],
-                "exec"        => [
+                'diskio'      => [{}],
+                'kernel'      => [{}],
+                'exec'        => [
                   {
-                    "commands" => ['who | wc -l'],
+                    'commands' => ['who | wc -l'],
                   },
                   {
-                    "commands"    => ["cat /proc/uptime | awk '{print $1}'"],
+                    'commands'    => ["cat /proc/uptime | awk '{print $1}'"],
                   }
                 ],
-                "mem"         => [{}],
-                "net"         => [{
-                  "interfaces" => ['eth0'],
-                  "drop"       => ['net_icmp'],
+                'mem'         => [{}],
+                'net'         => [{
+                  'interfaces' => ['eth0'],
+                  'drop'       => ['net_icmp'],
                 }],
-                "netstat"     => [{}],
-                "ping"        => [{
-                  "urls"    => ['10.10.10.1'],
-                  "count"   => 1,
-                  "timeout" => 1.0,
+                'netstat'     => [{}],
+                'ping'        => [{
+                  'urls'    => ['10.10.10.1'],
+                  'count'   => 1,
+                  'timeout' => 1.0,
                 }],
-                "statsd"      => [{
-                  "service_address"          => ':8125',
-                  "delete_gauges"            => false,
-                  "delete_counters"          => false,
-                  "delete_sets"              => false,
-                  "delete_timings"           => true,
-                  "percentiles"              => [90],
-                  "allowed_pending_messages" => 10000,
-                  "convert_names"            => true,
-                  "percentile_limit"         => 1000,
-                  "udp_packet_size"          => 1500,
+                'statsd'      => [{
+                  'service_address'          => ':8125',
+                  'delete_gauges'            => false,
+                  'delete_counters'          => false,
+                  'delete_sets'              => false,
+                  'delete_timings'           => true,
+                  'percentiles'              => [90],
+                  'allowed_pending_messages' => 10000,
+                  'convert_names'            => true,
+                  'percentile_limit'         => 1000,
+                  'udp_packet_size'          => 1500,
                 }],
-                "swap"        => [{}],
-                "system"      => [{}],
+                'swap'        => [{}],
+                'system'      => [{}],
               }],
               outputs: [{
-                "influxdb" => [{
-                  "urls"     => ["http://influxdb.example.com:8086"],
-                  "database" => 'telegraf',
-                  "username" => 'telegraf',
-                  "password" => 'telegraf',
+                'influxdb' => [{
+                  'urls'     => ['http://influxdb.example.com:8086'],
+                  'database' => 'telegraf',
+                  'username' => 'telegraf',
+                  'password' => 'telegraf',
                 }],
               }],
             )

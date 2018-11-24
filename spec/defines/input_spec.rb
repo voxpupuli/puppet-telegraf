@@ -5,12 +5,12 @@ describe 'telegraf::input' do
   let(:params) {{
     plugin_type: 'influxdb',
     options: [
-      {"urls" => ["http://localhost:8086",],},
+      {'urls' => ['http://localhost:8086',],},
     ],
   }}
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
-  describe "configuration file /etc/telegraf/telegraf.d/my_influxdb.conf input" do
+  describe 'configuration file /etc/telegraf/telegraf.d/my_influxdb.conf input' do
     it 'is declared with the correct content' do
       is_expected.to contain_file(filename).with_content(/\[\[inputs.influxdb\]\]/)
       is_expected.to contain_file(filename).with_content(/urls = \["http:\/\/localhost:8086"\]/)
@@ -21,7 +21,7 @@ describe 'telegraf::input' do
     end
 
     it 'notifies the telegraf daemon' do
-      is_expected.to contain_file(filename).that_notifies("Class[telegraf::service]")
+      is_expected.to contain_file(filename).that_notifies('Class[telegraf::service]')
     end
   end
 end
@@ -32,16 +32,16 @@ describe 'telegraf::input' do
     plugin_type: 'snmp',
     options: [
       {
-        "interval" => "60s",
-        "tags" => {
-          "environment" => "development",
+        'interval' => '60s',
+        'tags' => {
+          'environment' => 'development',
         },
-        "host" => [
+        'host' => [
           {
-            "address"   => "snmp_host1:161",
-            "community" => "read_only",
-            "version"   => 2,
-            "get_oids"  => ["1.3.6.1.2.1.1.5",],
+            'address'   => 'snmp_host1:161',
+            'community' => 'read_only',
+            'version'   => 2,
+            'get_oids'  => ['1.3.6.1.2.1.1.5',],
           },
         ],
       },
@@ -67,7 +67,7 @@ describe 'telegraf::input' do
     end
 
     it 'notifies the telegraf daemon' do
-      is_expected.to contain_file(filename).that_notifies("Class[telegraf::service]")
+      is_expected.to contain_file(filename).that_notifies('Class[telegraf::service]')
     end
   end
 end
@@ -90,7 +90,7 @@ describe 'telegraf::input' do
     end
 
     it 'notifies the telegraf daemon' do
-      is_expected.to contain_file(filename).that_notifies("Class[telegraf::service]")
+      is_expected.to contain_file(filename).that_notifies('Class[telegraf::service]')
     end
   end
 end
