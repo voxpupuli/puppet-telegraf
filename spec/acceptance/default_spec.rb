@@ -3,7 +3,6 @@ require 'spec_helper_acceptance'
 describe 'telegraf' do
   context 'default server' do
     it 'should work with no errors' do
-
       pp = <<-EOS
             Exec {
               path => '/bin:/usr/bin:/sbin:/usr/sbin',
@@ -31,7 +30,6 @@ describe 'telegraf' do
       # Run it twice and test for idempotency
       apply_manifest(pp, catch_failures: true)
       expect(apply_manifest(pp, catch_failures: true).exit_code).to be_zero
-
     end
 
     describe package('telegraf') do
@@ -55,6 +53,5 @@ describe 'telegraf' do
       it { is_expected.to contain 'percpu = true' }
       it { is_expected.to contain 'totalcpu = true' }
     end
-
   end
 end
