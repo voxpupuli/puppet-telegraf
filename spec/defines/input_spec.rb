@@ -2,12 +2,13 @@ require 'spec_helper'
 
 describe 'telegraf::input' do
   let(:title) { 'my_influxdb' }
-  let(:params) do {
-    plugin_type: 'influxdb',
-    options: [
-      { 'urls' => ['http://localhost:8086'] }
-    ]
-  }
+  let(:params) do
+    {
+      plugin_type: 'influxdb',
+      options: [
+        { 'urls' => ['http://localhost:8086'] }
+      ]
+    }
   end
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
@@ -29,25 +30,26 @@ end
 
 describe 'telegraf::input' do
   let(:title) { 'my_snmp' }
-  let(:params) do {
-    plugin_type: 'snmp',
-    options: [
-      {
-        'interval' => '60s',
-        'tags' => {
-          'environment' => 'development'
-        },
-        'host' => [
-          {
-            'address'   => 'snmp_host1:161',
-            'community' => 'read_only',
-            'version'   => 2,
-            'get_oids'  => ['1.3.6.1.2.1.1.5']
-          }
-        ]
-      }
-    ]
-  }
+  let(:params) do
+    {
+      plugin_type: 'snmp',
+      options: [
+        {
+          'interval' => '60s',
+          'tags' => {
+            'environment' => 'development'
+          },
+          'host' => [
+            {
+              'address'   => 'snmp_host1:161',
+              'community' => 'read_only',
+              'version'   => 2,
+              'get_oids'  => ['1.3.6.1.2.1.1.5']
+            }
+          ]
+        }
+      ]
+    }
   end
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
@@ -76,9 +78,10 @@ end
 
 describe 'telegraf::input' do
   let(:title) { 'my_haproxy' }
-  let(:params) do {
-    plugin_type: 'haproxy'
-  }
+  let(:params) do
+    {
+      plugin_type: 'haproxy'
+    }
   end
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
 
