@@ -5,7 +5,7 @@ describe 'telegraf::input' do
   let(:params) {{
     plugin_type: 'influxdb',
     options: [
-      {'urls' => ['http://localhost:8086',],},
+      {'urls' => ['http://localhost:8086',], },
     ],
   }}
   let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }

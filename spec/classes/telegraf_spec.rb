@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'telegraf' do
   context 'Supported operating systems' do
     ['RedHat', 'CentOS', 'OracleLinux'].each do |operatingsystem|
-      [6,7].each do |releasenum|
+      [6, 7].each do |releasenum|
         context "#{operatingsystem} #{releasenum} release specifics" do
           let(:facts) {{
             operatingsystem: operatingsystem,
@@ -34,7 +34,7 @@ describe 'telegraf' do
                   'fielddrop' => ['time_*'],
                 }],
                 'disk' => [{
-                  'ignore_fs' => ['tmpfs','devtmpfs'],
+                  'ignore_fs' => ['tmpfs', 'devtmpfs'],
                 }],
                 'diskio'      => [{}],
                 'kernel'      => [{}],

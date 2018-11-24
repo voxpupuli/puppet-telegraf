@@ -22,8 +22,8 @@ RSpec.configure do |c|
       if fact('osfamily') == 'Debian'
         on host, 'apt-get -y install apt-transport-https'
       end
-      on host, puppet('module', 'install', 'puppetlabs-stdlib'), { acceptable_exit_codes: [0,1] }
-      on host, puppet('module', 'install', 'puppetlabs-apt'), { acceptable_exit_codes: [0,1] }
+      on host, puppet('module', 'install', 'puppetlabs-stdlib'), { acceptable_exit_codes: [0, 1] }
+      on host, puppet('module', 'install', 'puppetlabs-apt'), { acceptable_exit_codes: [0, 1] }
       on host, '/opt/puppetlabs/puppet/bin/gem install toml-rb'
     end
   end
