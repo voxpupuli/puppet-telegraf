@@ -95,7 +95,7 @@ describe 'telegraf' do
           }
 
           describe 'allow custom repo_type' do
-            let(:params) { {repo_type: 'unstable' } }
+            let(:params) { { repo_type: 'unstable' } }
             it { is_expected.to contain_yumrepo('influxdata')
               .with(
                 baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/unstable",
