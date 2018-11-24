@@ -10,12 +10,12 @@ describe 'telegraf' do
             operatingsystemrelease: releasenum,
             operatingsystemmajrelease: releasenum,
           }}
-          it { should compile.with_all_deps }
-          it { should contain_class('telegraf::config') }
-          it { should contain_class('telegraf::install') }
-          it { should contain_class('telegraf::params') }
-          it { should contain_class('telegraf::service') }
-          it { should contain_class('telegraf')
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_class('telegraf::config') }
+          it { is_expected.to contain_class('telegraf::install') }
+          it { is_expected.to contain_class('telegraf::params') }
+          it { is_expected.to contain_class('telegraf::service') }
+          it { is_expected.to contain_class('telegraf')
             .with(
               ensure: '1.3.5-1',
               interval: '60s',
@@ -82,13 +82,13 @@ describe 'telegraf' do
               }],
             )
           }
-          it { should contain_file('/etc/telegraf/telegraf.conf') }
-          it { should contain_file('/etc/telegraf/telegraf.d')
+          it { is_expected.to contain_file('/etc/telegraf/telegraf.conf') }
+          it { is_expected.to contain_file('/etc/telegraf/telegraf.d')
             .with_purge(false)
           }
-          it { should contain_package('telegraf') }
-          it { should contain_service('telegraf') }
-          it { should contain_yumrepo('influxdata')
+          it { is_expected.to contain_package('telegraf') }
+          it { is_expected.to contain_service('telegraf') }
+          it { is_expected.to contain_yumrepo('influxdata')
             .with(
               baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable",
             )
@@ -96,7 +96,7 @@ describe 'telegraf' do
 
           describe 'allow custom repo_type' do
             let(:params) { {repo_type: 'unstable' } }
-            it { should contain_yumrepo('influxdata')
+            it { is_expected.to contain_yumrepo('influxdata')
               .with(
                 baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/unstable",
               )
