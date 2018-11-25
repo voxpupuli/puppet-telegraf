@@ -1,20 +1,39 @@
+# This file is managed via modulesync
+# https://github.com/voxpupuli/modulesync
+# https://github.com/voxpupuli/modulesync_config
+RSpec.configure do |c|
+  c.mock_with :rspec
+end
+
 require 'puppetlabs_spec_helper/module_spec_helper'
+require 'rspec-puppet-facts'
+include RspecPuppetFacts
+
+if Dir.exist?(File.expand_path('../../lib', __FILE__))
+  require 'coveralls'
+  require 'simplecov'
+  require 'simplecov-console'
+  SimpleCov.formatters = [
+    SimpleCov::Formatter::HTMLFormatter,
+    SimpleCov::Formatter::Console
+  ]
+  SimpleCov.start do
+    track_files 'lib/**/*.rb'
+    add_filter '/spec'
+    add_filter '/vendor'
+    add_filter '/.vendor'
+  end
+end
 
 RSpec.configure do |c|
-  c.before do
-    # avoid "Only root can execute commands as other users"
-    Puppet.features.stubs(root?: true)
-  end
-
-  c.default_facts = {
-    osfamily: 'RedHat',
-    architecture: 'x86_64',
-    kernel: 'Linux',
-    operatingsystem: 'RedHat',
-    operatingsystemrelease: 7,
-    operatingsystemmajrelease: 7,
-    role: 'telegraf'
-  }
-
+  default_facts = {}
+  default_facts.merge!(YAML.load(File.read(File.expand_path('../default_facts.yml', __FILE__)))) if File.exist?(File.expand_path('../default_facts.yml', __FILE__))
+  default_facts.merge!(YAML.load(File.read(File.expand_path('../default_module_facts.yml', __FILE__)))) if File.exist?(File.expand_path('../default_module_facts.yml', __FILE__))
+  c.default_facts = default_facts
   c.hiera_config = 'spec/hiera.yaml'
+
+  # Coverage generation
+  c.after(:suite) do
+    RSpec::Puppet::Coverage.report!
+  end
 end
