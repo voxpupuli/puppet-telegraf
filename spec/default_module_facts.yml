@@ -1,0 +1,4 @@
+---
+choco_install_path: 'C:\ProgramData\chocolatey'
+chocolateyversion: '0.10.11'
+role: 'telegraf'
