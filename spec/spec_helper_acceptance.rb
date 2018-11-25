@@ -16,14 +16,14 @@ RSpec.configure do |c|
   c.before :suite do
     # Install module
     # We assume the module is in auto load layout
-    puppet_module_install(:source => proj_root, :module_name => 'telegraf')
+    puppet_module_install(source: proj_root, module_name: 'telegraf')
     # Install dependancies
     hosts.each do |host|
       if fact('osfamily') == 'Debian'
         on host, 'apt-get -y install apt-transport-https'
       end
-      on host, puppet('module', 'install', 'puppetlabs-stdlib'), { :acceptable_exit_codes => [0,1] }
-      on host, puppet('module', 'install', 'puppetlabs-apt'), { :acceptable_exit_codes => [0,1] }
+      on host, puppet('module', 'install', 'puppetlabs-stdlib'), acceptable_exit_codes: [0, 1]
+      on host, puppet('module', 'install', 'puppetlabs-apt'), acceptable_exit_codes: [0, 1]
       on host, '/opt/puppetlabs/puppet/bin/gem install toml-rb'
     end
   end

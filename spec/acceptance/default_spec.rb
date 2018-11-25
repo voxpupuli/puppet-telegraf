@@ -2,9 +2,8 @@ require 'spec_helper_acceptance'
 
 describe 'telegraf' do
   context 'default server' do
-      it 'should work with no errors' do
-
-        pp = <<-EOS
+    it 'works with no errors' do
+      pp = <<-EOS
             Exec {
               path => '/bin:/usr/bin:/sbin:/usr/sbin',
             }
@@ -28,33 +27,31 @@ describe 'telegraf' do
             }
         EOS
 
-        # Run it twice and test for idempotency
-        apply_manifest(pp, :catch_failures => true)
-        expect(apply_manifest(pp, :catch_failures => true).exit_code).to be_zero
+      # Run it twice and test for idempotency
+      apply_manifest(pp, catch_failures: true)
+      expect(apply_manifest(pp, catch_failures: true).exit_code).to be_zero
+    end
 
-      end
+    describe package('telegraf') do
+      it { is_expected.to be_installed }
+    end
 
-      describe package('telegraf') do
-        it { should be_installed }
-      end
+    describe service('telegraf') do
+      it { is_expected.to be_running }
+    end
 
-      describe service('telegraf') do
-        it { should be_running }
-      end
-
-      describe file ('/etc/telegraf/telegraf.conf') do
-          it { should be_file }
-          it { should contain '[agent]' }
-          it { should contain 'hostname = "test.vagrant.dev"' }
-          it { should contain '[[outputs.influxdb]]' }
-          it { should contain 'urls = ["http://localhost:8086"]' }
-          it { should contain 'database = "telegraf"' }
-          it { should contain 'username = "telegraf"' }
-          it { should contain 'password = "metricsmetricsmetrics"' }
-          it { should contain '[[inputs.cpu]]' }
-          it { should contain 'percpu = true' }
-          it { should contain 'totalcpu = true' }
-      end
-
+    describe file '/etc/telegraf/telegraf.conf' do
+      it { is_expected.to be_file }
+      it { is_expected.to contain '[agent]' }
+      it { is_expected.to contain 'hostname = "test.vagrant.dev"' }
+      it { is_expected.to contain '[[outputs.influxdb]]' }
+      it { is_expected.to contain 'urls = ["http://localhost:8086"]' }
+      it { is_expected.to contain 'database = "telegraf"' }
+      it { is_expected.to contain 'username = "telegraf"' }
+      it { is_expected.to contain 'password = "metricsmetricsmetrics"' }
+      it { is_expected.to contain '[[inputs.cpu]]' }
+      it { is_expected.to contain 'percpu = true' }
+      it { is_expected.to contain 'totalcpu = true' }
+    end
   end
 end
