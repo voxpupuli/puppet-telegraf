@@ -11,6 +11,7 @@ class telegraf::params {
     $config_folder        = 'C:/Program Files/telegraf/telegraf.d'
     $logfile              = 'C:/Program Files/telegraf/telegraf.log'
     $manage_repo          = false
+    $repo_location        = undef
     $service_enable       = true
     $service_ensure       = running
     $service_hasstatus    = false

@@ -114,7 +114,7 @@ class telegraf (
   Hash    $global_tags            = $telegraf::params::global_tags,
   Boolean $manage_service         = $telegraf::params::manage_service,
   Boolean $manage_repo            = $telegraf::params::manage_repo,
-  String  $repo_location          = $telegraf::params::repo_location,
+  Optional[String] $repo_location = $telegraf::params::repo_location,
   Boolean $purge_config_fragments = $telegraf::params::purge_config_fragments,
   String  $repo_type              = $telegraf::params::repo_type,
   String  $windows_package_url    = $telegraf::params::windows_package_url,
