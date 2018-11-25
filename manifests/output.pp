@@ -13,9 +13,9 @@ define telegraf::output (
 ) {
   include telegraf
 
-  Class['::telegraf::config']
-  -> file {"${telegraf::config_folder}/${name}.conf":
-    content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'outputs'=>{'${plugin_type}'=>@options}}) %>")
+  file {"${telegraf::config_folder}/${name}.conf":
+    content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'outputs'=>{'${plugin_type}'=>@options}}) %>"),
+    require => Class['telegraf::config'],
+    notify  => Class['telegraf::service'],
   }
-  ~> Class['::telegraf::service']
 }

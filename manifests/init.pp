@@ -130,7 +130,7 @@ class telegraf (
   $_outputs = lookup({
     name          => 'telegraf::outputs',
     default_value => $outputs,
-    merge         => deep
+    merge         => deep,
   })
   $_inputs = lookup({
     name          => 'telegraf::inputs',
