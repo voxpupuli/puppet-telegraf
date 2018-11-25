@@ -3,3 +3,6 @@ Gemfile:
   optional:
     ':test':
       - gem: 'toml-rb'
+spec/spec_helper.rb:
+  mock_with: :rspec
+  hiera_config: 'spec/hiera.yaml'
