@@ -8,8 +8,8 @@
 #   List. Plugin options for use in the output template.
 
 define telegraf::output (
-  String                $plugin_type = $name,
-  Variant[Undef, Array] $options     = undef,
+  String          $plugin_type = $name,
+  Optional[Array] $options     = undef,
 ) {
   include telegraf
 
