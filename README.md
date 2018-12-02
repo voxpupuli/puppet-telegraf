@@ -59,13 +59,13 @@ To get started, Telegraf can be installed with a very basic configuration by
 just including the class:
 
 ```puppet
-include ::telegraf
+include telegraf
 ```
 
 However, to customise your configuration you'll want to do something like the following:
 
 ```puppet
-class { '::telegraf':
+class { 'telegraf':
     hostname => $::hostname,
     outputs  => {
         'influxdb' => [
@@ -201,7 +201,7 @@ Will create the file `/etc/telegraf/telegraf.d/snmp.conf`:
 Example 4:
 
 ```puppet
-class { '::telegraf':
+class { 'telegraf':
     ensure              => '1.0.1',
     hostname            => $::hostname,
     windows_package_url => http://internal_repo:8080/chocolatey,
