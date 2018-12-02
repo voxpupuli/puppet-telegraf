@@ -66,11 +66,11 @@ However, to customise your configuration you'll want to do something like the fo
 
 ```puppet
 class { 'telegraf':
-    hostname => $::hostname,
+    hostname => $facts['hostname'],
     outputs  => {
         'influxdb' => [
             {
-                'urls'     => [ "http://influxdb0.${::domain}:8086", "http://influxdb1.${::domain}:8086" ],
+                'urls'     => [ "http://influxdb0.${facts['domain']}:8086", "http://influxdb1.${facts['domain']}:8086" ],
                 'database' => 'telegraf',
                 'username' => 'telegraf',
                 'password' => 'metricsmetricsmetrics',
@@ -203,7 +203,7 @@ Example 4:
 ```puppet
 class { 'telegraf':
     ensure              => '1.0.1',
-    hostname            => $::hostname,
+    hostname            => $facts['hostname'],
     windows_package_url => http://internal_repo:8080/chocolatey,
 }
 ```

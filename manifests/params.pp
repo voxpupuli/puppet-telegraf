@@ -4,7 +4,7 @@
 #
 class telegraf::params {
 
-  if $::osfamily == 'windows' {
+  if $facts['osfamily'] == 'windows' {
     $config_file          = 'C:/Program Files/telegraf/telegraf.conf'
     $config_file_owner    = 'Administrator'
     $config_file_group    = 'Administrators'
@@ -32,7 +32,7 @@ class telegraf::params {
   $package_name           = 'telegraf'
   $ensure                 = 'present'
   $install_options        = []
-  $hostname               = $::hostname
+  $hostname               = $facts['hostname']
   $omit_hostname          = false
   $interval               = '10s'
   $round_interval         = true

@@ -7,15 +7,15 @@ class telegraf::install {
 
   assert_private()
 
-  $_operatingsystem = downcase($::operatingsystem)
+  $_operatingsystem = downcase($facts['operatingsystem'])
 
   if $telegraf::manage_repo {
-    case $::osfamily {
+    case $facts['osfamily'] {
       'Debian': {
         apt::source { 'influxdata':
           comment  => 'Mirror for InfluxData packages',
           location => "${telegraf::repo_location}${_operatingsystem}",
-          release  => $::lsbdistcodename,
+          release  => $facts['lsbdistcodename'],
           repos    => $telegraf::repo_type,
           key      => {
             'id'     => '05CE15085FC09D18E99EFB22684A14CF2582E0C5',
@@ -32,7 +32,7 @@ class telegraf::install {
         }
         yumrepo { 'influxdata':
           name     => 'influxdata',
-          descr    => "InfluxData Repository - ${::operatingsystem} \$releasever",
+          descr    => "InfluxData Repository - ${facts['operatingsystem']} \$releasever",
           enabled  => 1,
           baseurl  => $_baseurl,
           gpgkey   => "${telegraf::repo_location}influxdb.key",
@@ -49,7 +49,7 @@ class telegraf::install {
     }
   }
 
-  if $::osfamily == 'windows' {
+  if $facts['osfamily'] == 'windows' {
     # required to install telegraf on windows
     require chocolatey
 
