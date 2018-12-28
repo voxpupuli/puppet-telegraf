@@ -4,5 +4,7 @@ Gemfile:
     ':test':
       - gem: 'toml-rb'
 spec/spec_helper.rb:
-  mock_with: :rspec
-  hiera_config: 'spec/hiera.yaml'
+  mock_with: ':rspec'
+  hiera_config: "'spec/hiera.yaml'"
+.travis.yml:
+  secure: "LUBdRnwDBx3H9ZfmPK2Lj7C4jGNh91mG3qwEmpq0sIz3xzmmcbUz/LS0efVxId/A5TDn34NcHCB4qrs4Kq0Ayf6lonIvFUMy7xsErLP/qTR4rdjR0f/mzeAjyf+uyh9/od7qRfMC5Bu4zuqLacA45g0CdkfYhuwLsI0fWrml6oSydloeOO38G3LxdSzu+WRR4Qi1qJ6uUYygiDpWh6Fhx88Brmhzpi0i9zz2wOpXccgP88tO6u1zXRTt9ypnlrQRIBg8IMmNkHB+cSb06yUgOQQLTM69/6C+rlSVAPtBwpa40iaOGDF9yn3Sl2G6Qwo1T/HEGPaW0DfPfyP0zNlsnc2lbcsWwpPr7yKmAPEgbH/7WKISn7BZn45yDLKxtBfqcWSIRoFqIEhfsdKzKvZKQVW1NYiUSLCbZ6ipxE7t0YnFqDV1W+AmWFFK+dDkFgYY9L/XD2xuDOepO3iG0P7im8/LJxvqIiyzOhV+M2a5rC9Ux51maChYV/o5YYx4Jou3MS9sJGfPxMhfNs0ZPLv10klwDAhQy/NAztR/MQGgjxbVPG1QZBupRuTCswGFZ0EKMeEH2hrTpgrcjtporoVIBBKZPHGY2lbqF+xeuQjDLcJynsx8bWNgizXrhU5hBMUh/AjPG4qvS9DoLbbpSd6PTwrG4QZkWOPORI47ojiTCUQ="
