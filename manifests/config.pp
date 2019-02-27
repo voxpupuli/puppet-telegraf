@@ -11,13 +11,13 @@ class telegraf::config inherits telegraf {
     content => template('telegraf/telegraf.conf.erb'),
     owner   => $telegraf::config_file_owner,
     group   => $telegraf::config_file_group,
-    mode    => '0640',
+    mode    => $telegraf::config_file_mode,
   }
   file { $telegraf::config_folder:
     ensure  => directory,
     owner   => $telegraf::config_file_owner,
     group   => $telegraf::config_file_group,
-    mode    => '0770',
+    mode    => $telegraf::config_folder_mode,
     purge   => $telegraf::purge_config_fragments,
     recurse => true,
   }

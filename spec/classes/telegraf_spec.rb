@@ -20,6 +20,8 @@ describe 'telegraf' do
             metric_batch_size: '1000',
             metric_buffer_limit: '10000',
             flush_interval: '60s',
+            config_file_mode: '0640',
+            config_folder_mode: '0770',
             global_tags: {
               'dc'   => 'dc',
               'env'  => 'production',
