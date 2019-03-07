@@ -6,7 +6,7 @@ class telegraf::service {
 
   assert_private()
 
-  if $telegraf::manage_service {
+  if $telegraf::ensure != 'absent' and $telegraf::manage_service {
     service { 'telegraf':
       ensure    => $telegraf::service_ensure,
       hasstatus => $telegraf::service_hasstatus,
