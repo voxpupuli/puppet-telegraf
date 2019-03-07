@@ -8,8 +8,8 @@ class telegraf::config inherits telegraf {
 
   file { $telegraf::config_file:
     ensure  => $telegraf::ensure ? {
-	'absent' => absent,
-	default  => file,
+        'absent' => absent,
+        default  => file,
     },
     content => template('telegraf/telegraf.conf.erb'),
     owner   => $telegraf::config_file_owner,
