@@ -130,7 +130,8 @@ describe 'telegraf' do
         when 'windows'
           it {
             is_expected.to contain_file('C:/Program Files/telegraf/telegraf.conf').
-              with(ensure: 'absent') }
+              with(ensure: 'absent')
+          }
           it {
             is_expected.to contain_file('C:/Program Files/telegraf/telegraf.d').
               with_purge(false).with(ensure: 'absent')
@@ -138,7 +139,8 @@ describe 'telegraf' do
         else
           it {
             is_expected.to contain_file('/etc/telegraf/telegraf.conf').
-              with(ensure: 'absent') }
+              with(ensure: 'absent')
+          }
           it {
             is_expected.to contain_file('/etc/telegraf/telegraf.d').
               with_purge(false).with(ensure: 'absent')
