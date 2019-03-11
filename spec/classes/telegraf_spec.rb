@@ -119,6 +119,32 @@ describe 'telegraf' do
           }
         end
       end
+
+      describe 'ensure resources can be set absent' do
+        let(:params) { { ensure: 'absent' } }
+
+        it { is_expected.to contain_package('telegraf').with(ensure: 'absent') }
+        it { is_expected.not_to contain_service('telegraf') }
+
+        case facts[:kernel]
+        when 'windows'
+          it {
+            is_expected.to contain_file('C:/Program Files/telegraf/telegraf.conf').
+              with(ensure: 'absent') }
+          it {
+            is_expected.to contain_file('C:/Program Files/telegraf/telegraf.d').
+              with_purge(false).with(ensure: 'absent')
+          }
+        else
+          it {
+            is_expected.to contain_file('/etc/telegraf/telegraf.conf').
+              with(ensure: 'absent') }
+          it {
+            is_expected.to contain_file('/etc/telegraf/telegraf.d').
+              with_purge(false).with(ensure: 'absent')
+          }
+        end
+      end
     end
   end
 end
