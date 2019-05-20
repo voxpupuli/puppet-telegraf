@@ -13,12 +13,12 @@ describe 'telegraf::processor' do
           {
             plugin_type: 'regex',
             options: [
-              { 
+              {
                 'tags' => [
                   {
                     'key'         => 'foo',
-                    'pattern'     => /^a*b+\d$/.source,
-                    'replacement' => 'c${1}d',
+                    'pattern'     => %r{^a*b+\d$}.source,
+                    'replacement' => 'c${1}d'
                   }
                 ]
               }
@@ -50,7 +50,7 @@ describe 'telegraf::processor' do
           end
         end
       end
-      
+
       context 'my_enum' do
         let(:title) { 'my_enum' }
         let(:params) do
@@ -65,7 +65,7 @@ describe 'telegraf::processor' do
                     'value_mappings' => {
                       'green' => 1,
                       'amber' => 2,
-                      'red'   => 3,
+                      'red'   => 3
                     }
                   }
                 ]

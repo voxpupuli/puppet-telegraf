@@ -13,9 +13,9 @@ describe 'telegraf::aggregator' do
           {
             plugin_type: 'basicstats',
             options: [
-              { 
+              {
                 'period'        => '30s',
-                'drop_original' => false,
+                'drop_original' => false
               }
             ]
           }
