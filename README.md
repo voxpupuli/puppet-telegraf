@@ -200,6 +200,50 @@ Will create the file `/etc/telegraf/telegraf.d/snmp.conf`:
 
 Example 4:
 
+Outputs, Processors and Aggregators are available in the same way:
+
+```puppet
+telegraf::output { 'my_influxdb':
+  plugin_type => 'influxdb',
+  options     => [
+    {
+      'urls'     => [ "http://influxdb.example.come:8086"],
+      'database' => 'telegraf',
+      'username' => 'telegraf',
+      'password' => 'metricsmetricsmetrics',
+    }
+  ]
+}
+
+telegraf::processor { 'my_regex':
+  plugin_type => 'regex',
+  options     => [
+    {
+      tags => [
+        {
+          key         => 'foo',
+          pattern     => String(/^a*b+\d$/),
+          replacement => 'c${1}d',
+        }
+      ]
+    }
+  ]
+}
+
+telegraf::aggregator { 'my_basicstats':
+  plugin_type => 'basicstats',
+  options     => [
+    {
+      period        => '30s',
+      drop_original => false,
+    },
+  ],
+}
+
+```
+
+Example 5:
+
 ```puppet
 class { 'telegraf':
     ensure              => '1.0.1',
