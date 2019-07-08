@@ -4,32 +4,49 @@
 #
 class telegraf::params {
 
-  if $facts['osfamily'] == 'windows' {
-    $config_file          = 'C:/Program Files/telegraf/telegraf.conf'
-    $config_file_owner    = 'Administrator'
-    $config_file_group    = 'Administrators'
-    $config_folder        = 'C:/Program Files/telegraf/telegraf.d'
-    $logfile              = 'C:/Program Files/telegraf/telegraf.log'
-    $manage_repo          = false
-    $repo_location        = undef
-    $service_enable       = true
-    $service_ensure       = running
-    $service_hasstatus    = false
-    $service_restart      = undef
-  } else {
-    $config_file          = '/etc/telegraf/telegraf.conf'
-    $config_file_owner    = 'telegraf'
-    $config_file_group    = 'telegraf'
-    $config_file_mode     = '0640'
-    $config_folder        = '/etc/telegraf/telegraf.d'
-    $config_folder_mode   = '0770'
-    $logfile              = ''
-    $manage_repo          = true
-    $repo_location        = 'https://repos.influxdata.com/'
-    $service_enable       = true
-    $service_ensure       = running
-    $service_hasstatus    = true
-    $service_restart      = 'pkill -HUP telegraf'
+  case $facts['osfamily'] {
+    'FreeBSD': {
+      $config_file          = '/usr/local/etc/telegraf.conf'
+      $config_file_owner    = 'telegraf'
+      $config_file_group    = 'telegraf'
+      $config_file_mode     = '0640'
+      $config_folder        = '/usr/local/etc/telegraf.d'
+      $config_folder_mode   = '0770'
+      $logfile              = ''
+      $manage_repo          = false
+      $service_enable       = true
+      $service_ensure       = running
+      $service_hasstatus    = true
+      $service_restart      = 'pkill -HUP telegraf'
+    }
+    'windows': {
+      $config_file          = 'C:/Program Files/telegraf/telegraf.conf'
+      $config_file_owner    = 'Administrator'
+      $config_file_group    = 'Administrators'
+      $config_folder        = 'C:/Program Files/telegraf/telegraf.d'
+      $logfile              = 'C:/Program Files/telegraf/telegraf.log'
+      $manage_repo          = false
+      $repo_location        = undef
+      $service_enable       = true
+      $service_ensure       = running
+      $service_hasstatus    = false
+      $service_restart      = undef
+    }
+    default: {
+      $config_file          = '/etc/telegraf/telegraf.conf'
+      $config_file_owner    = 'telegraf'
+      $config_file_group    = 'telegraf'
+      $config_file_mode     = '0640'
+      $config_folder        = '/etc/telegraf/telegraf.d'
+      $config_folder_mode   = '0770'
+      $logfile              = ''
+      $manage_repo          = true
+      $repo_location        = 'https://repos.influxdata.com/'
+      $service_enable       = true
+      $service_ensure       = running
+      $service_hasstatus    = true
+      $service_restart      = 'pkill -HUP telegraf'
+    }
   }
   $package_name           = 'telegraf'
   $ensure                 = 'present'

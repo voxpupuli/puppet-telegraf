@@ -312,6 +312,7 @@ This module has been developed and tested against:
  * CentOS / RHEL 6
  * CentOS / RHEL 7
  * Windows 2008, 2008 R2, 2012, 2012 R2
+ * FreeBSD 12, 13
 
 Support for other distributions / operating systems is planned.  Feel free to assist with development in this regard!
 

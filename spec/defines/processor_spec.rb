@@ -27,6 +27,8 @@ describe 'telegraf::processor' do
         end
 
         case facts[:kernel]
+        when 'freebsd'
+          let(:filename) { "/usr/local/etc/telegraf.d/#{title}.conf" }
         when 'windows'
           let(:filename) { "C:/Program Files/telegraf/telegraf.d/#{title}.conf" }
         else
@@ -75,6 +77,8 @@ describe 'telegraf::processor' do
         end
 
         case facts[:kernel]
+        when 'freebsd'
+          let(:filename) { "/usr/local/etc/telegraf.d/#{title}.conf" }
         when 'windows'
           let(:filename) { "C:/Program Files/telegraf/telegraf.d/#{title}.conf" }
         else

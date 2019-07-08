@@ -83,6 +83,12 @@ describe 'telegraf' do
           )
       }
       case facts[:kernel]
+      when 'freebsd'
+        it { is_expected.to contain_file('/usr/local/etc/telegraf.conf') }
+        it {
+          is_expected.to contain_file('/usr/local/etc/telegraf.d').
+            with_purge(false)
+        }
       when 'windows'
         it { is_expected.to contain_file('C:/Program Files/telegraf/telegraf.conf') }
         it {
