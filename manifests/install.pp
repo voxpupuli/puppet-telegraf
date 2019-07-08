@@ -24,6 +24,9 @@ class telegraf::install {
         }
         Class['apt::update'] -> Package[$telegraf::package_name]
       }
+      'FreeBSD': {
+        # repo is not applicable to FreeBSD
+      }
       'RedHat': {
         if $_operatingsystem == 'amazon' {
             $_baseurl = "https://repos.influxdata.com/rhel/6/\$basearch/${telegraf::repo_type}"
@@ -44,7 +47,7 @@ class telegraf::install {
         # repo is not applicable to windows
       }
       default: {
-        fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu and Windows are supported at this time')
+        fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu, FreeBSD and Windows are supported at this time')
       }
     }
   }
