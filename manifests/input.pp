@@ -17,6 +17,5 @@ define telegraf::input (
     content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'inputs'=>{'${plugin_type}'=>@options}}) %>"),
     require => Class['telegraf::config'],
     notify  => Class['telegraf::service'],
-    owner   => $telegraf::config_file_owner
   }
 }
