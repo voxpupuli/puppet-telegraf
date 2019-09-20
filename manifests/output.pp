@@ -17,6 +17,5 @@ define telegraf::output (
     content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'outputs'=>{'${plugin_type}'=>@options}}) %>"),
     require => Class['telegraf::config'],
     notify  => Class['telegraf::service'],
-    mode    => '0640',
   }
 }
