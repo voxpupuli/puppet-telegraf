@@ -25,7 +25,7 @@ class telegraf::config inherits telegraf {
     ensure  => $config_folder_ensure,
     owner   => $telegraf::config_file_owner,
     group   => $telegraf::config_file_group,
-    mode    => '0770',
+    mode    => '0775',
     purge   => $telegraf::purge_config_fragments,
     recurse => true,
   }
