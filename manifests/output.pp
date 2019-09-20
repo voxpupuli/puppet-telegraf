@@ -18,5 +18,6 @@ define telegraf::output (
     require => Class['telegraf::config'],
     notify  => Class['telegraf::service'],
     mode    => '0640',
+    owner   => $telegraf::config_file_owner
   }
 }
