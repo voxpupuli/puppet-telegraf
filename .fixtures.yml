@@ -1,10 +1,11 @@
 fixtures:
   repositories:
-    stdlib: 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
-    chocolatey: 'https://github.com/puppetlabs/puppetlabs-chocolatey.git'
-    registry: 'https://github.com/puppetlabs/puppetlabs-registry.git'
-    powershell: 'https://github.com/puppetlabs/puppetlabs-powershell.git'
     apt: 'https://github.com/puppetlabs/puppetlabs-apt.git'
+    chocolatey: 'https://github.com/puppetlabs/puppetlabs-chocolatey.git'
+    powershell: 'https://github.com/puppetlabs/puppetlabs-powershell.git'
+    pwshlib: 'https://github.com/puppetlabs/ruby-pwsh.git'
+    registry: 'https://github.com/puppetlabs/puppetlabs-registry.git'
+    stdlib: 'https://github.com/puppetlabs/puppetlabs-stdlib.git'
     yumrepo_core:
        repo: 'https://github.com/puppetlabs/puppetlabs-yumrepo_core'
        puppet_version: '>= 6.0.0'
