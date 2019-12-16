@@ -7,15 +7,13 @@ class telegraf::install {
 
   assert_private()
 
-  $_operatingsystem = downcase($facts['operatingsystem'])
-
   if $telegraf::manage_repo {
-    case $facts['osfamily'] {
+    case $facts['os']['family'] {
       'Debian': {
         apt::source { 'influxdata':
           comment  => 'Mirror for InfluxData packages',
-          location => "${telegraf::repo_location}${_operatingsystem}",
-          release  => $facts['lsbdistcodename'],
+          location => "${telegraf::repo_location}${facts['os']['name'].downcase}",
+          release  => $facts['os']['distro']['codename'],
           repos    => $telegraf::repo_type,
           key      => {
             'id'     => '05CE15085FC09D18E99EFB22684A14CF2582E0C5',
@@ -25,14 +23,14 @@ class telegraf::install {
         Class['apt::update'] -> Package[$telegraf::package_name]
       }
       'RedHat': {
-        if $_operatingsystem == 'amazon' {
+        if $facts['os']['name'] == 'Amazon' {
             $_baseurl = "https://repos.influxdata.com/rhel/6/\$basearch/${telegraf::repo_type}"
         } else {
             $_baseurl = "https://repos.influxdata.com/rhel/\$releasever/\$basearch/${telegraf::repo_type}"
         }
         yumrepo { 'influxdata':
           name     => 'influxdata',
-          descr    => "InfluxData Repository - ${facts['operatingsystem']} \$releasever",
+          descr    => "InfluxData Repository - ${facts['os']['name']} \$releasever",
           enabled  => 1,
           baseurl  => $_baseurl,
           gpgkey   => "${telegraf::repo_location}influxdb.key",
@@ -49,7 +47,7 @@ class telegraf::install {
     }
   }
 
-  if $facts['osfamily'] == 'windows' {
+  if $facts['os']['family'] == 'windows' {
     # required to install telegraf on windows
     require chocolatey
 
