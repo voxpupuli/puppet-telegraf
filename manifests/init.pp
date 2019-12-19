@@ -95,6 +95,10 @@
 # [*windows_package_url*]
 #   String.  URL for windows telegraf chocolatey repo
 #
+# [*merge_strategy*]
+#   String.  merge strategy to use.
+#   See https://puppet.com/docs/puppet/4.10/hiera_merging.html for more info.
+#
 class telegraf (
   String  $package_name                = $telegraf::params::package_name,
   String  $ensure                      = $telegraf::params::ensure,
@@ -129,6 +133,7 @@ class telegraf (
   Boolean $service_enable              = $telegraf::params::service_enable,
   String  $service_ensure              = $telegraf::params::service_ensure,
   Array   $install_options             = $telegraf::params::install_options,
+  String  $merge_strategy         = $telegraf::params::merge_strategy,
 ) inherits telegraf::params
 {
 
@@ -138,12 +143,12 @@ class telegraf (
   $_outputs = lookup({
     name          => 'telegraf::outputs',
     default_value => $outputs,
-    merge         => deep,
+    merge         => $merge_strategy,
   })
   $_inputs = lookup({
     name          => 'telegraf::inputs',
     default_value => $inputs,
-    merge         => deep,
+    merge         => $merge_strategy,
   })
 
   contain telegraf::install
