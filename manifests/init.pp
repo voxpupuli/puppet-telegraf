@@ -135,17 +135,6 @@ class telegraf (
   $service_hasstatus = $telegraf::params::service_hasstatus
   $service_restart   = $telegraf::params::service_restart
 
-  $_outputs = lookup({
-    name          => 'telegraf::outputs',
-    default_value => $outputs,
-    merge         => deep,
-  })
-  $_inputs = lookup({
-    name          => 'telegraf::inputs',
-    default_value => $inputs,
-    merge         => deep,
-  })
-
   contain telegraf::install
   contain telegraf::config
   contain telegraf::service

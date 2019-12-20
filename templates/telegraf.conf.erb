@@ -24,16 +24,12 @@
   debug = <%= @debug %>
   quiet = <%= @quiet %>
 
-<% if @_outputs -%>
 #
 # OUTPUTS:
 #
-<%= require 'toml-rb'; TomlRB.dump({'outputs'=>@_outputs}) %>
-<% end -%>
+<%= require 'toml-rb'; TomlRB.dump({'outputs'=>@outputs}) %>
 
-<% if @_inputs -%>
 #
 # INPUTS:
 #
-<%= require 'toml-rb'; TomlRB.dump({'inputs'=>@_inputs}) %>
-<% end -%>
+<%= require 'toml-rb'; TomlRB.dump({'inputs'=>@inputs}) %>
