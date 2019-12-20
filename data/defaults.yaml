@@ -1,0 +1,6 @@
+---
+lookup_options:
+  'telegraf::inputs':
+    merge: 'deep'
+  'telegraf::outputs':
+    merge: 'deep'
