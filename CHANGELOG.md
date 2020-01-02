@@ -4,6 +4,33 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v2.1.1](https://github.com/voxpupuli/puppet-telegraf/tree/v2.1.1) (2020-01-02)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v2.1.0...v2.1.1)
+
+**Breaking changes:**
+
+- drop Ubuntu 14.04 support [\#130](https://github.com/voxpupuli/puppet-telegraf/pull/130) ([bastelfreak](https://github.com/bastelfreak))
+- modulesync 2.7.0 and drop puppet 4 [\#121](https://github.com/voxpupuli/puppet-telegraf/pull/121) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Move lookup\_options to hiera [\#134](https://github.com/voxpupuli/puppet-telegraf/pull/134) ([alexjfisher](https://github.com/alexjfisher))
+- Add defined type for telegraf::processor to define processors [\#123](https://github.com/voxpupuli/puppet-telegraf/pull/123) ([philomory](https://github.com/philomory))
+- Notify service if package is changed [\#117](https://github.com/voxpupuli/puppet-telegraf/pull/117) ([theosotr](https://github.com/theosotr))
+- add variable for config\_file\_mode und config\_folder\_mode [\#108](https://github.com/voxpupuli/puppet-telegraf/pull/108) ([SimonHoenscheid](https://github.com/SimonHoenscheid))
+
+**Closed issues:**
+
+- Is there a way to set up multiple discreet influxdb outputs? [\#129](https://github.com/voxpupuli/puppet-telegraf/issues/129)
+- Please update package dependencies [\#118](https://github.com/voxpupuli/puppet-telegraf/issues/118)
+
+**Merged pull requests:**
+
+- Add missing dependency to .fixtures.yml [\#131](https://github.com/voxpupuli/puppet-telegraf/pull/131) ([dhoppe](https://github.com/dhoppe))
+- Update puppetlabs-stdlib dependency to allow 6.x [\#127](https://github.com/voxpupuli/puppet-telegraf/pull/127) ([Sharpie](https://github.com/Sharpie))
+- Allow puppetlabs/apt 7.x [\#122](https://github.com/voxpupuli/puppet-telegraf/pull/122) ([dhoppe](https://github.com/dhoppe))
+
 ## [v2.1.0](https://github.com/voxpupuli/puppet-telegraf/tree/v2.1.0) (2018-12-29)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/2.0.0...v2.1.0)
@@ -17,6 +44,7 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
+- release 2.1.0 [\#116](https://github.com/voxpupuli/puppet-telegraf/pull/116) ([bastelfreak](https://github.com/bastelfreak))
 - Allow newest deps and mark compatible with Puppet 4, 5 and 6 [\#115](https://github.com/voxpupuli/puppet-telegraf/pull/115) ([ekohl](https://github.com/ekohl))
 - Various tidying and refactoring [\#113](https://github.com/voxpupuli/puppet-telegraf/pull/113) ([alexjfisher](https://github.com/alexjfisher))
 - Modulesync, use rspec-puppet-facts and fix tests [\#111](https://github.com/voxpupuli/puppet-telegraf/pull/111) ([alexjfisher](https://github.com/alexjfisher))
@@ -109,7 +137,7 @@ These should not affect the functionality of the module.
 
 **Closed issues:**
 
-- Optionally use `hiera\_hash` on `telegraf::inputs` and `telegraf::outputs` [\#27](https://github.com/voxpupuli/puppet-telegraf/issues/27)
+- Optionally use `hiera_hash` on `telegraf::inputs` and `telegraf::outputs` [\#27](https://github.com/voxpupuli/puppet-telegraf/issues/27)
 - Allow input def without options defined [\#24](https://github.com/voxpupuli/puppet-telegraf/issues/24)
 
 **Merged pull requests:**
