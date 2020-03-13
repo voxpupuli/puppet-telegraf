@@ -67,4 +67,7 @@ class telegraf::params {
       'totalcpu' => true,
     }],
   }
+
+  $processors  = {}
+  $aggregators = {}
 }

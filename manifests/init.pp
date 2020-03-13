@@ -71,6 +71,12 @@
 # [*inputs*]
 #   Hash.  Specify input plugins and their options.
 #
+# [*processors*]
+#   Hash.  Specify processor plugins and their options.
+#
+# [*aggregators*]
+#   Hash.  Specify aggregator plugins and their options.
+#
 # [*global_tags*]
 #   Hash.  Global tags as a key-value pair.
 #
@@ -119,6 +125,8 @@ class telegraf (
   Boolean $quiet                       = $telegraf::params::quiet,
   Hash    $inputs                      = $telegraf::params::inputs,
   Hash    $outputs                     = $telegraf::params::outputs,
+  Hash    $processors                  = $telegraf::params::processors,
+  Hash    $aggregators                 = $telegraf::params::aggregators,
   Hash    $global_tags                 = $telegraf::params::global_tags,
   Boolean $manage_service              = $telegraf::params::manage_service,
   Boolean $manage_repo                 = $telegraf::params::manage_repo,
