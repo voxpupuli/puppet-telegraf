@@ -25,6 +25,7 @@ class telegraf::params {
     $config_folder_mode   = '0770'
     $logfile              = ''
     $manage_repo          = true
+    $repo_location        = 'https://repos.influxdata.com/'
     $service_enable       = true
     $service_ensure       = running
     $service_hasstatus    = true
@@ -49,7 +50,6 @@ class telegraf::params {
   $manage_service         = true
   $purge_config_fragments = false
   $repo_type              = 'stable'
-  $repo_location          = 'https://repos.influxdata.com/'
   $windows_package_url    = 'https://chocolatey.org/api/v2/'
 
   $outputs = {
