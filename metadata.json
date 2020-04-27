@@ -14,14 +14,18 @@
   ],
   "operatingsystem_support": [
     {
-      "operatingsystem": "Ubuntu",
+      "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "16.04"
+        "6",
+        "7",
+        "8"
       ]
     },
     {
-      "operatingsystem": "Debian",
+      "operatingsystem": "CentOS",
       "operatingsystemrelease": [
+        "6",
+        "7",
         "8"
       ]
     },
@@ -29,21 +33,23 @@
       "operatingsystem": "OracleLinux",
       "operatingsystemrelease": [
         "6",
-        "7"
+        "7",
+        "8"
       ]
     },
     {
-      "operatingsystem": "CentOS",
+      "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "8",
+        "9",
+        "10"
       ]
     },
     {
-      "operatingsystem": "RedHat",
+      "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "16.04",
+        "18.04"
       ]
     },
     {
