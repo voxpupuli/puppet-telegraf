@@ -20,9 +20,17 @@
       ]
     },
     {
+      "operatingsystem": "Raspbian",
+      "operatingsystemrelease": [
+        "8",
+        "10"
+      ]
+    },
+    {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "8"
+        "8",
+        "10"
       ]
     },
     {
