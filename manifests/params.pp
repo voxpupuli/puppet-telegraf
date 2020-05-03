@@ -34,7 +34,7 @@ class telegraf::params {
   $package_name           = 'telegraf'
   $ensure                 = 'present'
   $install_options        = []
-  $hostname               = $facts['networking']['hostname']
+  $hostname               = $trusted['hostname']
   $omit_hostname          = false
   $interval               = '10s'
   $round_interval         = true
