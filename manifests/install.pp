@@ -10,10 +10,15 @@ class telegraf::install {
   if $telegraf::manage_repo {
     case $facts['os']['family'] {
       'Debian': {
+        if $facts.dig('os','distro','codename') {
+          $release = $facts['os']['distro']['codename']
+        } else {
+          $release = $facts['os']['lsb']['codename']
+        }
         apt::source { 'influxdata':
           comment  => 'Mirror for InfluxData packages',
           location => "${telegraf::repo_location}${facts['os']['name'].downcase}",
-          release  => $facts['os']['distro']['codename'],
+          release  => $release,
           repos    => $telegraf::repo_type,
           key      => {
             'id'     => '05CE15085FC09D18E99EFB22684A14CF2582E0C5',
