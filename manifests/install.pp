@@ -10,6 +10,11 @@ class telegraf::install {
   if $telegraf::manage_repo {
     case $facts['os']['family'] {
       'Debian': {
+        if $facts['os']['name'] == 'Raspbian' {
+          $distro = $facts['os']['family'].downcase
+        } else {
+          $distro = $facts['os']['name'].downcase
+        }
         if $facts.dig('os','distro','codename') {
           $release = $facts['os']['distro']['codename']
         } else {
@@ -17,7 +22,7 @@ class telegraf::install {
         }
         apt::source { 'influxdata':
           comment  => 'Mirror for InfluxData packages',
-          location => "${telegraf::repo_location}${facts['os']['name'].downcase}",
+          location => "${telegraf::repo_location}${distro}",
           release  => $release,
           repos    => $telegraf::repo_type,
           key      => {

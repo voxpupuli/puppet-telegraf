@@ -22,6 +22,22 @@
       ]
     },
     {
+      "operatingsystem": "Raspbian",
+      "operatingsystemrelease": [
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    {
       "operatingsystem": "CentOS",
       "operatingsystemrelease": [
         "6",
@@ -35,14 +51,6 @@
         "6",
         "7",
         "8"
-      ]
-    },
-    {
-      "operatingsystem": "Debian",
-      "operatingsystemrelease": [
-        "8",
-        "9",
-        "10"
       ]
     },
     {
