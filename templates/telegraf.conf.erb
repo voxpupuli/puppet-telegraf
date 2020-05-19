@@ -24,12 +24,110 @@
   debug = <%= @debug %>
   quiet = <%= @quiet %>
 
+<% if @outputs -%>
 #
 # OUTPUTS:
 #
-<%= require 'toml-rb'; TomlRB.dump({'outputs'=>@outputs}) %>
+<% require 'toml-rb'
 
+@outputs.sort.each do |key, values|
+  @new_values = {}
+  @skip = false
+  values[0].each do |k, v|
+    if k == 'plugin_ensure' then
+      next if v == 'present'
+      @skip = true
+      break
+    elsif k == 'plugin_type' then
+      key = v
+    else
+      @new_values[k] = v
+    end
+  end
+  unless @skip then
+    @new_output = {key=>Array.new().push(@new_values)} -%>
+<%= TomlRB.dump({'outputs'=>@new_output}) %>
+<% end -%>
+<% end -%>
+<% end -%>
+
+<% if @inputs -%>
 #
 # INPUTS:
 #
-<%= require 'toml-rb'; TomlRB.dump({'inputs'=>@inputs}) %>
+<% require 'toml-rb'
+
+@inputs.sort.each do |key, values|
+  @new_values = {}
+  @skip = false
+  values[0].each do |k, v|
+    if k == 'plugin_ensure' then
+      next if v == 'present'
+      @skip = true
+      break
+    elsif k == 'plugin_type' then
+      key = v
+    else
+      @new_values[k] = v
+    end
+  end
+  unless @skip then
+    @new_input = {key=>Array.new().push(@new_values)} -%>
+<%= TomlRB.dump({'inputs'=>@new_input}) %>
+<% end -%>
+<% end -%>
+<% end -%>
+
+<% if @processors -%>
+#
+# PROCESSORS:
+#
+<% require 'toml-rb'
+
+@processors.sort.each do |key, values|
+  @new_values = {}
+  @skip = false
+  values[0].each do |k, v|
+    if k == 'plugin_ensure' then
+      next if v == 'present'
+      @skip = true
+      break
+    elsif k == 'plugin_type' then
+      key = v
+    else
+      @new_values[k] = v
+    end
+  end
+  unless @skip then
+    @new_input = {key=>Array.new().push(@new_values)} -%>
+<%= TomlRB.dump({'processors'=>@new_input}) %>
+<% end -%>
+<% end -%>
+<% end -%>
+
+<% if @aggregators -%>
+#
+# AGGREGATORS:
+#
+<% require 'toml-rb'
+
+@aggregators.sort.each do |key, values|
+  @new_values = {}
+  @skip = false
+  values[0].each do |k, v|
+    if k == 'plugin_ensure' then
+      next if v == 'present'
+      @skip = true
+      break
+    elsif k == 'plugin_type' then
+      key = v
+    else
+      @new_values[k] = v
+    end
+  end
+  unless @skip then
+    @new_input = {key=>Array.new().push(@new_values)} -%>
+<%= TomlRB.dump({'aggregators'=>@new_input}) %>
+<% end -%>
+<% end -%>
+<% end -%>
