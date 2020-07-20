@@ -6,9 +6,9 @@
 class telegraf::install {
   assert_private()
 
-  if $telegraf::manage_repo {
-    case $facts['os']['family'] {
-      'Debian': {
+  case $facts['os']['family'] {
+    'Debian': {
+      if $telegraf::manage_repo {
         if $facts['os']['name'] == 'Raspbian' {
           $distro = $facts['os']['family'].downcase
         } else {
@@ -29,9 +29,11 @@ class telegraf::install {
             'source' => "${telegraf::repo_location}influxdb.key",
           },
         }
-        Class['apt::update'] -> Package[$telegraf::package_name]
       }
-      'RedHat': {
+      Class['apt::update'] -> Package[$telegraf::package_name]
+    }
+    'RedHat': {
+      if $telegraf::manage_repo {
         if $facts['os']['name'] == 'Amazon' {
           $_baseurl = "https://repos.influxdata.com/rhel/6/\$basearch/${telegraf::repo_type}"
         } else {
@@ -45,7 +47,8 @@ class telegraf::install {
           gpgkey   => "${telegraf::repo_location}influxdb.key",
           gpgcheck => 1,
         }
-        Yumrepo['influxdata'] -> Package[$telegraf::package_name]
+      }
+      Yumrepo['influxdata'] -> Package[$telegraf::package_name]
       }
       'windows': {
         # repo is not applicable to windows
@@ -97,7 +100,7 @@ class telegraf::install {
         fail('Only Suse archives are supported at this time')
       }
     }
-  }
+
 
   if $facts['os']['family'] == 'windows' {
     # required to install telegraf on windows
