@@ -306,11 +306,9 @@ Furthermore, the introduction of toml-rb means that Ruby 1.9 or newer is also a 
 
 This module has been developed and tested against:
 
- * Ubuntu 14.04
- * Ubuntu 16.04
- * Debian 8
- * CentOS / RHEL 6
- * CentOS / RHEL 7
+ * Ubuntu 16.04 / 18.04
+ * Debian 9/10
+ * CentOS / RHEL 6 / 7 / 8
  * Windows 2008, 2008 R2, 2012, 2012 R2
 
 Support for other distributions / operating systems is planned.  Feel free to assist with development in this regard!

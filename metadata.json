@@ -24,7 +24,6 @@
     {
       "operatingsystem": "Raspbian",
       "operatingsystemrelease": [
-        "8",
         "9",
         "10"
       ]
@@ -32,7 +31,6 @@
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "8",
         "9",
         "10"
       ]
