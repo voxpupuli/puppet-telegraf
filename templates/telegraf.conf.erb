@@ -21,6 +21,15 @@
   flush_jitter = "<%= @flush_jitter %>"
   precision = "<%= @precision %>"
   logfile = "<%= @logfile %>"
+<% if @logfile_rotation_interval -%>
+  logfile_rotation_interval = "<%= @logfile_rotation_interval %>"
+<% end -%>
+<% if @logfile_rotation_max_size -%>
+  logfile_rotation_max_size = "<%= @logfile_rotation_max_size %>"
+<% end -%>
+<% if @logfile_rotation_max_archives -%>
+  logfile_rotation_max_archives = <%= @logfile_rotation_max_archives %>
+<% end -%>
   debug = <%= @debug %>
   quiet = <%= @quiet %>
 
