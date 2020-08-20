@@ -1,6 +1,7 @@
 fixtures:
   repositories:
     apt: 'https://github.com/puppetlabs/puppetlabs-apt.git'
+    archive: 'https://github.com/voxpupuli/puppet-archive.git'
     chocolatey: 'https://github.com/puppetlabs/puppetlabs-chocolatey.git'
     powershell: 'https://github.com/puppetlabs/puppetlabs-powershell.git'
     pwshlib: 'https://github.com/puppetlabs/ruby-pwsh.git'

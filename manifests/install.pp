@@ -51,7 +51,50 @@ class telegraf::install {
         # repo is not applicable to windows
       }
       default: {
-        fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu and Windows are supported at this time')
+        fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu and Windows repoisitories are supported at this time')
+      }
+    }
+  }
+
+  if $telegraf::manage_archive {
+    case $facts['os']['family'] {
+      'Suse': {
+        file { $telegraf::archive_install_dir:
+          ensure => directory,
+        }
+        archive { '/tmp/telegraf.tar.gz':
+          ensure          => present,
+          extract         => true,
+          extract_command => 'tar xfz %s --strip-components=2',
+          extract_path    => $telegraf::archive_install_dir,
+          source          => $telegraf::archive_location,
+          cleanup         => true,
+          require         => File[$telegraf::archive_install_dir],
+        }
+        file { '/etc/telegraf':
+          ensure => directory,
+        }
+        if $telegraf::manage_user {
+          group { $telegraf::config_file_group:
+            ensure => present,
+          }
+          user { $telegraf::config_file_owner:
+            ensure => present,
+            gid    => $telegraf::config_file_group,
+          }
+        }
+        file { '/etc/systemd/system/telegraf.service':
+          ensure => file,
+          source => 'puppet:///modules/telegraf/telegraf.service',
+        }
+        file { '/var/log/telegraf':
+          ensure => directory,
+          owner  => $telegraf::config_file_owner,
+          group  => $telegraf::config_file_group,
+        }
+      }
+      default: {
+        fail('Only Suse archives are supported at this time')
       }
     }
   }
@@ -68,6 +111,8 @@ class telegraf::install {
       install_options => $telegraf::install_options,
     }
   } else {
-    ensure_packages([$telegraf::package_name], { ensure => $telegraf::ensure, install_options => $telegraf::install_options })
+    if ! $telegraf::manage_archive {
+      ensure_packages([$telegraf::package_name], { ensure => $telegraf::ensure, install_options => $telegraf::install_options })
+    }
   }
 }

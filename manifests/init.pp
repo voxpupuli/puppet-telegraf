@@ -80,8 +80,17 @@
 # [*manage_repo*]
 #   Boolean.  Whether or not to manage InfluxData's repo.
 #
+# [*manage_archive*]
+#   Boolean.  Whether or not to manage InfluxData's tar archive.
+#
 # [*repo_location*]
 #   String. Alternate repo location. E.g. an interal mirror.
+#
+# [*archive_location*]
+#   String. Alternate archive location. E.g. an interal mirror.
+#
+# [*archive_install_dir*]
+#   String. Location to extract archive to must be an absolute path
 #
 # [*install_options*]
 #   String or Array. Additional options to pass when installing package
@@ -96,39 +105,42 @@
 #   String.  URL for windows telegraf chocolatey repo
 #
 class telegraf (
-  String  $package_name                = $telegraf::params::package_name,
-  String  $ensure                      = $telegraf::params::ensure,
-  String  $config_file                 = $telegraf::params::config_file,
-  String  $config_file_owner           = $telegraf::params::config_file_owner,
-  String  $config_file_group           = $telegraf::params::config_file_group,
-  Stdlib::Filemode $config_file_mode   = $telegraf::params::config_file_mode,
-  String  $config_folder               = $telegraf::params::config_folder,
-  Stdlib::Filemode $config_folder_mode = $telegraf::params::config_folder_mode,
-  String  $hostname                    = $telegraf::params::hostname,
-  Boolean $omit_hostname               = $telegraf::params::omit_hostname,
-  String  $interval                    = $telegraf::params::interval,
-  Boolean $round_interval              = $telegraf::params::round_interval,
-  Integer $metric_batch_size           = $telegraf::params::metric_batch_size,
-  Integer $metric_buffer_limit         = $telegraf::params::metric_buffer_limit,
-  String  $collection_jitter           = $telegraf::params::collection_jitter,
-  String  $flush_interval              = $telegraf::params::flush_interval,
-  String  $flush_jitter                = $telegraf::params::flush_jitter,
-  String  $precision                   = $telegraf::params::precision,
-  String  $logfile                     = $telegraf::params::logfile,
-  Boolean $debug                       = $telegraf::params::debug,
-  Boolean $quiet                       = $telegraf::params::quiet,
-  Hash    $inputs                      = $telegraf::params::inputs,
-  Hash    $outputs                     = $telegraf::params::outputs,
-  Hash    $global_tags                 = $telegraf::params::global_tags,
-  Boolean $manage_service              = $telegraf::params::manage_service,
-  Boolean $manage_repo                 = $telegraf::params::manage_repo,
-  Optional[String] $repo_location      = $telegraf::params::repo_location,
-  Boolean $purge_config_fragments      = $telegraf::params::purge_config_fragments,
-  String  $repo_type                   = $telegraf::params::repo_type,
-  String  $windows_package_url         = $telegraf::params::windows_package_url,
-  Boolean $service_enable              = $telegraf::params::service_enable,
-  String  $service_ensure              = $telegraf::params::service_ensure,
-  Array   $install_options             = $telegraf::params::install_options,
+  String  $package_name                 = $telegraf::params::package_name,
+  String  $ensure                       = $telegraf::params::ensure,
+  String  $config_file                  = $telegraf::params::config_file,
+  String  $config_file_owner            = $telegraf::params::config_file_owner,
+  String  $config_file_group            = $telegraf::params::config_file_group,
+  Stdlib::Filemode $config_file_mode    = $telegraf::params::config_file_mode,
+  String  $config_folder                = $telegraf::params::config_folder,
+  Stdlib::Filemode $config_folder_mode  = $telegraf::params::config_folder_mode,
+  String  $hostname                     = $telegraf::params::hostname,
+  Boolean $omit_hostname                = $telegraf::params::omit_hostname,
+  String  $interval                     = $telegraf::params::interval,
+  Boolean $round_interval               = $telegraf::params::round_interval,
+  Integer $metric_batch_size            = $telegraf::params::metric_batch_size,
+  Integer $metric_buffer_limit          = $telegraf::params::metric_buffer_limit,
+  String  $collection_jitter            = $telegraf::params::collection_jitter,
+  String  $flush_interval               = $telegraf::params::flush_interval,
+  String  $flush_jitter                 = $telegraf::params::flush_jitter,
+  String  $precision                    = $telegraf::params::precision,
+  String  $logfile                      = $telegraf::params::logfile,
+  Boolean $debug                        = $telegraf::params::debug,
+  Boolean $quiet                        = $telegraf::params::quiet,
+  Hash    $inputs                       = $telegraf::params::inputs,
+  Hash    $outputs                      = $telegraf::params::outputs,
+  Hash    $global_tags                  = $telegraf::params::global_tags,
+  Boolean $manage_service               = $telegraf::params::manage_service,
+  Boolean $manage_repo                  = $telegraf::params::manage_repo,
+  Boolean $manage_archive               = $telegraf::params::manage_archive,
+  Optional[String] $repo_location       = $telegraf::params::repo_location,
+  Optional[String] $archive_location    = $telegraf::params::archive_location,
+  Optional[String] $archive_install_dir = $telegraf::params::archive_install_dir,
+  Boolean $purge_config_fragments       = $telegraf::params::purge_config_fragments,
+  String  $repo_type                    = $telegraf::params::repo_type,
+  String  $windows_package_url          = $telegraf::params::windows_package_url,
+  Boolean $service_enable               = $telegraf::params::service_enable,
+  String  $service_ensure               = $telegraf::params::service_ensure,
+  Array   $install_options              = $telegraf::params::install_options,
 ) inherits telegraf::params {
   $service_hasstatus = $telegraf::params::service_hasstatus
   $service_restart   = $telegraf::params::service_restart
