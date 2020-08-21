@@ -13,7 +13,7 @@ define telegraf::input (
 ) {
   include telegraf
 
-  file {"${telegraf::config_folder}/${name}.conf":
+  file { "${telegraf::config_folder}/${name}.conf":
     content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'inputs'=>{'${plugin_type}'=>@options}}) %>"),
     require => Class['telegraf::config'],
     notify  => Class['telegraf::service'],

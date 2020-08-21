@@ -3,7 +3,6 @@
 # Optionally manage the Telegraf service.
 #
 class telegraf::service {
-
   assert_private()
 
   if $telegraf::manage_service {
