@@ -3,7 +3,6 @@
 # Templated generation of telegraf.conf
 #
 class telegraf::config inherits telegraf {
-
   assert_private()
 
   file { $telegraf::config_file:
@@ -21,5 +20,4 @@ class telegraf::config inherits telegraf {
     purge   => $telegraf::purge_config_fragments,
     recurse => true,
   }
-
 }

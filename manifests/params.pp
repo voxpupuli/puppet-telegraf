@@ -3,7 +3,6 @@
 # A set of default parameters for Telegraf's configuration.
 #
 class telegraf::params {
-
   if $facts['os']['family'] == 'windows' {
     $config_file          = 'C:/Program Files/telegraf/telegraf.conf'
     $config_file_owner    = 'Administrator'
@@ -54,17 +53,17 @@ class telegraf::params {
 
   $outputs = {
     'influxdb' => [{
-      'urls'     => [ 'http://localhost:8086' ],
-      'database' => 'telegraf',
-      'username' => 'telegraf',
-      'password' => 'metricsmetricsmetrics',
+        'urls'     => ['http://localhost:8086'],
+        'database' => 'telegraf',
+        'username' => 'telegraf',
+        'password' => 'metricsmetricsmetrics',
     }],
   }
 
   $inputs = {
     'cpu' => [{
-      'percpu'   => true,
-      'totalcpu' => true,
+        'percpu'   => true,
+        'totalcpu' => true,
     }],
   }
 }

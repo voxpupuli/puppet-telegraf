@@ -4,7 +4,6 @@
 # Telegraf package.
 #
 class telegraf::install {
-
   assert_private()
 
   if $telegraf::manage_repo {
@@ -34,9 +33,9 @@ class telegraf::install {
       }
       'RedHat': {
         if $facts['os']['name'] == 'Amazon' {
-            $_baseurl = "https://repos.influxdata.com/rhel/6/\$basearch/${telegraf::repo_type}"
+          $_baseurl = "https://repos.influxdata.com/rhel/6/\$basearch/${telegraf::repo_type}"
         } else {
-            $_baseurl = "https://repos.influxdata.com/rhel/\$releasever/\$basearch/${telegraf::repo_type}"
+          $_baseurl = "https://repos.influxdata.com/rhel/\$releasever/\$basearch/${telegraf::repo_type}"
         }
         yumrepo { 'influxdata':
           name     => 'influxdata',
@@ -71,5 +70,4 @@ class telegraf::install {
   } else {
     ensure_packages([$telegraf::package_name], { ensure => $telegraf::ensure, install_options => $telegraf::install_options })
   }
-
 }
