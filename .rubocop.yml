@@ -544,3 +544,6 @@ Style/FormatStringToken:
 # are located.
 RSpec/FilePath:
   Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
