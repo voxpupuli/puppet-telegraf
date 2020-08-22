@@ -68,6 +68,12 @@
         "Server 2012",
         "Server 2012 R2"
       ]
+    },
+    {
+      "operatingsystem": "SLES",
+      "operatingsystemrelease": [
+        "12"
+      ]
     }
   ],
   "dependencies": [
@@ -78,6 +84,10 @@
     {
       "name": "puppetlabs-apt",
       "version_requirement": ">= 2.0.0 < 8.0.0"
+    },
+    {
+      "name": "puppet-archive",
+      "version_requirement": ">= 4.0.0 < 5.0.0"
     }
   ],
   "requirements": [

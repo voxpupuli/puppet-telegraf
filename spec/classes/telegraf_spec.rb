@@ -96,7 +96,12 @@ describe 'telegraf' do
             with_purge(false)
         }
       end
-      it { is_expected.to contain_package('telegraf') }
+      case facts[:osfamily]
+      when 'Suse'
+        it { is_expected.to contain_archive('/tmp/telegraf.tar.gz') }
+      else
+        it { is_expected.to contain_package('telegraf') }
+      end
       it { is_expected.to contain_service('telegraf') }
       case facts[:osfamily]
       when 'RedHat'
