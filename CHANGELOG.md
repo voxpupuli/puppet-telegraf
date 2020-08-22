@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.1.0](https://github.com/voxpupuli/puppet-telegraf/tree/v3.1.0) (2020-08-22)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v3.0.0...v3.1.0)
+
+**Implemented enhancements:**
+
+- SLES support [\#150](https://github.com/voxpupuli/puppet-telegraf/pull/150) ([tuxmea](https://github.com/tuxmea))
+- Added support for Raspbian [\#145](https://github.com/voxpupuli/puppet-telegraf/pull/145) ([mattqm](https://github.com/mattqm))
+- Add support for Debian 9/10, Ubuntu 18.04, CentOS 8 [\#144](https://github.com/voxpupuli/puppet-telegraf/pull/144) ([dhoppe](https://github.com/dhoppe))
+
+**Closed issues:**
+
+- Re-enable acceptance tests [\#112](https://github.com/voxpupuli/puppet-telegraf/issues/112)
+
+**Merged pull requests:**
+
+- Fixing support for 5.5 agents on Debian [\#146](https://github.com/voxpupuli/puppet-telegraf/pull/146) ([mattqm](https://github.com/mattqm))
+- Use voxpupuli-acceptance [\#142](https://github.com/voxpupuli/puppet-telegraf/pull/142) ([ekohl](https://github.com/ekohl))
+
 ## [v3.0.0](https://github.com/voxpupuli/puppet-telegraf/tree/v3.0.0) (2020-01-02)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v2.1.0...v3.0.0)
@@ -24,6 +43,7 @@ These should not affect the functionality of the module.
 
 - Is there a way to set up multiple discreet influxdb outputs? [\#129](https://github.com/voxpupuli/puppet-telegraf/issues/129)
 - Please update package dependencies [\#118](https://github.com/voxpupuli/puppet-telegraf/issues/118)
+- Merge problem: "^telegraf::outputs\(.\*\)$": merge: strategy: first [\#106](https://github.com/voxpupuli/puppet-telegraf/issues/106)
 
 **Merged pull requests:**
 
@@ -41,6 +61,7 @@ These should not affect the functionality of the module.
 - New array format for input/output definition in hiera requires polluting configs [\#94](https://github.com/voxpupuli/puppet-telegraf/issues/94)
 - Dependency on toml-rb bumps ruby version requirement [\#91](https://github.com/voxpupuli/puppet-telegraf/issues/91)
 - Telegraf installation not going through. [\#72](https://github.com/voxpupuli/puppet-telegraf/issues/72)
+- First voxpopuli release, deprecate yankcrime module on the forge [\#107](https://github.com/voxpupuli/puppet-telegraf/issues/107)
 
 **Merged pull requests:**
 
