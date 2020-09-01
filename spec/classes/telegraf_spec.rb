@@ -150,7 +150,7 @@ describe 'telegraf' do
         let(:pre_condition) do
           [
             'class {"telegraf": manage_repo => false}',
-            'class {"apt": }',
+            'class {"apt": }'
           ]
         end
 
@@ -168,7 +168,7 @@ describe 'telegraf' do
         let(:pre_condition) do
           [
             'class {"telegraf": manage_repo => false}',
-            'yumrepo {"influxdata": }',
+            'yumrepo {"influxdata": }'
           ]
         end
 
@@ -184,7 +184,7 @@ describe 'telegraf' do
       describe 'do not manage repo on windows' do
         let(:pre_condition) do
           [
-            'class {"telegraf": manage_repo => false}',
+            'class {"telegraf": manage_repo => false}'
           ]
         end
 
