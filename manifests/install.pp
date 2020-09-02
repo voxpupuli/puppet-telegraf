@@ -6,9 +6,9 @@
 class telegraf::install {
   assert_private()
 
-  if $telegraf::manage_repo {
-    case $facts['os']['family'] {
-      'Debian': {
+  case $facts['os']['family'] {
+    'Debian': {
+      if $telegraf::manage_repo {
         if $facts['os']['name'] == 'Raspbian' {
           $distro = $facts['os']['family'].downcase
         } else {
@@ -29,9 +29,11 @@ class telegraf::install {
             'source' => "${telegraf::repo_location}influxdb.key",
           },
         }
-        Class['apt::update'] -> Package[$telegraf::package_name]
       }
-      'RedHat': {
+      Class['apt::update'] -> Package[$telegraf::package_name]
+    }
+    'RedHat': {
+      if $telegraf::manage_repo {
         if $facts['os']['name'] == 'Amazon' {
           $_baseurl = "https://repos.influxdata.com/rhel/6/\$basearch/${telegraf::repo_type}"
         } else {
@@ -45,20 +47,11 @@ class telegraf::install {
           gpgkey   => "${telegraf::repo_location}influxdb.key",
           gpgcheck => 1,
         }
-        Yumrepo['influxdata'] -> Package[$telegraf::package_name]
       }
-      'windows': {
-        # repo is not applicable to windows
-      }
-      default: {
-        fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu and Windows repoisitories are supported at this time')
-      }
+      Yumrepo['influxdata'] -> Package[$telegraf::package_name]
     }
-  }
-
-  if $telegraf::manage_archive {
-    case $facts['os']['family'] {
-      'Suse': {
+    'Suse': {
+      if $telegraf::manage_archive {
         file { $telegraf::archive_install_dir:
           ensure => directory,
         }
@@ -93,9 +86,12 @@ class telegraf::install {
           group  => $telegraf::config_file_group,
         }
       }
-      default: {
-        fail('Only Suse archives are supported at this time')
-      }
+    }
+    'windows': {
+      # repo is not applicable to windows
+    }
+    default: {
+      fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu and Windows repositories and Suse archives are supported at this time')
     }
   }
 
