@@ -12,76 +12,115 @@ describe 'telegraf' do
       it { is_expected.to contain_class('telegraf::install') }
       it { is_expected.to contain_class('telegraf::params') }
       it { is_expected.to contain_class('telegraf::service') }
-      it {
-        is_expected.to contain_class('telegraf').
-          with(
-            ensure: '1.3.5-1',
-            interval: '60s',
-            metric_batch_size: '1000',
-            metric_buffer_limit: '10000',
-            flush_interval: '60s',
+      it do
+        is_expected.to contain_class('telegraf').with(
+          ensure: '1.3.5-1',
+          interval: '60s',
+          metric_batch_size: '1000',
+          metric_buffer_limit: '10000',
+          flush_interval: '60s',
+          global_tags: {
+            'dc'   => 'dc',
+            'env'  => 'production',
+            'role' => 'telegraf'
+          },
+          inputs: [{
+            'cpu' => [{
+              'percpu'    => true,
+              'totalcpu'  => true,
+              'fielddrop' => ['time_*']
+            }],
+            'disk' => [{
+              'ignore_fs' => %w[tmpfs devtmpfs]
+            }],
+            'diskio'      => [{}],
+            'kernel'      => [{}],
+            'exec'        => [
+              {
+                'commands' => ['who | wc -l']
+              },
+              {
+                'commands' => ["cat /proc/uptime | awk '{print $1}'"]
+              }
+            ],
+            'mem'         => [{}],
+            'net'         => [{
+              'interfaces' => ['eth0'],
+              'drop'       => ['net_icmp']
+            }],
+            'netstat'     => [{}],
+            'ping'        => [{
+              'urls'    => ['10.10.10.1'],
+              'count'   => 1,
+              'timeout' => 1.0
+            }],
+            'statsd' => [{
+              'service_address'          => ':8125',
+              'delete_gauges'            => false,
+              'delete_counters'          => false,
+              'delete_sets'              => false,
+              'delete_timings'           => true,
+              'percentiles'              => [90],
+              'allowed_pending_messages' => 10_000,
+              'convert_names'            => true,
+              'percentile_limit'         => 1000,
+              'udp_packet_size'          => 1500
+            }],
+            'swap'        => [{}],
+            'system'      => [{}]
+          }],
+          outputs: [{
+            'influxdb' => [{
+              'urls'     => ['http://influxdb.example.com:8086'],
+              'database' => 'telegraf',
+              'username' => 'telegraf',
+              'password' => 'telegraf'
+            }]
+          }]
+        )
+      end
+      case facts[:osfamily]
+      when 'windows'
+        it do
+          is_expected.to contain_class('telegraf').without(
+            %w[
+              config_file_mode
+              config_folder_mode
+              archive_install_dir
+              archive_location
+              repo_location
+              service_restart
+            ]
+          )
+        end
+      when 'Suse'
+        it do
+          is_expected.to contain_class('telegraf').with(
             config_file_mode: '0640',
             config_folder_mode: '0770',
-            global_tags: {
-              'dc'   => 'dc',
-              'env'  => 'production',
-              'role' => 'telegraf'
-            },
-            inputs: [{
-              'cpu' => [{
-                'percpu'    => true,
-                'totalcpu'  => true,
-                'fielddrop' => ['time_*']
-              }],
-              'disk' => [{
-                'ignore_fs' => %w[tmpfs devtmpfs]
-              }],
-              'diskio'      => [{}],
-              'kernel'      => [{}],
-              'exec'        => [
-                {
-                  'commands' => ['who | wc -l']
-                },
-                {
-                  'commands' => ["cat /proc/uptime | awk '{print $1}'"]
-                }
-              ],
-              'mem'         => [{}],
-              'net'         => [{
-                'interfaces' => ['eth0'],
-                'drop'       => ['net_icmp']
-              }],
-              'netstat'     => [{}],
-              'ping'        => [{
-                'urls'    => ['10.10.10.1'],
-                'count'   => 1,
-                'timeout' => 1.0
-              }],
-              'statsd' => [{
-                'service_address'          => ':8125',
-                'delete_gauges'            => false,
-                'delete_counters'          => false,
-                'delete_sets'              => false,
-                'delete_timings'           => true,
-                'percentiles'              => [90],
-                'allowed_pending_messages' => 10_000,
-                'convert_names'            => true,
-                'percentile_limit'         => 1000,
-                'udp_packet_size'          => 1500
-              }],
-              'swap'        => [{}],
-              'system'      => [{}]
-            }],
-            outputs: [{
-              'influxdb' => [{
-                'urls'     => ['http://influxdb.example.com:8086'],
-                'database' => 'telegraf',
-                'username' => 'telegraf',
-                'password' => 'telegraf'
-              }]
-            }]
+            repo_location: 'https://repos.influxdata.com/',
+            archive_install_dir: '/opt/telegraf',
+            archive_location: 'https://dl.influxdata.com/telegraf/releases/telegraf-1.15.2_linux_amd64.tar.gz'
           )
-      }
+        end
+      else
+        it do
+          is_expected.to contain_class('telegraf').with(
+            config_file_mode: '0640',
+            config_folder_mode: '0770',
+            repo_location: 'https://repos.influxdata.com/'
+          )
+        end
+        it do
+          is_expected.to contain_class('telegraf').without(
+            %w[
+              archive_install_dir
+              archive_location
+            ]
+          )
+        end
+      end
+
       case facts[:kernel]
       when 'windows'
         it { is_expected.to contain_file('C:/Program Files/telegraf/telegraf.conf') }

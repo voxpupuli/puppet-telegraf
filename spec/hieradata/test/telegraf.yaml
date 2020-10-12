@@ -4,6 +4,9 @@ telegraf::interval: "60s"
 telegraf::flush_interval: "60s"
 telegraf::config_file_mode: '0640'
 telegraf::config_folder_mode: '0770'
+telegraf::archive_install_dir: null
+telegraf::archive_location: null
+telegraf::repo_location: "https://repos.influxdata.com/"
 telegraf::global_tags:
   role: "telegraf"
   env: "production"
