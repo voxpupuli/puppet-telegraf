@@ -24,6 +24,8 @@ describe 'telegraf::aggregator' do
         case facts[:kernel]
         when 'windows'
           let(:filename) { "C:/Program Files/telegraf/telegraf.d/#{title}.conf" }
+        when 'Darwin'
+          let(:filename) { "/usr/local/etc/telegraf/telegraf.d/#{title}.conf" }
         else
           let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
         end

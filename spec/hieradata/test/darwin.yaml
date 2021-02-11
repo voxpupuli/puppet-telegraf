@@ -1,0 +1,3 @@
+---
+telegraf::archive_install_dir: '/usr/local/opt/telegraf'
+telegraf::archive_version: '1.17.2'

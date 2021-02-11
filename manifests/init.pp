@@ -89,6 +89,9 @@
 # [*archive_location*]
 #   String. Alternate archive location. E.g. an interal mirror.
 #
+# [*archive_version*]
+#   String. Specify a telegraf archive version. E.g. 1.17.2.
+#
 # [*archive_install_dir*]
 #   String. Location to extract archive to must be an absolute path
 #
@@ -134,6 +137,7 @@ class telegraf (
   Boolean $manage_archive                        = $telegraf::params::manage_archive,
   Optional[String] $repo_location                = $telegraf::params::repo_location,
   Optional[String] $archive_location             = $telegraf::params::archive_location,
+  Optional[String[1]] $archive_version           = $telegraf::params::archive_version,
   Optional[String] $archive_install_dir          = $telegraf::params::archive_install_dir,
   Boolean $purge_config_fragments                = $telegraf::params::purge_config_fragments,
   String  $repo_type                             = $telegraf::params::repo_type,
