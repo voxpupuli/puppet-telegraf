@@ -3,6 +3,7 @@
   - yaml
 
 :hierarchy:
+  - test/%{facts.os.family}
   - test/%{::role}
 
 :yaml:

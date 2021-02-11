@@ -1,0 +1,4 @@
+---
+telegraf::config_file_mode: null
+telegraf::config_folder_mode: null
+telegraf::repo_location: null

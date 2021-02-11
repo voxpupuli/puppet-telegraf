@@ -320,7 +320,7 @@ The configuration generated with this module is only compatible with newer relea
 Please fork this repository, hack away on your branch, run the tests:
 
 ```shell
-$ bundle exec rake test acceptance
+$ bundle exec rake beaker
 ```
 
 And then submit a pull request.  [Succinct, well-described and atomic commits preferred](http://chris.beams.io/posts/git-commit/).
