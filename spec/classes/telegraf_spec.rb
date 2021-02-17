@@ -88,9 +88,19 @@ describe 'telegraf' do
               config_folder_mode
               archive_install_dir
               archive_location
+              archive_version
               repo_location
               service_restart
             ]
+          )
+        end
+      when 'Darwin'
+        it do
+          is_expected.to contain_class('telegraf').with(
+            config_file_mode: '0640',
+            config_folder_mode: '0770',
+            archive_install_dir: '/usr/local/opt/telegraf',
+            archive_version: '1.17.2'
           )
         end
       when 'Suse'
@@ -116,6 +126,7 @@ describe 'telegraf' do
             %w[
               archive_install_dir
               archive_location
+              archive_version
             ]
           )
         end
@@ -128,6 +139,12 @@ describe 'telegraf' do
           is_expected.to contain_file('C:/Program Files/telegraf/telegraf.d').
             with_purge(false)
         }
+      when 'Darwin'
+        it { is_expected.to contain_file('/usr/local/etc/telegraf/telegraf.conf') }
+        it {
+          is_expected.to contain_file('/usr/local/etc/telegraf/telegraf.d').
+            with_purge(false)
+        }
       else
         it { is_expected.to contain_file('/etc/telegraf/telegraf.conf') }
         it {
@@ -138,6 +155,22 @@ describe 'telegraf' do
       case facts[:osfamily]
       when 'Suse'
         it { is_expected.to contain_archive('/tmp/telegraf.tar.gz') }
+        it { is_expected.to contain_file('/etc/telegraf').with_ensure('directory') }
+        it { is_expected.to contain_file('/opt/telegraf').with_ensure('directory') }
+        it { is_expected.to contain_file('/var/log/telegraf').with_ensure('directory') }
+        it { is_expected.to contain_file('/etc/systemd/system/telegraf.service') }
+      when 'Darwin'
+        it { is_expected.to contain_archive('/tmp/telegraf-1.17.2.tar.gz') }
+        it { is_expected.to contain_file('/usr/local/bin').with_ensure('directory') }
+        it { is_expected.to contain_file('/usr/local/etc').with_ensure('directory') }
+        it { is_expected.to contain_file('/usr/local/opt').with_ensure('directory') }
+        it { is_expected.to contain_file('/usr/local/var').with_ensure('directory') }
+        it { is_expected.to contain_file('/usr/local/var/log').with_ensure('directory') }
+        it { is_expected.to contain_file('/usr/local/opt/telegraf-1.17.2').with_ensure('directory') }
+        it { is_expected.to contain_file('/usr/local/var/log/telegraf').with_ensure('link') }
+        it { is_expected.to contain_file('/usr/local/bin/telegraf').with_ensure('link') }
+        it { is_expected.to contain_file('/usr/local/etc/telegraf').with_ensure('link') }
+        it { is_expected.to contain_file('/Library/LaunchDaemons/telegraf.plist') }
       else
         it { is_expected.to contain_package('telegraf') }
       end
@@ -150,6 +183,12 @@ describe 'telegraf' do
               baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable"
             )
         }
+      end
+
+      case facts[:osfamily]
+      when 'Darwin', 'Suse'
+        it { is_expected.to contain_user('telegraf') }
+        it { is_expected.to contain_group('telegraf') }
       end
 
       describe 'allow custom repo_type' do

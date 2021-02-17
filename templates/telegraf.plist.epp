@@ -1,0 +1,36 @@
+<%- | String $config_file_owner,
+      String $config_file_group
+| -%>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>KeepAlive</key>
+    <dict>
+      <key>SuccessfulExit</key>
+      <false/>
+    </dict>
+    <key>Label</key>
+    <string>telegraf</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/usr/local/bin/telegraf</string>
+      <string>-config</string>
+      <string>/usr/local/etc/telegraf/telegraf.conf</string>
+      <string>-config-directory</string>
+      <string>/usr/local/etc/telegraf/telegraf.d</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>WorkingDirectory</key>
+    <string>/usr/local/var/log/telegraf</string>
+    <key>StandardErrorPath</key>
+    <string>/usr/local/var/log/telegraf/telegraf.log</string>
+    <key>StandardOutPath</key>
+    <string>/usr/local/var/log/telegraf/telegraf.log</string>
+    <key>UserName</key>
+    <string><%= $config_file_owner %></string>
+    <key>GroupName</key>
+    <string><%= $config_file_group %></string>
+  </dict>
+</plist>
