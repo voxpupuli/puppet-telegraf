@@ -21,7 +21,7 @@
 
 ## Classes
 
-### `telegraf`
+### <a name="telegraf"></a>`telegraf`
 
 == Class: telegraf
 
@@ -114,6 +114,9 @@ A Puppet module for installing InfluxData's Telegraf
 [*archive_location*]
   String. Alternate archive location. E.g. an interal mirror.
 
+[*archive_version*]
+  String. Specify a telegraf archive version. E.g. 1.17.2.
+
 [*archive_install_dir*]
   String. Location to extract archive to must be an absolute path
 
@@ -131,9 +134,47 @@ A Puppet module for installing InfluxData's Telegraf
 
 #### Parameters
 
-The following parameters are available in the `telegraf` class.
+The following parameters are available in the `telegraf` class:
 
-##### `package_name`
+* [`package_name`](#package_name)
+* [`ensure`](#ensure)
+* [`config_file`](#config_file)
+* [`config_file_owner`](#config_file_owner)
+* [`config_file_group`](#config_file_group)
+* [`config_file_mode`](#config_file_mode)
+* [`config_folder`](#config_folder)
+* [`config_folder_mode`](#config_folder_mode)
+* [`hostname`](#hostname)
+* [`omit_hostname`](#omit_hostname)
+* [`interval`](#interval)
+* [`round_interval`](#round_interval)
+* [`metric_batch_size`](#metric_batch_size)
+* [`metric_buffer_limit`](#metric_buffer_limit)
+* [`collection_jitter`](#collection_jitter)
+* [`flush_interval`](#flush_interval)
+* [`flush_jitter`](#flush_jitter)
+* [`precision`](#precision)
+* [`logfile`](#logfile)
+* [`debug`](#debug)
+* [`quiet`](#quiet)
+* [`inputs`](#inputs)
+* [`outputs`](#outputs)
+* [`global_tags`](#global_tags)
+* [`manage_service`](#manage_service)
+* [`manage_repo`](#manage_repo)
+* [`manage_archive`](#manage_archive)
+* [`repo_location`](#repo_location)
+* [`archive_location`](#archive_location)
+* [`archive_version`](#archive_version)
+* [`archive_install_dir`](#archive_install_dir)
+* [`purge_config_fragments`](#purge_config_fragments)
+* [`repo_type`](#repo_type)
+* [`windows_package_url`](#windows_package_url)
+* [`service_enable`](#service_enable)
+* [`service_ensure`](#service_ensure)
+* [`install_options`](#install_options)
+
+##### <a name="package_name"></a>`package_name`
 
 Data type: `String`
 
@@ -141,7 +182,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::package_name`
 
-##### `ensure`
+##### <a name="ensure"></a>`ensure`
 
 Data type: `String`
 
@@ -149,7 +190,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::ensure`
 
-##### `config_file`
+##### <a name="config_file"></a>`config_file`
 
 Data type: `String`
 
@@ -157,7 +198,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::config_file`
 
-##### `config_file_owner`
+##### <a name="config_file_owner"></a>`config_file_owner`
 
 Data type: `String`
 
@@ -165,7 +206,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::config_file_owner`
 
-##### `config_file_group`
+##### <a name="config_file_group"></a>`config_file_group`
 
 Data type: `String`
 
@@ -173,15 +214,15 @@ Data type: `String`
 
 Default value: `$telegraf::params::config_file_group`
 
-##### `config_file_mode`
+##### <a name="config_file_mode"></a>`config_file_mode`
 
-Data type: `Stdlib::Filemode`
+Data type: `Optional[Stdlib::Filemode]`
 
 
 
 Default value: `$telegraf::params::config_file_mode`
 
-##### `config_folder`
+##### <a name="config_folder"></a>`config_folder`
 
 Data type: `String`
 
@@ -189,15 +230,15 @@ Data type: `String`
 
 Default value: `$telegraf::params::config_folder`
 
-##### `config_folder_mode`
+##### <a name="config_folder_mode"></a>`config_folder_mode`
 
-Data type: `Stdlib::Filemode`
+Data type: `Optional[Stdlib::Filemode]`
 
 
 
 Default value: `$telegraf::params::config_folder_mode`
 
-##### `hostname`
+##### <a name="hostname"></a>`hostname`
 
 Data type: `String`
 
@@ -205,7 +246,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::hostname`
 
-##### `omit_hostname`
+##### <a name="omit_hostname"></a>`omit_hostname`
 
 Data type: `Boolean`
 
@@ -213,7 +254,7 @@ Data type: `Boolean`
 
 Default value: `$telegraf::params::omit_hostname`
 
-##### `interval`
+##### <a name="interval"></a>`interval`
 
 Data type: `String`
 
@@ -221,7 +262,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::interval`
 
-##### `round_interval`
+##### <a name="round_interval"></a>`round_interval`
 
 Data type: `Boolean`
 
@@ -229,7 +270,7 @@ Data type: `Boolean`
 
 Default value: `$telegraf::params::round_interval`
 
-##### `metric_batch_size`
+##### <a name="metric_batch_size"></a>`metric_batch_size`
 
 Data type: `Integer`
 
@@ -237,7 +278,7 @@ Data type: `Integer`
 
 Default value: `$telegraf::params::metric_batch_size`
 
-##### `metric_buffer_limit`
+##### <a name="metric_buffer_limit"></a>`metric_buffer_limit`
 
 Data type: `Integer`
 
@@ -245,7 +286,7 @@ Data type: `Integer`
 
 Default value: `$telegraf::params::metric_buffer_limit`
 
-##### `collection_jitter`
+##### <a name="collection_jitter"></a>`collection_jitter`
 
 Data type: `String`
 
@@ -253,7 +294,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::collection_jitter`
 
-##### `flush_interval`
+##### <a name="flush_interval"></a>`flush_interval`
 
 Data type: `String`
 
@@ -261,7 +302,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::flush_interval`
 
-##### `flush_jitter`
+##### <a name="flush_jitter"></a>`flush_jitter`
 
 Data type: `String`
 
@@ -269,7 +310,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::flush_jitter`
 
-##### `precision`
+##### <a name="precision"></a>`precision`
 
 Data type: `String`
 
@@ -277,7 +318,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::precision`
 
-##### `logfile`
+##### <a name="logfile"></a>`logfile`
 
 Data type: `String`
 
@@ -285,7 +326,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::logfile`
 
-##### `debug`
+##### <a name="debug"></a>`debug`
 
 Data type: `Boolean`
 
@@ -293,7 +334,7 @@ Data type: `Boolean`
 
 Default value: `$telegraf::params::debug`
 
-##### `quiet`
+##### <a name="quiet"></a>`quiet`
 
 Data type: `Boolean`
 
@@ -301,7 +342,7 @@ Data type: `Boolean`
 
 Default value: `$telegraf::params::quiet`
 
-##### `inputs`
+##### <a name="inputs"></a>`inputs`
 
 Data type: `Hash`
 
@@ -309,7 +350,7 @@ Data type: `Hash`
 
 Default value: `$telegraf::params::inputs`
 
-##### `outputs`
+##### <a name="outputs"></a>`outputs`
 
 Data type: `Hash`
 
@@ -317,7 +358,7 @@ Data type: `Hash`
 
 Default value: `$telegraf::params::outputs`
 
-##### `global_tags`
+##### <a name="global_tags"></a>`global_tags`
 
 Data type: `Hash`
 
@@ -325,7 +366,7 @@ Data type: `Hash`
 
 Default value: `$telegraf::params::global_tags`
 
-##### `manage_service`
+##### <a name="manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
@@ -333,7 +374,7 @@ Data type: `Boolean`
 
 Default value: `$telegraf::params::manage_service`
 
-##### `manage_repo`
+##### <a name="manage_repo"></a>`manage_repo`
 
 Data type: `Boolean`
 
@@ -341,7 +382,7 @@ Data type: `Boolean`
 
 Default value: `$telegraf::params::manage_repo`
 
-##### `manage_archive`
+##### <a name="manage_archive"></a>`manage_archive`
 
 Data type: `Boolean`
 
@@ -349,7 +390,7 @@ Data type: `Boolean`
 
 Default value: `$telegraf::params::manage_archive`
 
-##### `repo_location`
+##### <a name="repo_location"></a>`repo_location`
 
 Data type: `Optional[String]`
 
@@ -357,7 +398,7 @@ Data type: `Optional[String]`
 
 Default value: `$telegraf::params::repo_location`
 
-##### `archive_location`
+##### <a name="archive_location"></a>`archive_location`
 
 Data type: `Optional[String]`
 
@@ -365,7 +406,15 @@ Data type: `Optional[String]`
 
 Default value: `$telegraf::params::archive_location`
 
-##### `archive_install_dir`
+##### <a name="archive_version"></a>`archive_version`
+
+Data type: `Optional[String[1]]`
+
+
+
+Default value: `$telegraf::params::archive_version`
+
+##### <a name="archive_install_dir"></a>`archive_install_dir`
 
 Data type: `Optional[String]`
 
@@ -373,7 +422,7 @@ Data type: `Optional[String]`
 
 Default value: `$telegraf::params::archive_install_dir`
 
-##### `purge_config_fragments`
+##### <a name="purge_config_fragments"></a>`purge_config_fragments`
 
 Data type: `Boolean`
 
@@ -381,7 +430,7 @@ Data type: `Boolean`
 
 Default value: `$telegraf::params::purge_config_fragments`
 
-##### `repo_type`
+##### <a name="repo_type"></a>`repo_type`
 
 Data type: `String`
 
@@ -389,7 +438,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::repo_type`
 
-##### `windows_package_url`
+##### <a name="windows_package_url"></a>`windows_package_url`
 
 Data type: `String`
 
@@ -397,7 +446,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::windows_package_url`
 
-##### `service_enable`
+##### <a name="service_enable"></a>`service_enable`
 
 Data type: `Boolean`
 
@@ -405,7 +454,7 @@ Data type: `Boolean`
 
 Default value: `$telegraf::params::service_enable`
 
-##### `service_ensure`
+##### <a name="service_ensure"></a>`service_ensure`
 
 Data type: `String`
 
@@ -413,7 +462,7 @@ Data type: `String`
 
 Default value: `$telegraf::params::service_ensure`
 
-##### `install_options`
+##### <a name="install_options"></a>`install_options`
 
 Data type: `Array`
 
@@ -421,26 +470,26 @@ Data type: `Array`
 
 Default value: `$telegraf::params::install_options`
 
-### `telegraf::config`
+### <a name="telegrafconfig"></a>`telegraf::config`
 
 == Class: telegraf::config
 
 Templated generation of telegraf.conf
 
-### `telegraf::install`
+### <a name="telegrafinstall"></a>`telegraf::install`
 
 == Class: telegraf::install
 
 Conditionally handle InfluxData's official repos and install the necessary
 Telegraf package.
 
-### `telegraf::params`
+### <a name="telegrafparams"></a>`telegraf::params`
 
 == Class: telegraf::params
 
 A set of default parameters for Telegraf's configuration.
 
-### `telegraf::service`
+### <a name="telegrafservice"></a>`telegraf::service`
 
 == Class: telegraf::service
 
@@ -448,15 +497,18 @@ Optionally manage the Telegraf service.
 
 ## Defined types
 
-### `telegraf::aggregator`
+### <a name="telegrafaggregator"></a>`telegraf::aggregator`
 
 The telegraf::aggregator class.
 
 #### Parameters
 
-The following parameters are available in the `telegraf::aggregator` defined type.
+The following parameters are available in the `telegraf::aggregator` defined type:
 
-##### `plugin_type`
+* [`plugin_type`](#plugin_type)
+* [`options`](#options)
+
+##### <a name="plugin_type"></a>`plugin_type`
 
 Data type: `String`
 
@@ -464,7 +516,7 @@ Data type: `String`
 
 Default value: `$name`
 
-##### `options`
+##### <a name="options"></a>`options`
 
 Data type: `Optional[Array]`
 
@@ -472,15 +524,18 @@ Data type: `Optional[Array]`
 
 Default value: ``undef``
 
-### `telegraf::input`
+### <a name="telegrafinput"></a>`telegraf::input`
 
 The telegraf::input class.
 
 #### Parameters
 
-The following parameters are available in the `telegraf::input` defined type.
+The following parameters are available in the `telegraf::input` defined type:
 
-##### `plugin_type`
+* [`plugin_type`](#plugin_type)
+* [`options`](#options)
+
+##### <a name="plugin_type"></a>`plugin_type`
 
 Data type: `String`
 
@@ -488,7 +543,7 @@ Data type: `String`
 
 Default value: `$name`
 
-##### `options`
+##### <a name="options"></a>`options`
 
 Data type: `Array`
 
@@ -496,15 +551,18 @@ Data type: `Array`
 
 Default value: `[]`
 
-### `telegraf::output`
+### <a name="telegrafoutput"></a>`telegraf::output`
 
 The telegraf::output class.
 
 #### Parameters
 
-The following parameters are available in the `telegraf::output` defined type.
+The following parameters are available in the `telegraf::output` defined type:
 
-##### `plugin_type`
+* [`plugin_type`](#plugin_type)
+* [`options`](#options)
+
+##### <a name="plugin_type"></a>`plugin_type`
 
 Data type: `String`
 
@@ -512,7 +570,7 @@ Data type: `String`
 
 Default value: `$name`
 
-##### `options`
+##### <a name="options"></a>`options`
 
 Data type: `Optional[Array]`
 
@@ -520,15 +578,18 @@ Data type: `Optional[Array]`
 
 Default value: ``undef``
 
-### `telegraf::processor`
+### <a name="telegrafprocessor"></a>`telegraf::processor`
 
 The telegraf::processor class.
 
 #### Parameters
 
-The following parameters are available in the `telegraf::processor` defined type.
+The following parameters are available in the `telegraf::processor` defined type:
 
-##### `plugin_type`
+* [`plugin_type`](#plugin_type)
+* [`options`](#options)
+
+##### <a name="plugin_type"></a>`plugin_type`
 
 Data type: `String`
 
@@ -536,7 +597,7 @@ Data type: `String`
 
 Default value: `$name`
 
-##### `options`
+##### <a name="options"></a>`options`
 
 Data type: `Optional[Array]`
 
