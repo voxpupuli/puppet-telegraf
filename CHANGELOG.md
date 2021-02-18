@@ -4,6 +4,34 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v4.0.0](https://github.com/voxpupuli/puppet-telegraf/tree/v4.0.0) (2021-02-17)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v3.1.0...v4.0.0)
+
+**Breaking changes:**
+
+- Drop EoL windows server 2008, drop EoL Puppet 5, add Puppet 7 [\#162](https://github.com/voxpupuli/puppet-telegraf/pull/162) ([genebean](https://github.com/genebean))
+- Drop EOL EL6 support [\#159](https://github.com/voxpupuli/puppet-telegraf/pull/159) ([ekohl](https://github.com/ekohl))
+- modulesync 3.0.0 & puppet-lint updates / Drop Debian/Raspbian 8 [\#147](https://github.com/voxpupuli/puppet-telegraf/pull/147) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add support for Darwin [\#161](https://github.com/voxpupuli/puppet-telegraf/pull/161) ([yachub](https://github.com/yachub))
+
+**Fixed bugs:**
+
+- Changed Assign repo-\>package even when manage\_repo=false on Debian+Re… [\#148](https://github.com/voxpupuli/puppet-telegraf/pull/148) ([danielsreichenbach](https://github.com/danielsreichenbach))
+
+**Closed issues:**
+
+- Cannot install telegraf on Windows server because config\_file\_mode and config\_folder\_mode is undefined [\#155](https://github.com/voxpupuli/puppet-telegraf/issues/155)
+- Minor: Please fix the \(\>=5.0.0 \< 7.0.0\) to \(\>= 5.0.0 \< 7.0.0\) in the metadata for dependencies [\#153](https://github.com/voxpupuli/puppet-telegraf/issues/153)
+
+**Merged pull requests:**
+
+- Add Optional to config\_file\_mode and config\_folder\_mode params on windows [\#156](https://github.com/voxpupuli/puppet-telegraf/pull/156) ([jkkitakita](https://github.com/jkkitakita))
+- identical syntax of version range [\#154](https://github.com/voxpupuli/puppet-telegraf/pull/154) ([tuxmea](https://github.com/tuxmea))
+
 ## [v3.1.0](https://github.com/voxpupuli/puppet-telegraf/tree/v3.1.0) (2020-08-22)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v3.0.0...v3.1.0)
