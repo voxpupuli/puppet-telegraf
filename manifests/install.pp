@@ -99,8 +99,8 @@ class telegraf::install {
             'source' => "${telegraf::repo_location}influxdb.key",
           },
         }
+        Class['apt::update'] -> Package[$telegraf::package_name]
       }
-      Class['apt::update'] -> Package[$telegraf::package_name]
     }
     'RedHat': {
       if $telegraf::manage_repo {
@@ -117,8 +117,8 @@ class telegraf::install {
           gpgkey   => "${telegraf::repo_location}influxdb.key",
           gpgcheck => 1,
         }
+        Yumrepo['influxdata'] -> Package[$telegraf::package_name]
       }
-      Yumrepo['influxdata'] -> Package[$telegraf::package_name]
     }
     'Suse': {
       if $telegraf::manage_archive {
