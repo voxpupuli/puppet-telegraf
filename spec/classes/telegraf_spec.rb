@@ -228,7 +228,6 @@ describe 'telegraf' do
         let(:pre_condition) do
           [
             'class {"telegraf": manage_repo => false}',
-            'class {"apt": }'
           ]
         end
 
@@ -237,7 +236,7 @@ describe 'telegraf' do
           when 'Debian'
             is_expected.to compile.with_all_deps
             is_expected.to contain_package('telegraf')
-            is_expected.to contain_class('apt::update')
+            is_expected.not_to contain_apt__source('influxdata')
           end
         end
       end
@@ -246,7 +245,6 @@ describe 'telegraf' do
         let(:pre_condition) do
           [
             'class {"telegraf": manage_repo => false}',
-            'yumrepo {"influxdata": }'
           ]
         end
 
@@ -255,6 +253,7 @@ describe 'telegraf' do
           when 'RedHat'
             is_expected.to compile.with_all_deps
             is_expected.to contain_package('telegraf')
+            is_expected.not_to contain_yumrepo('influxdata')
           end
         end
       end
