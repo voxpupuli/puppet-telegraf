@@ -14,8 +14,8 @@ class telegraf::config inherits telegraf {
   }
 
   $_dir = $telegraf::ensure ? {
-    'absent' => {ensure => 'absent', force => true},
-    default  => {ensure => 'directory'}
+    'absent' => { ensure => 'absent', force => true },
+    default  => { ensure => 'directory' }
   }
 
   file { $telegraf::config_folder:
