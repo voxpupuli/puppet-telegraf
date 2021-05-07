@@ -7,6 +7,7 @@ describe 'telegraf' do
         facts
       end
 
+      context 'default include'
       it { is_expected.to compile.with_all_deps }
       it { is_expected.to contain_class('telegraf::config') }
       it { is_expected.to contain_class('telegraf::install') }
@@ -248,6 +249,49 @@ describe 'telegraf' do
             is_expected.to compile.with_all_deps
             is_expected.to contain_package('telegraf')
           end
+        end
+      end
+
+      describe 'with ensure absent' do
+        let(:pre_condition) do
+          [
+            'class {"telegraf": ensure => absent}',
+          ]
+        end
+
+        it do
+          case facts[:osfamily]
+          when 'Debian'
+            is_expected.to contain_package('telegraf').with(ensure: 'absent')
+            is_expected.to contain_apt__source('influxdata').with(
+              ensure: 'absent',
+            )
+          when 'RedHat'
+            is_expected.to contain_package('telegraf').with(ensure: 'absent')
+            is_expected.to contain_yumrepo('influxdata').with(ensure: 'absent')
+
+          when 'windows'
+            is_expected.to contain_package('telegraf').with(ensure: 'absent')
+          end
+          _dir = case facts[:osfamily]
+                 when 'Darwin'
+                   '/usr/local/etc/telegraf'
+                 when 'windows'
+                   'C:/Program Files/telegraf'
+                 else
+                   '/etc/telegraf'
+                 end
+
+          is_expected.to contain_file(_dir + '/telegraf.conf').with(
+            ensure: 'absent',
+          )
+
+          is_expected.to contain_file(_dir + '/telegraf.d').with(
+            ensure: 'absent',
+            force: true,
+          )
+
+          is_expected.not_to contain_service('telegraf')
         end
       end
     end
