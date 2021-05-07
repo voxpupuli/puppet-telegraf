@@ -106,6 +106,59 @@ describe 'telegraf::processor' do
           end
         end
       end
+
+      context 'with ensure absent' do
+        let(:title) {'my_basicstats'}
+        let(:params) do
+          {
+            ensure: 'absent',
+          }
+        end
+
+        it do
+          _dir = case facts[:osfamily]
+                 when 'Darwin'
+                   '/usr/local/etc/telegraf/telegraf.d'
+                 when 'windows'
+                   'C:/Program Files/telegraf/telegraf.d'
+                 else
+                   '/etc/telegraf/telegraf.d'
+                 end
+
+          is_expected.to contain_file(_dir + '/my_basicstats.conf').with(
+            ensure: 'absent',
+          )
+        end
+      end
+
+      context 'with class ensure absent' do
+        let(:pre_condition) do
+          [
+            'class {"telegraf": ensure => absent}',
+          ]
+        end
+        let(:title) {'my_basicstats'}
+        let(:params) do
+          {
+            ensure: 'present',
+          }
+        end
+
+        it do
+          _dir = case facts[:osfamily]
+                 when 'Darwin'
+                   '/usr/local/etc/telegraf/telegraf.d'
+                 when 'windows'
+                   'C:/Program Files/telegraf/telegraf.d'
+                 else
+                   '/etc/telegraf/telegraf.d'
+                 end
+
+          is_expected.to contain_file(_dir + '/my_basicstats.conf').with(
+            ensure: 'absent',
+          )
+        end
+      end
     end
   end
 end
