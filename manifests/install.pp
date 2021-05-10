@@ -96,7 +96,7 @@ class telegraf::install {
           release  => $release,
           repos    => $telegraf::repo_type,
           key      => {
-            'id'     => 'A4B94A8C145F4C456133EFEFAB162277E8EE6FD0',
+            'id'     => '05CE15085FC09D18E99EFB22684A14CF2582E0C5',
             'source' => "${telegraf::repo_location}influxdb.key",
           },
         }
