@@ -149,6 +149,16 @@ class telegraf (
   $service_hasstatus = $telegraf::params::service_hasstatus
   $service_restart   = $telegraf::params::service_restart
 
+  $ensure_file = $ensure ? {
+    'absent' => 'absent',
+    default  => 'file',
+  }
+
+  $ensure_status = $ensure ? {
+    'absent' => 'absent',
+    default  => 'present',
+  }
+
   contain telegraf::install
   contain telegraf::config
   contain telegraf::service

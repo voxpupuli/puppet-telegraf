@@ -1,22 +1,19 @@
 require 'spec_helper'
 
-describe 'telegraf::aggregator' do
+describe 'telegraf::output' do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
       let(:facts) do
         facts
       end
 
-      context 'my_basicstats' do
-        let(:title) { 'my_basicstats' }
+      context 'my_influxdb' do
+        let(:title) { 'my_influxdb' }
         let(:params) do
           {
-            plugin_type: 'basicstats',
+            plugin_type: 'influxdb',
             options: [
-              {
-                'period'        => '30s',
-                'drop_original' => false
-              }
+              { 'urls' => ['http://localhost:8086'] }
             ]
           }
         end
@@ -30,11 +27,10 @@ describe 'telegraf::aggregator' do
           let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
         end
 
-        describe 'configuration file /etc/telegraf/telegraf.d/my_basicstats.conf aggregator' do
+        describe 'configuration file /etc/telegraf/telegraf.d/my_influxdb.conf output' do
           it 'is declared with the correct content' do
-            is_expected.to contain_file(filename).with_content(%r{\[\[aggregators.basicstats\]\]})
-            is_expected.to contain_file(filename).with_content(%r{period = "30s"})
-            is_expected.to contain_file(filename).with_content(%r{drop_original = false})
+            is_expected.to contain_file(filename).with_content(%r{\[\[outputs.influxdb\]\]})
+            is_expected.to contain_file(filename).with_content(%r{urls = \["http://localhost:8086"\]})
           end
 
           it 'requires telegraf to be installed' do
@@ -83,6 +79,7 @@ describe 'telegraf::aggregator' do
             ensure: 'present',
           }
         end
+
 
         it do
           _dir = case facts[:osfamily]
