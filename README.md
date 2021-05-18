@@ -128,11 +128,13 @@ Example 1:
 ```puppet
 telegraf::input { 'my_exec':
   plugin_type => 'exec',
-  options     => [{
-    'commands'    => ['/usr/local/bin/my_input.py',],
-    'name_suffix' => '_my_input',
-    'data_format' => 'json',
-  }],
+  options     => [
+    {
+      'commands'    => ['/usr/local/bin/my_input.py',],
+      'name_suffix' => '_my_input',
+      'data_format' => 'json',
+    }
+  ],
   require     => File['/usr/local/bin/my_input.py'],
 }
 ```
@@ -140,9 +142,9 @@ telegraf::input { 'my_exec':
 Will create the file `/etc/telegraf/telegraf.d/my_exec.conf`:
 
     [[inputs.exec]]
-      commands = ['/usr/local/bin/my_input.py']
-      name_suffix = '_my_input'
-      data_format = 'json'
+    commands = ["/usr/local/bin/my_input.py"]
+    data_format = "json"
+    name_suffix = "_my_input"
 
 Example 2:
 
@@ -150,7 +152,9 @@ Example 2:
 telegraf::input { 'influxdb-dc':
   plugin_type => 'influxdb',
   options     => [
-    {'urls' => ['http://remote-dc:8086',],},
+    {
+      'urls' => ['http://remote-dc:8086',],
+    }
   ],
 }
 ```
@@ -159,7 +163,7 @@ Will create the file `/etc/telegraf/telegraf.d/influxdb-dc.conf`:
 
 ```
 [[inputs.influxdb]]
-  urls = ["http://remote-dc:8086"]
+urls = ["http://remote-dc:8086"]
 ```
 
 Example 3:
@@ -167,36 +171,36 @@ Example 3:
 ```puppet
 telegraf::input { 'my_snmp':
   plugin_type    => 'snmp',
-  options        => {
-    'interval' => '60s',
-    'host' => [
-      {
-        'address'   => 'snmp_host1:161',
-        'community' => 'read_only',
-        'version'   => 2,
-        'get_oids'  => ['1.3.6.1.2.1.1.5',],
-      }
-    ],
-    'tags' => {
-      'environment' => 'development',
-    },
-  },
+  options        => [
+    {
+      'interval' => '60s',
+      'host' => [
+        {
+          'address'   => 'snmp_host1:161',
+          'community' => 'read_only',
+          'version'   => 2,
+          'get_oids'  => ['1.3.6.1.2.1.1.5',],
+        }
+      ],
+      'tags' => {
+        'environment' => 'development',
+      },
+    }
+  ],
 }
 ```
 
 Will create the file `/etc/telegraf/telegraf.d/snmp.conf`:
 
     [[inputs.snmp]]
-      interval = "60s"
-
-    [[inputs.snmp.host]]
-      address = "snmp_host1:161"
-      community = "read_only"
-      version = 2
-      get_oids = ["1.3.6.1.2.1.1.5"]
-
+    interval = "60s"
     [inputs.snmp.tags]
-      environment = "development"
+    environment = "development"
+    [[inputs.snmp.host]]
+    address = "snmp_host1:161"
+    community = "read_only"
+    get_oids = ["1.3.6.1.2.1.1.5"]
+    version = 2
 
 Example 4:
 
@@ -212,7 +216,7 @@ telegraf::output { 'my_influxdb':
       'username' => 'telegraf',
       'password' => 'metricsmetricsmetrics',
     }
-  ]
+  ],
 }
 
 telegraf::processor { 'my_regex':
@@ -225,9 +229,9 @@ telegraf::processor { 'my_regex':
           pattern     => String(/^a*b+\d$/),
           replacement => 'c${1}d',
         }
-      ]
+      ],
     }
-  ]
+  ],
 }
 
 telegraf::aggregator { 'my_basicstats':
@@ -236,7 +240,7 @@ telegraf::aggregator { 'my_basicstats':
     {
       period        => '30s',
       drop_original => false,
-    },
+    }
   ],
 }
 
@@ -248,7 +252,7 @@ Example 5:
 class { 'telegraf':
     ensure              => '1.0.1',
     hostname            => $facts['hostname'],
-    windows_package_url => http://internal_repo:8080/chocolatey,
+    windows_package_url => 'http://internal_repo:8080/chocolatey',
 }
 ```
 
