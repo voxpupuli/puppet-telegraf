@@ -159,7 +159,7 @@ class telegraf::install {
         }
       }
     }
-    'windows|FreeBSD': {
+    /windows|FreeBSD/: {
       # repo is not applicable to windows
     }
     default: {
