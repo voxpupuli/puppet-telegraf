@@ -21,6 +21,7 @@ class telegraf::params {
       $repo_location        = 'https://repos.influxdata.com/'
       $service_enable       = true
       $service_ensure       = running
+      $service_flags        = undef
       $service_hasstatus    = true
       $service_restart      = 'pkill -HUP telegraf'
     }
@@ -41,6 +42,7 @@ class telegraf::params {
       $repo_location        = undef
       $service_enable       = true
       $service_ensure       = running
+      $service_flags        = undef
       $service_hasstatus    = false
       $service_restart      = undef
     }
@@ -61,6 +63,27 @@ class telegraf::params {
       $repo_location        = 'https://repos.influxdata.com/'
       $service_enable       = true
       $service_ensure       = running
+      $service_flags        = undef
+      $service_hasstatus    = true
+      $service_restart      = 'pkill -HUP telegraf'
+    }
+    'FreeBSD' : {
+      $config_file          = '/usr/local/etc/telegraf.conf'
+      $config_file_owner    = 'telegraf'
+      $config_file_group    = 'telegraf'
+      $config_folder        = '/usr/local/etc/telegraf'
+      $config_folder_mode   = '0770'
+      $logfile              = ''
+      $manage_repo          = false
+      $manage_archive       = true
+      $manage_user          = true
+      $archive_install_dir  = undef
+      $archive_location     = undef
+      $archive_version      = undef
+      $repo_location        = undef
+      $service_enable       = true
+      $service_ensure       = running
+      $service_flags        = "-quiet -config-directory=${config_folder}"
       $service_hasstatus    = true
       $service_restart      = 'pkill -HUP telegraf'
     }
@@ -81,6 +104,7 @@ class telegraf::params {
       $repo_location        = 'https://repos.influxdata.com/'
       $service_enable       = true
       $service_ensure       = running
+      $service_flags        = undef
       $service_hasstatus    = true
       $service_restart      = 'pkill -HUP telegraf'
     }
