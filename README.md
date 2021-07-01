@@ -314,6 +314,7 @@ This module has been developed and tested against:
  * Debian 9/10
  * CentOS / RHEL 6 / 7 / 8
  * Windows 2008, 2008 R2, 2012, 2012 R2
+ * FreeBSD 11 / 12 / 13
 
 Support for other distributions / operating systems is planned.  Feel free to assist with development in this regard!
 
