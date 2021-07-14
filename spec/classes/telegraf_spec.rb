@@ -264,7 +264,7 @@ describe 'telegraf' do
           when 'Debian'
             is_expected.to contain_package('telegraf').with(ensure: 'absent')
             is_expected.to contain_apt__source('influxdata').with(
-              ensure: 'absent',
+              ensure: 'absent'
             )
           when 'RedHat'
             is_expected.to contain_package('telegraf').with(ensure: 'absent')
@@ -273,22 +273,22 @@ describe 'telegraf' do
           when 'windows'
             is_expected.to contain_package('telegraf').with(ensure: 'absent')
           end
-          _dir = case facts[:osfamily]
-                 when 'Darwin'
-                   '/usr/local/etc/telegraf'
-                 when 'windows'
-                   'C:/Program Files/telegraf'
-                 else
-                   '/etc/telegraf'
-                 end
+          dir = case facts[:osfamily]
+                when 'Darwin'
+                  '/usr/local/etc/telegraf'
+                when 'windows'
+                  'C:/Program Files/telegraf'
+                else
+                  '/etc/telegraf'
+                end
 
-          is_expected.to contain_file(_dir + '/telegraf.conf').with(
-            ensure: 'absent',
+          is_expected.to contain_file(dir + '/telegraf.conf').with(
+            ensure: 'absent'
           )
 
-          is_expected.to contain_file(_dir + '/telegraf.d').with(
+          is_expected.to contain_file(dir + '/telegraf.d').with(
             ensure: 'absent',
-            force: true,
+            force: true
           )
 
           is_expected.not_to contain_service('telegraf')

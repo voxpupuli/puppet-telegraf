@@ -131,7 +131,7 @@ describe 'telegraf::input' do
       end
 
       context 'with ensure absent' do
-        let(:title) {'my_basicstats'}
+        let(:title) { 'my_basicstats' }
         let(:params) do
           {
             ensure: 'absent',
@@ -139,17 +139,17 @@ describe 'telegraf::input' do
         end
 
         it do
-          _dir = case facts[:osfamily]
-                 when 'Darwin'
-                   '/usr/local/etc/telegraf/telegraf.d'
-                 when 'windows'
-                   'C:/Program Files/telegraf/telegraf.d'
-                 else
-                   '/etc/telegraf/telegraf.d'
-                 end
+          dir = case facts[:osfamily]
+                when 'Darwin'
+                  '/usr/local/etc/telegraf/telegraf.d'
+                when 'windows'
+                  'C:/Program Files/telegraf/telegraf.d'
+                else
+                  '/etc/telegraf/telegraf.d'
+                end
 
-          is_expected.to contain_file(_dir + '/my_basicstats.conf').with(
-            ensure: 'absent',
+          is_expected.to contain_file(dir + '/my_basicstats.conf').with(
+            ensure: 'absent'
           )
         end
       end
@@ -160,26 +160,25 @@ describe 'telegraf::input' do
             'class {"telegraf": ensure => absent}',
           ]
         end
-        let(:title) {'my_basicstats'}
+        let(:title) { 'my_basicstats' }
         let(:params) do
           {
             ensure: 'present',
           }
         end
 
-
         it do
-          _dir = case facts[:osfamily]
-                 when 'Darwin'
-                   '/usr/local/etc/telegraf/telegraf.d'
-                 when 'windows'
-                   'C:/Program Files/telegraf/telegraf.d'
-                 else
-                   '/etc/telegraf/telegraf.d'
-                 end
+          dir = case facts[:osfamily]
+                when 'Darwin'
+                  '/usr/local/etc/telegraf/telegraf.d'
+                when 'windows'
+                  'C:/Program Files/telegraf/telegraf.d'
+                else
+                  '/etc/telegraf/telegraf.d'
+                end
 
-          is_expected.to contain_file(_dir + '/my_basicstats.conf').with(
-            ensure: 'absent',
+          is_expected.to contain_file(dir + '/my_basicstats.conf').with(
+            ensure: 'absent'
           )
         end
       end
