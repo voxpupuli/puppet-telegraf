@@ -4,7 +4,30 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v4.0.0](https://github.com/voxpupuli/puppet-telegraf/tree/v4.0.0) (2021-02-17)
+## [v4.1.0](https://github.com/voxpupuli/puppet-telegraf/tree/v4.1.0) (2021-07-15)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v4.0.0...v4.1.0)
+
+**Implemented enhancements:**
+
+- allow latest stdlib/apt modules [\#175](https://github.com/voxpupuli/puppet-telegraf/pull/175) ([bastelfreak](https://github.com/bastelfreak))
+- puppet/archive: allow 5.x [\#166](https://github.com/voxpupuli/puppet-telegraf/pull/166) ([bastelfreak](https://github.com/bastelfreak))
+
+**Fixed bugs:**
+
+- make sure the ensure absent works with package install [\#169](https://github.com/voxpupuli/puppet-telegraf/pull/169) ([fe80](https://github.com/fe80))
+- move relationship between package and repo into code block where repo is managed [\#160](https://github.com/voxpupuli/puppet-telegraf/pull/160) ([lukebigum](https://github.com/lukebigum))
+
+**Closed issues:**
+
+- No longer possible to configure tagpass and tagdrop [\#170](https://github.com/voxpupuli/puppet-telegraf/issues/170)
+
+**Merged pull requests:**
+
+- Fix README example 3 + cosmetic updates [\#171](https://github.com/voxpupuli/puppet-telegraf/pull/171) ([thias](https://github.com/thias))
+- Refactor manage\_repo install tests for consistency. [\#165](https://github.com/voxpupuli/puppet-telegraf/pull/165) ([gcoxmoz](https://github.com/gcoxmoz))
+
+## [v4.0.0](https://github.com/voxpupuli/puppet-telegraf/tree/v4.0.0) (2021-02-18)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v3.1.0...v4.0.0)
 
