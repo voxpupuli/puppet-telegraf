@@ -61,3 +61,13 @@ telegraf::outputs:
       database: 'telegraf'
       username: 'telegraf'
       password: 'telegraf'
+telegraf::processors:
+  rename_processor:
+    plugin_type: rename
+    options:
+      - order: 1
+        namepass: ['diskio']
+        replace:
+          tag: foo
+          dest: bar
+

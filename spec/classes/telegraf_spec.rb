@@ -9,6 +9,20 @@ describe 'telegraf' do
         facts
       end
 
+      let(:config_dir) do
+        case facts[:osfamily]
+        when 'Darwin'
+          '/usr/local/etc/telegraf'
+        when 'FreeBSD'
+          '/usr/local/etc'
+        when 'windows'
+          'C:/Program Files/telegraf'
+        else
+          '/etc/telegraf'
+        end
+      end
+      let(:main_config) { "#{config_dir}/telegraf.conf" }
+
       context 'default include'
       it { is_expected.to compile.with_all_deps }
       it { is_expected.to contain_class('telegraf::config') }
@@ -80,6 +94,16 @@ describe 'telegraf' do
               'username' => 'telegraf',
               'password' => 'telegraf'
             }]
+          }],
+          processors: [{
+            'rename_processor' => {
+              'plugin_type' => 'rename',
+              'options' => [{
+                'order' => 1,
+                'namepass' => ['diskio'],
+                'replace' => { 'tag' => 'foo', 'dest' => 'bar' }
+              }]
+            }
           }]
         )
       end
@@ -145,36 +169,27 @@ describe 'telegraf' do
         end
       end
 
-      case facts[:kernel]
-      when 'windows'
-        it { is_expected.to contain_file('C:/Program Files/telegraf/telegraf.conf') }
+      it { is_expected.to contain_telegraf__processor('rename_processor') }
+      it { is_expected.to contain_file(main_config).with_ensure('file') }
 
-        it {
-          is_expected.to contain_file('C:/Program Files/telegraf/telegraf.d').
-            with_purge(false)
-        }
-      when 'Darwin'
-        it { is_expected.to contain_file('/usr/local/etc/telegraf/telegraf.conf') }
+      it {
+        is_expected.to contain_file("#{config_dir}/telegraf.d").
+          with_purge(false)
+      }
 
-        it {
-          is_expected.to contain_file('/usr/local/etc/telegraf/telegraf.d').
-            with_purge(false)
-        }
-      when 'FreeBSD'
-        it { is_expected.to contain_file('/usr/local/etc/telegraf.conf') }
+      it {
+        is_expected.to contain_file("#{config_dir}/telegraf.d/rename_processor.conf").\
+          with_content(<<~STRING
+            [[processors.rename]]
+            namepass = ["diskio"]
+            order = 1
+            [processors.rename.replace]
+            dest = "bar"
+            tag = "foo"
+          STRING
+                      )
+      }
 
-        it {
-          is_expected.to contain_file('/usr/local/etc/telegraf.d').
-            with_purge(false)
-        }
-      else
-        it { is_expected.to contain_file('/etc/telegraf/telegraf.conf') }
-
-        it {
-          is_expected.to contain_file('/etc/telegraf/telegraf.d').
-            with_purge(false)
-        }
-      end
       case facts[:osfamily]
       when 'Suse'
         it { is_expected.to contain_archive('/tmp/telegraf.tar.gz') }
@@ -296,22 +311,12 @@ describe 'telegraf' do
           when 'windows'
             is_expected.to contain_package('telegraf').with(ensure: 'absent')
           end
-          dir = case facts[:osfamily]
-                when 'Darwin'
-                  '/usr/local/etc/telegraf'
-                when 'FreeBSD'
-                  '/usr/local/etc'
-                when 'windows'
-                  'C:/Program Files/telegraf'
-                else
-                  '/etc/telegraf'
-                end
 
-          is_expected.to contain_file("#{dir}/telegraf.conf").with(
+          is_expected.to contain_file(main_config).with(
             ensure: 'absent'
           )
 
-          is_expected.to contain_file("#{dir}/telegraf.d").with(
+          is_expected.to contain_file("#{config_dir}/telegraf.d").with(
             ensure: 'absent',
             force: true
           )
