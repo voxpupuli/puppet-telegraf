@@ -104,6 +104,13 @@ describe 'telegraf' do
             archive_version: '1.17.2'
           )
         end
+      when 'FreeBSD'
+        it do
+          is_expected.to contain_class('telegraf').with(
+            config_file_mode: '0640',
+            config_folder_mode: '0770'
+          )
+        end
       when 'Suse'
         it do
           is_expected.to contain_class('telegraf').with(
@@ -144,6 +151,12 @@ describe 'telegraf' do
         it { is_expected.to contain_file('/usr/local/etc/telegraf/telegraf.conf') }
         it {
           is_expected.to contain_file('/usr/local/etc/telegraf/telegraf.d').
+            with_purge(false)
+        }
+      when 'FreeBSD'
+        it { is_expected.to contain_file('/usr/local/etc/telegraf.conf') }
+        it {
+          is_expected.to contain_file('/usr/local/etc/telegraf.d').
             with_purge(false)
         }
       else
@@ -276,6 +289,8 @@ describe 'telegraf' do
           dir = case facts[:osfamily]
                 when 'Darwin'
                   '/usr/local/etc/telegraf'
+                when 'FreeBSD'
+                  '/usr/local/etc'
                 when 'windows'
                   'C:/Program Files/telegraf'
                 else
