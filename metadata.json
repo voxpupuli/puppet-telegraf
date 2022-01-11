@@ -74,6 +74,14 @@
       "operatingsystemrelease": [
         "18"
       ]
+    },
+    {
+      "operatingsystem": "FreeBSD",
+      "operatingsystemrelease": [
+        "11",
+        "12",
+        "13"
+      ]
     }
   ],
   "dependencies": [
