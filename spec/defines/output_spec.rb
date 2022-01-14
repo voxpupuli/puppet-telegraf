@@ -23,6 +23,8 @@ describe 'telegraf::output' do
           let(:filename) { "C:/Program Files/telegraf/telegraf.d/#{title}.conf" }
         when 'Darwin'
           let(:filename) { "/usr/local/etc/telegraf/telegraf.d/#{title}.conf" }
+        when 'FreeBSD'
+          let(:filename) { "/usr/local/etc/telegraf.d/#{title}.conf" }
         else
           let(:filename) { "/etc/telegraf/telegraf.d/#{title}.conf" }
         end
@@ -55,6 +57,8 @@ describe 'telegraf::output' do
           dir = case facts[:osfamily]
                 when 'Darwin'
                   '/usr/local/etc/telegraf/telegraf.d'
+                when 'FreeBSD'
+                  '/usr/local/etc/telegraf.d'
                 when 'windows'
                   'C:/Program Files/telegraf/telegraf.d'
                 else
@@ -84,6 +88,8 @@ describe 'telegraf::output' do
           dir = case facts[:osfamily]
                 when 'Darwin'
                   '/usr/local/etc/telegraf/telegraf.d'
+                when 'FreeBSD'
+                  '/usr/local/etc/telegraf.d'
                 when 'windows'
                   'C:/Program Files/telegraf/telegraf.d'
                 else

@@ -162,8 +162,11 @@ class telegraf::install {
     'windows': {
       # repo is not applicable to windows
     }
+    'FreeBSD': {
+      # repo is not applicable to windows
+    }
     default: {
-      fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu, Darwin and Windows repositories and Suse archives are supported at this time')
+      fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu, Darwin, FreeBSD and Windows repositories and Suse archives are supported at this time')
     }
   }
 
