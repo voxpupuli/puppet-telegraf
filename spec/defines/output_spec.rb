@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'telegraf::output' do
@@ -65,7 +67,7 @@ describe 'telegraf::output' do
                   '/etc/telegraf/telegraf.d'
                 end
 
-          is_expected.to contain_file(dir + '/my_basicstats.conf').with(
+          is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
             ensure: 'absent'
           )
         end
@@ -96,7 +98,7 @@ describe 'telegraf::output' do
                   '/etc/telegraf/telegraf.d'
                 end
 
-          is_expected.to contain_file(dir + '/my_basicstats.conf').with(
+          is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
             ensure: 'absent'
           )
         end

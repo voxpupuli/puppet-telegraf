@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'telegraf::input' do
@@ -44,6 +46,7 @@ describe 'telegraf::input' do
           end
         end
       end
+
       context 'my_snmp' do
         let(:title) { 'my_snmp' }
         let(:params) do
@@ -57,10 +60,10 @@ describe 'telegraf::input' do
                 },
                 'host' => [
                   {
-                    'address'   => 'snmp_host1:161',
+                    'address' => 'snmp_host1:161',
                     'community' => 'read_only',
-                    'version'   => 2,
-                    'get_oids'  => ['1.3.6.1.2.1.1.5']
+                    'version' => 2,
+                    'get_oids' => ['1.3.6.1.2.1.1.5']
                   }
                 ]
               }
@@ -101,6 +104,7 @@ describe 'telegraf::input' do
           end
         end
       end
+
       context 'my_haproxy' do
         let(:title) { 'my_haproxy' }
         let(:params) do
@@ -156,7 +160,7 @@ describe 'telegraf::input' do
                   '/etc/telegraf/telegraf.d'
                 end
 
-          is_expected.to contain_file(dir + '/my_basicstats.conf').with(
+          is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
             ensure: 'absent'
           )
         end
@@ -187,7 +191,7 @@ describe 'telegraf::input' do
                   '/etc/telegraf/telegraf.d'
                 end
 
-          is_expected.to contain_file(dir + '/my_basicstats.conf').with(
+          is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
             ensure: 'absent'
           )
         end

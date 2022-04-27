@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper_acceptance'
 
 describe 'telegraf' do
@@ -25,7 +27,7 @@ describe 'telegraf' do
                   }],
               }
             }
-        EOS
+      EOS
 
       # Run it twice and test for idempotency
       apply_manifest(pp, catch_failures: true)

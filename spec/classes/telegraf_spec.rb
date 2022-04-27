@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'telegraf' do
@@ -13,6 +15,7 @@ describe 'telegraf' do
       it { is_expected.to contain_class('telegraf::install') }
       it { is_expected.to contain_class('telegraf::params') }
       it { is_expected.to contain_class('telegraf::service') }
+
       it do
         is_expected.to contain_class('telegraf').with(
           ensure: '1.3.5-1',
@@ -21,22 +24,22 @@ describe 'telegraf' do
           metric_buffer_limit: '10000',
           flush_interval: '60s',
           global_tags: {
-            'dc'   => 'dc',
-            'env'  => 'production',
+            'dc' => 'dc',
+            'env' => 'production',
             'role' => 'telegraf'
           },
           inputs: [{
             'cpu' => [{
-              'percpu'    => true,
-              'totalcpu'  => true,
+              'percpu' => true,
+              'totalcpu' => true,
               'fielddrop' => ['time_*']
             }],
             'disk' => [{
               'ignore_fs' => %w[tmpfs devtmpfs]
             }],
-            'diskio'      => [{}],
-            'kernel'      => [{}],
-            'exec'        => [
+            'diskio' => [{}],
+            'kernel' => [{}],
+            'exec' => [
               {
                 'commands' => ['who | wc -l']
               },
@@ -44,35 +47,35 @@ describe 'telegraf' do
                 'commands' => ["cat /proc/uptime | awk '{print $1}'"]
               }
             ],
-            'mem'         => [{}],
-            'net'         => [{
+            'mem' => [{}],
+            'net' => [{
               'interfaces' => ['eth0'],
-              'drop'       => ['net_icmp']
+              'drop' => ['net_icmp']
             }],
-            'netstat'     => [{}],
-            'ping'        => [{
-              'urls'    => ['10.10.10.1'],
-              'count'   => 1,
+            'netstat' => [{}],
+            'ping' => [{
+              'urls' => ['10.10.10.1'],
+              'count' => 1,
               'timeout' => 1.0
             }],
             'statsd' => [{
-              'service_address'          => ':8125',
-              'delete_gauges'            => false,
-              'delete_counters'          => false,
-              'delete_sets'              => false,
-              'delete_timings'           => true,
-              'percentiles'              => [90],
+              'service_address' => ':8125',
+              'delete_gauges' => false,
+              'delete_counters' => false,
+              'delete_sets' => false,
+              'delete_timings' => true,
+              'percentiles' => [90],
               'allowed_pending_messages' => 10_000,
-              'convert_names'            => true,
-              'percentile_limit'         => 1000,
-              'udp_packet_size'          => 1500
+              'convert_names' => true,
+              'percentile_limit' => 1000,
+              'udp_packet_size' => 1500
             }],
-            'swap'        => [{}],
-            'system'      => [{}]
+            'swap' => [{}],
+            'system' => [{}]
           }],
           outputs: [{
             'influxdb' => [{
-              'urls'     => ['http://influxdb.example.com:8086'],
+              'urls' => ['http://influxdb.example.com:8086'],
               'database' => 'telegraf',
               'username' => 'telegraf',
               'password' => 'telegraf'
@@ -80,6 +83,7 @@ describe 'telegraf' do
           }]
         )
       end
+
       case facts[:osfamily]
       when 'windows'
         it do
@@ -129,6 +133,7 @@ describe 'telegraf' do
             repo_location: 'https://repos.influxdata.com/'
           )
         end
+
         it do
           is_expected.to contain_class('telegraf').without(
             %w[
@@ -143,24 +148,28 @@ describe 'telegraf' do
       case facts[:kernel]
       when 'windows'
         it { is_expected.to contain_file('C:/Program Files/telegraf/telegraf.conf') }
+
         it {
           is_expected.to contain_file('C:/Program Files/telegraf/telegraf.d').
             with_purge(false)
         }
       when 'Darwin'
         it { is_expected.to contain_file('/usr/local/etc/telegraf/telegraf.conf') }
+
         it {
           is_expected.to contain_file('/usr/local/etc/telegraf/telegraf.d').
             with_purge(false)
         }
       when 'FreeBSD'
         it { is_expected.to contain_file('/usr/local/etc/telegraf.conf') }
+
         it {
           is_expected.to contain_file('/usr/local/etc/telegraf.d').
             with_purge(false)
         }
       else
         it { is_expected.to contain_file('/etc/telegraf/telegraf.conf') }
+
         it {
           is_expected.to contain_file('/etc/telegraf/telegraf.d').
             with_purge(false)
@@ -189,6 +198,7 @@ describe 'telegraf' do
         it { is_expected.to contain_package('telegraf') }
       end
       it { is_expected.to contain_service('telegraf') }
+
       case facts[:osfamily]
       when 'RedHat'
         it {
@@ -297,11 +307,11 @@ describe 'telegraf' do
                   '/etc/telegraf'
                 end
 
-          is_expected.to contain_file(dir + '/telegraf.conf').with(
+          is_expected.to contain_file("#{dir}/telegraf.conf").with(
             ensure: 'absent'
           )
 
-          is_expected.to contain_file(dir + '/telegraf.d').with(
+          is_expected.to contain_file("#{dir}/telegraf.d").with(
             ensure: 'absent',
             force: true
           )
