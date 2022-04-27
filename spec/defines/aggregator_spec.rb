@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'telegraf::aggregator' do
@@ -14,7 +16,7 @@ describe 'telegraf::aggregator' do
             plugin_type: 'basicstats',
             options: [
               {
-                'period'        => '30s',
+                'period' => '30s',
                 'drop_original' => false
               }
             ]
@@ -69,7 +71,7 @@ describe 'telegraf::aggregator' do
                   '/etc/telegraf/telegraf.d'
                 end
 
-          is_expected.to contain_file(dir + '/my_basicstats.conf').with(
+          is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
             ensure: 'absent'
           )
         end
@@ -100,7 +102,7 @@ describe 'telegraf::aggregator' do
                   '/etc/telegraf/telegraf.d'
                 end
 
-          is_expected.to contain_file(dir + '/my_basicstats.conf').with(
+          is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
             ensure: 'absent'
           )
         end

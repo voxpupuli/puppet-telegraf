@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'telegraf::processor' do
@@ -16,8 +18,8 @@ describe 'telegraf::processor' do
               {
                 'tags' => [
                   {
-                    'key'         => 'foo',
-                    'pattern'     => %r{^a*b+\d$}.source,
+                    'key' => 'foo',
+                    'pattern' => %r{^a*b+\d$}.source,
                     'replacement' => 'c${1}d'
                   }
                 ]
@@ -64,12 +66,12 @@ describe 'telegraf::processor' do
               {
                 'mapping' => [
                   {
-                    'field'          => 'status',
-                    'dest'           => 'status_code',
+                    'field' => 'status',
+                    'dest' => 'status_code',
                     'value_mappings' => {
                       'green' => 1,
                       'amber' => 2,
-                      'red'   => 3
+                      'red' => 3
                     }
                   }
                 ]
@@ -131,7 +133,7 @@ describe 'telegraf::processor' do
                   '/etc/telegraf/telegraf.d'
                 end
 
-          is_expected.to contain_file(dir + '/my_basicstats.conf').with(
+          is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
             ensure: 'absent'
           )
         end
@@ -162,7 +164,7 @@ describe 'telegraf::processor' do
                   '/etc/telegraf/telegraf.d'
                 end
 
-          is_expected.to contain_file(dir + '/my_basicstats.conf').with(
+          is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
             ensure: 'absent'
           )
         end
