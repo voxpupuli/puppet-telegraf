@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v4.2.0](https://github.com/voxpupuli/puppet-telegraf/tree/v4.2.0) (2022-05-13)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v4.1.0...v4.2.0)
+
+**Implemented enhancements:**
+
+- Add FreeBSD support, using telegraf as installed by pkg\(8\) [\#185](https://github.com/voxpupuli/puppet-telegraf/pull/185) ([rvstaveren](https://github.com/rvstaveren))
+- Add support for Debian 11 [\#181](https://github.com/voxpupuli/puppet-telegraf/pull/181) ([ZloeSabo](https://github.com/ZloeSabo))
+- Allow recent dependencies [\#178](https://github.com/voxpupuli/puppet-telegraf/pull/178) ([smortex](https://github.com/smortex))
+
+**Merged pull requests:**
+
+- Remove nodesets [\#187](https://github.com/voxpupuli/puppet-telegraf/pull/187) ([ekohl](https://github.com/ekohl))
+- cleanup .fixtures.yml [\#182](https://github.com/voxpupuli/puppet-telegraf/pull/182) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v4.1.0](https://github.com/voxpupuli/puppet-telegraf/tree/v4.1.0) (2021-07-15)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v4.0.0...v4.1.0)

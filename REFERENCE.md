@@ -14,10 +14,10 @@
 
 ### Defined types
 
-* [`telegraf::aggregator`](#telegrafaggregator)
-* [`telegraf::input`](#telegrafinput)
-* [`telegraf::output`](#telegrafoutput)
-* [`telegraf::processor`](#telegrafprocessor)
+* [`telegraf::aggregator`](#telegrafaggregator): == Define: telegraf::aggregator  A Puppet wrapper for discrete Telegraf aggregator files  === Parameters  [*options*]   List. Plugin options 
+* [`telegraf::input`](#telegrafinput): == Define: telegraf::input  A Puppet wrapper for discrete Telegraf input files  === Parameters  [*options*]   List. Plugin options for use in
+* [`telegraf::output`](#telegrafoutput): == Define: telegraf::output  A Puppet wrapper for discrete Telegraf output files  === Parameters  [*options*]   List. Plugin options for use 
+* [`telegraf::processor`](#telegrafprocessor): == Define: telegraf::processor  A Puppet wrapper for discrete Telegraf processor files  === Parameters  [*options*]   List. Plugin options fo
 
 ## Classes
 
@@ -499,7 +499,20 @@ Optionally manage the Telegraf service.
 
 ### <a name="telegrafaggregator"></a>`telegraf::aggregator`
 
-The telegraf::aggregator class.
+== Define: telegraf::aggregator
+
+A Puppet wrapper for discrete Telegraf aggregator files
+
+=== Parameters
+
+[*options*]
+  List. Plugin options for use in the aggregator template.
+
+[*plugin_type*]
+  String. Define the telegraf plugin type to use (default is $name)
+
+[*ensure*]
+  Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
 
 #### Parameters
 
@@ -507,6 +520,7 @@ The following parameters are available in the `telegraf::aggregator` defined typ
 
 * [`plugin_type`](#plugin_type)
 * [`options`](#options)
+* [`ensure`](#ensure)
 
 ##### <a name="plugin_type"></a>`plugin_type`
 
@@ -524,9 +538,30 @@ Data type: `Optional[Array]`
 
 Default value: ``undef``
 
+##### <a name="ensure"></a>`ensure`
+
+Data type: `Enum['present', 'absent']`
+
+
+
+Default value: `'present'`
+
 ### <a name="telegrafinput"></a>`telegraf::input`
 
-The telegraf::input class.
+== Define: telegraf::input
+
+A Puppet wrapper for discrete Telegraf input files
+
+=== Parameters
+
+[*options*]
+  List. Plugin options for use in the input template.
+
+[*plugin_type*]
+  String. Define the telegraf plugin type to use (default is $name)
+
+[*ensure*]
+  Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
 
 #### Parameters
 
@@ -534,6 +569,7 @@ The following parameters are available in the `telegraf::input` defined type:
 
 * [`plugin_type`](#plugin_type)
 * [`options`](#options)
+* [`ensure`](#ensure)
 
 ##### <a name="plugin_type"></a>`plugin_type`
 
@@ -551,9 +587,30 @@ Data type: `Array`
 
 Default value: `[]`
 
+##### <a name="ensure"></a>`ensure`
+
+Data type: `Enum['present', 'absent']`
+
+
+
+Default value: `'present'`
+
 ### <a name="telegrafoutput"></a>`telegraf::output`
 
-The telegraf::output class.
+== Define: telegraf::output
+
+A Puppet wrapper for discrete Telegraf output files
+
+=== Parameters
+
+[*options*]
+  List. Plugin options for use in the output template.
+
+[*plugin_type*]
+  String. Define the telegraf plugin type to use (default is $name)
+
+[*ensure*]
+  Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
 
 #### Parameters
 
@@ -561,6 +618,7 @@ The following parameters are available in the `telegraf::output` defined type:
 
 * [`plugin_type`](#plugin_type)
 * [`options`](#options)
+* [`ensure`](#ensure)
 
 ##### <a name="plugin_type"></a>`plugin_type`
 
@@ -578,9 +636,30 @@ Data type: `Optional[Array]`
 
 Default value: ``undef``
 
+##### <a name="ensure"></a>`ensure`
+
+Data type: `Enum['present', 'absent']`
+
+
+
+Default value: `'present'`
+
 ### <a name="telegrafprocessor"></a>`telegraf::processor`
 
-The telegraf::processor class.
+== Define: telegraf::processor
+
+A Puppet wrapper for discrete Telegraf processor files
+
+=== Parameters
+
+[*options*]
+  List. Plugin options for use in the processor template.
+
+[*plugin_type*]
+  String. Define the telegraf plugin type to use (default is $name)
+
+[*ensure*]
+  Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
 
 #### Parameters
 
@@ -588,6 +667,7 @@ The following parameters are available in the `telegraf::processor` defined type
 
 * [`plugin_type`](#plugin_type)
 * [`options`](#options)
+* [`ensure`](#ensure)
 
 ##### <a name="plugin_type"></a>`plugin_type`
 
@@ -604,4 +684,12 @@ Data type: `Optional[Array]`
 
 
 Default value: ``undef``
+
+##### <a name="ensure"></a>`ensure`
+
+Data type: `Enum['present', 'absent']`
+
+
+
+Default value: `'present'`
 
