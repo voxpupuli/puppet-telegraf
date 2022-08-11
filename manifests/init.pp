@@ -85,6 +85,9 @@
 # [*manage_archive*]
 #   Boolean.  Whether or not to manage InfluxData's tar archive.
 #
+# @param manage_user
+#   Whether or not to manage the 'telegraf' user when installing from archive.
+#
 # [*repo_location*]
 #   String. Alternate repo location. E.g. an interal mirror.
 #

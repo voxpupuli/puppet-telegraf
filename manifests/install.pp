@@ -76,6 +76,12 @@ class telegraf::install {
           }),
         }
       }
+      elsif $telegraf::manage_repo {
+        notify { 'telegraf repo warn':
+          message  => "Installing from repo on ${facts['os']['name']} is not supported",
+          loglevel => 'warning',
+        }
+      }
     }
     'Debian': {
       if $telegraf::manage_repo {
@@ -102,6 +108,12 @@ class telegraf::install {
         }
         Class['apt::update'] -> Package[$telegraf::package_name]
       }
+      elsif $telegraf::manage_archive {
+        notify { 'telegraf archive warn':
+          message  => "Installing from archive on ${facts['os']['name']} is not supported",
+          loglevel => 'warning',
+        }
+      }
     }
     'RedHat': {
       if $telegraf::manage_repo {
@@ -120,6 +132,41 @@ class telegraf::install {
           gpgcheck => 1,
         }
         Yumrepo['influxdata'] -> Package[$telegraf::package_name]
+      }
+      elsif $telegraf::manage_archive {
+        file { $telegraf::archive_install_dir:
+          ensure => directory,
+        }
+        archive { '/tmp/telegraf.tar.gz':
+          ensure          => present,
+          extract         => true,
+          extract_command => 'tar xfz %s --strip-components=2',
+          extract_path    => $telegraf::archive_install_dir,
+          source          => $telegraf::archive_location,
+          cleanup         => true,
+          require         => File[$telegraf::archive_install_dir],
+        }
+        file { '/etc/telegraf':
+          ensure => directory,
+        }
+        if $telegraf::manage_user {
+          group { $telegraf::config_file_group:
+            ensure => present,
+          }
+          user { $telegraf::config_file_owner:
+            ensure => present,
+            gid    => $telegraf::config_file_group,
+          }
+        }
+        file { '/etc/systemd/system/telegraf.service':
+          ensure => file,
+          source => 'puppet:///modules/telegraf/telegraf.service',
+        }
+        file { '/var/log/telegraf':
+          ensure => directory,
+          owner  => $telegraf::config_file_owner,
+          group  => $telegraf::config_file_group,
+        }
       }
     }
     'Suse': {
@@ -156,6 +203,12 @@ class telegraf::install {
           ensure => directory,
           owner  => $telegraf::config_file_owner,
           group  => $telegraf::config_file_group,
+        }
+      }
+      elsif $telegraf::manage_repo {
+        notify { 'telegraf repo warn':
+          message  => "Installing from repo on ${facts['os']['name']} is not supported",
+          loglevel => 'warning',
         }
       }
     }
