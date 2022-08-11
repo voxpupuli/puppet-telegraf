@@ -138,6 +138,7 @@ class telegraf (
   Boolean $manage_service                        = $telegraf::params::manage_service,
   Boolean $manage_repo                           = $telegraf::params::manage_repo,
   Boolean $manage_archive                        = $telegraf::params::manage_archive,
+  Boolean $manage_user                           = $telegraf::params::manage_user,
   Optional[String] $repo_location                = $telegraf::params::repo_location,
   Optional[String] $archive_location             = $telegraf::params::archive_location,
   Optional[String[1]] $archive_version           = $telegraf::params::archive_version,
