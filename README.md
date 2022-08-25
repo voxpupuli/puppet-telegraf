@@ -121,6 +121,16 @@ telegraf::outputs:
       database: 'influxdb'
       username: 'telegraf'
       password: 'telegraf'
+telegraf::processors:
+  replace_disk_type:
+    plugin_type: regex
+    options:
+      - namepass: ['diskio']
+        order: 1
+        tags:
+          - key: 'disk_type'
+            pattern: '^dos$'
+            replacement: 'FAT'
 ```
 
 `telegraf::inputs` accepts a hash of any inputs that you'd like to configure. However, you can also optionally define individual inputs using the `telegraf::input` type - this suits installations where, for example, a core module sets the defaults and other modules import it.

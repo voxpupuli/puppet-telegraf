@@ -74,6 +74,8 @@
 # [*global_tags*]
 #   Hash.  Global tags as a key-value pair.
 #
+# @param processors Specify processors and their configuration.
+#
 # [*manage_service*]
 #   Boolean.  Whether to manage the telegraf service or not.
 #
@@ -132,6 +134,7 @@ class telegraf (
   Hash    $inputs                                = $telegraf::params::inputs,
   Hash    $outputs                               = $telegraf::params::outputs,
   Hash    $global_tags                           = $telegraf::params::global_tags,
+  Hash    $processors                            = {},
   Boolean $manage_service                        = $telegraf::params::manage_service,
   Boolean $manage_repo                           = $telegraf::params::manage_repo,
   Boolean $manage_archive                        = $telegraf::params::manage_archive,
@@ -162,6 +165,12 @@ class telegraf (
   contain telegraf::install
   contain telegraf::config
   contain telegraf::service
+
+  $processors.each |$processor, $attributes| {
+    telegraf::processor { $processor:
+      * => $attributes,
+    }
+  }
 
   Class['telegraf::install'] -> Class['telegraf::config'] ~> Class['telegraf::service']
   Class['telegraf::install'] ~> Class['telegraf::service']
