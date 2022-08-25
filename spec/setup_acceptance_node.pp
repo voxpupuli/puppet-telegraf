@@ -4,3 +4,8 @@ if $facts['os']['name'] == 'Ubuntu' and versioncmp($facts['puppetversion'], '7.0
     ensure => present,
   }
 }
+if $facts['os']['family'] == 'Debian' {
+  package { 'apt-transport-https':
+    ensure => 'installed',
+  }
+}
