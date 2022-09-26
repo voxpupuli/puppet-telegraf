@@ -290,6 +290,54 @@ describe 'telegraf' do
         end
       end
 
+      # These next two blocks cover cases where manage_repo and manage_archive are set to something other than the defaults
+      describe 'manage archive and do not manage repo' do
+        let(:pre_condition) do
+          <<-PRE_COND
+          class{ 'telegraf':
+            manage_repo => false,
+            manage_archive => true,
+            manage_user => true,
+            archive_install_dir => '/opt/telegraf',
+            archive_location => "https://dl.influxdata.com/telegraf/releases/telegraf-1.22.2_linux_amd64.tar.gz",
+          }
+          PRE_COND
+        end
+
+        it {
+          case facts[:osfamily]
+          when 'RedHat'
+            is_expected.to compile
+            is_expected.to contain_archive('/tmp/telegraf.tar.gz')
+            is_expected.to contain_file('/etc/telegraf').with_ensure('directory')
+            is_expected.to contain_file('/opt/telegraf').with_ensure('directory')
+            is_expected.to contain_file('/var/log/telegraf').with_ensure('directory')
+            is_expected.to contain_file('/etc/systemd/system/telegraf.service')
+          when 'Debian'
+            is_expected.to contain_notify('telegraf archive warn').with(loglevel: 'warning')
+          end
+        }
+      end
+
+      describe 'manage repo and do not manage archive' do
+        let(:pre_condition) do
+          <<-PRE_COND
+          class{ 'telegraf':
+            manage_repo => true,
+            manage_archive => false,
+          }
+          PRE_COND
+        end
+
+        it {
+          case facts[:osfamily]
+          when 'Suse', 'Darwin'
+            is_expected.to compile
+            is_expected.to contain_notify('telegraf repo warn').with(loglevel: 'warning')
+          end
+        }
+      end
+
       describe 'with ensure absent' do
         let(:pre_condition) do
           [
