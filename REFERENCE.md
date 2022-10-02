@@ -136,6 +136,8 @@ A Puppet module for installing InfluxData's Telegraf
 
 The following parameters are available in the `telegraf` class:
 
+* [`processors`](#processors)
+* [`manage_user`](#manage_user)
 * [`package_name`](#package_name)
 * [`ensure`](#ensure)
 * [`config_file`](#config_file)
@@ -173,6 +175,22 @@ The following parameters are available in the `telegraf` class:
 * [`service_enable`](#service_enable)
 * [`service_ensure`](#service_ensure)
 * [`install_options`](#install_options)
+
+##### <a name="processors"></a>`processors`
+
+Data type: `Hash`
+
+Specify processors and their configuration.
+
+Default value: `{}`
+
+##### <a name="manage_user"></a>`manage_user`
+
+Data type: `Boolean`
+
+Whether or not to manage the 'telegraf' user when installing from archive.
+
+Default value: `$telegraf::params::manage_user`
 
 ##### <a name="package_name"></a>`package_name`
 

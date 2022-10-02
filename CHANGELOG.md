@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v4.3.0](https://github.com/voxpupuli/puppet-telegraf/tree/v4.3.0) (2022-09-27)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v4.2.0...v4.3.0)
+
+**Implemented enhancements:**
+
+- Add support for archive install on EL [\#190](https://github.com/voxpupuli/puppet-telegraf/pull/190) ([m0dular](https://github.com/m0dular))
+- Configure processors via Hiera [\#183](https://github.com/voxpupuli/puppet-telegraf/pull/183) ([deric](https://github.com/deric))
+
+**Merged pull requests:**
+
+- install apt-transport-https in acceptance tests [\#191](https://github.com/voxpupuli/puppet-telegraf/pull/191) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v4.2.0](https://github.com/voxpupuli/puppet-telegraf/tree/v4.2.0) (2022-05-13)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v4.1.0...v4.2.0)
@@ -164,7 +177,7 @@ These should not affect the functionality of the module.
 - Updates for version 2.0 of this module [\#92](https://github.com/voxpupuli/puppet-telegraf/pull/92) ([yankcrime](https://github.com/yankcrime))
 - migrate from stdlib validation to puppet datatypes [\#90](https://github.com/voxpupuli/puppet-telegraf/pull/90) ([lobeck](https://github.com/lobeck))
 - Adding support for custom repo location url. [\#89](https://github.com/voxpupuli/puppet-telegraf/pull/89) ([tardoe](https://github.com/tardoe))
-- Replace deprecated hiera\_hash function with lookup function [\#82](https://github.com/voxpupuli/puppet-telegraf/pull/82) ([rkcpi](https://github.com/rkcpi))
+- Replace deprecated hiera\_hash function with lookup function [\#82](https://github.com/voxpupuli/puppet-telegraf/pull/82) ([sandra-thieme](https://github.com/sandra-thieme))
 - replace toml templates with toml-rb gem [\#80](https://github.com/voxpupuli/puppet-telegraf/pull/80) ([nrdmn](https://github.com/nrdmn))
 
 ## [1.5.0](https://github.com/voxpupuli/puppet-telegraf/tree/1.5.0) (2017-08-04)
