@@ -1,17 +1,10 @@
-# == Define: telegraf::processor
 #
-# A Puppet wrapper for discrete Telegraf processor files
+# @summary A Puppet wrapper for discrete Telegraf processor files
 #
-# === Parameters
 #
-# [*options*]
-#   List. Plugin options for use in the processor template.
-#
-# [*plugin_type*]
-#   String. Define the telegraf plugin type to use (default is $name)
-#
-# [*ensure*]
-#   Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
+# @param options Plugin options for use in the processor template
+# @param plugin_type Define the telegraf plugin type to use
+# @param ensure Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
 #
 define telegraf::processor (
   String          $plugin_type      = $name,

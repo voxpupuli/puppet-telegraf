@@ -1,116 +1,45 @@
-# == Class: telegraf
 #
-# A Puppet module for installing InfluxData's Telegraf
+# @summary A Puppet module for installing InfluxData's Telegraf
 #
-# === Parameters
-#
-# [*package_name*]
-#   String. Package name.
-#
-# [*ensure*]
-#   String. State of the telegraf package. You can also specify a
-#   particular version to install.
-#
-# [*config_file*]
-#   String. Path to the configuration file.
-#
-# [*logfile*]
-#   String. Path to the log file.
-#
-# [*config_file_owner*]
-#   String. User to own the telegraf config file.
-#
-# [*config_file_group*]
-#   String. Group to own the telegraf config file.
-#
-# [*config_file_mode*]
-#   String. File mode for the telegraf config file.
-#
-# [*config_folder*]
-#   String. Path of additional telegraf config folder.
-#
-# [*config_folder_mode*]
-#   String. File mode for the telegraf config folder.
-#
-# [*hostname*]
-#   String. Override default hostname used to identify this agent.
-#
-# [*omit_hostname*]
-#   Boolean. Do not set the "host" tag in the telegraf agent.
-#
-# [*interval*]
-#   String. Default data collection interval for all inputs.
-#
-# [*round_interval*]
-#   Boolean. Rounds collection interval to 'interval'
-#
-# [*metric_batch_size*] Integer. The maximum batch size to allow to
-#   accumulate before sending a flush to the configured outputs
-#
-# [*metric_buffer_limit*] Integer.  The absolute maximum number of
-#   metrics that will accumulate before metrics are dropped.
-#
-# [*collection_jitter*]
-#   String.  Sleep for a random time within jitter before collecting.
-#
-# [*flush_interval*]
-#   String. Default flushing interval for all outputs.
-#
-# [*flush_jitter*]
-#   String.  Jitter the flush interval by an amount.
-#
-# [*debug*]
-#   Boolean. Run telegraf in debug mode.
-#
-# [*quiet*]
-#   Boolean.  Run telegraf in quiet mode.
-#
-# [*outputs*]
-#   Hash. Specify output plugins and their options.
-#
-# [*inputs*]
-#   Hash.  Specify input plugins and their options.
-#
-# [*global_tags*]
-#   Hash.  Global tags as a key-value pair.
-#
-# @param processors Specify processors and their configuration.
-#
-# [*manage_service*]
-#   Boolean.  Whether to manage the telegraf service or not.
-#
-# [*manage_repo*]
-#   Boolean.  Whether or not to manage InfluxData's repo.
-#
-# [*manage_archive*]
-#   Boolean.  Whether or not to manage InfluxData's tar archive.
-#
-# @param manage_user
-#   Whether or not to manage the 'telegraf' user when installing from archive.
-#
-# [*repo_location*]
-#   String. Alternate repo location. E.g. an interal mirror.
-#
-# [*archive_location*]
-#   String. Alternate archive location. E.g. an interal mirror.
-#
-# [*archive_version*]
-#   String. Specify a telegraf archive version. E.g. 1.17.2.
-#
-# [*archive_install_dir*]
-#   String. Location to extract archive to must be an absolute path
-#
-# [*install_options*]
-#   String or Array. Additional options to pass when installing package
-#
-# [*purge_config_fragments*]
-#   Boolean. Whether unmanaged configuration fragments should be removed.
-#
-# [*repo_type*]
-#   String.  Which repo (stable, unstable, nightly) to use
-#
-# [*windows_package_url*]
-#   String.  URL for windows telegraf chocolatey repo
+# @param package_name Package name
+# @param ensure State of the telegraf package. You can also specify a particular version to install
+# @param config_file Path to the configuration file
+# @param logfile Path to the log file
+# @param config_file_owner User to own the telegraf config file
+# @param config_file_group Group to own the telegraf config file
+# @param config_file_mode File mode for the telegraf config file
+# @param config_folder Path of additional telegraf config folder
+# @param config_folder_mode File mode for the telegraf config folder
+# @param hostname Override default hostname used to identify this agent
+# @param omit_hostname Do not set the "host" tag in the telegraf agent
+# @param interval Default data collection interval for all inputs
+# @param round_interval Rounds collection interval to 'interval'
+# @param metric_batch_size The maximum batch size to allow to accumulate before sending a flush to the configured outputs
+# @param metric_buffer_limit The absolute maximum number of metrics that will accumulate before metrics are dropped
+# @param collection_jitter Sleep for a random time within jitter before collecting
+# @param flush_interval Default flushing interval for all outputs
+# @param flush_jitter Jitter the flush interval by an amount
+# @param debug Run telegraf in debug mode
+# @param quiet Run telegraf in quiet mode
+# @param outputs Specify output plugins and their options
+# @param inputs Specify input plugins and their options
+# @param global_tags Global tags as a key-value pair
+# @param processors Specify processors and their configuration
+# @param manage_service Whether to manage the telegraf service or not
+# @param manage_repo Whether or not to manage InfluxData's repo
+# @param manage_archive Whether or not to manage InfluxData's tar archive
+# @param manage_user Whether or not to manage the 'telegraf' user when installing from archive
+# @param repo_location Alternate repo location. E.g. an interal mirror
+# @param archive_location Alternate archive location. E.g. an interal mirror
+# @param archive_version Specify a telegraf archive version. E.g. 1.17.2
+# @param archive_install_dir Location to extract archive to must be an absolute path
+# @param install_options Additional options to pass when installing package
+# @param purge_config_fragments Whether unmanaged configuration fragments should be removed
+# @param repo_type Which repo (stable, unstable, nightly) to use
+# @param windows_package_url URL for windows telegraf chocolatey repo
+# @param precision
+# @param service_enable enable state for the telegraf service
+# @param service_ensure ensure state for the telegraf service
 #
 class telegraf (
   String  $package_name                          = $telegraf::params::package_name,

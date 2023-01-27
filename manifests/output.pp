@@ -1,17 +1,9 @@
-# == Define: telegraf::output
 #
-# A Puppet wrapper for discrete Telegraf output files
+# @summary A Puppet wrapper for discrete Telegraf output files
 #
-# === Parameters
-#
-# [*options*]
-#   List. Plugin options for use in the output template.
-#
-# [*plugin_type*]
-#   String. Define the telegraf plugin type to use (default is $name)
-#
-# [*ensure*]
-#   Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
+# @param options Plugin options for use in the output template.
+# @param plugin_type Define the telegraf plugin type to use (default is $name)
+# @param ensure Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
 #
 define telegraf::output (
   String          $plugin_type      = $name,
