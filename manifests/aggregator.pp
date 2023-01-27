@@ -1,17 +1,9 @@
-# == Define: telegraf::aggregator
 #
-# A Puppet wrapper for discrete Telegraf aggregator files
+# @summary A Puppet wrapper for discrete Telegraf aggregator files
 #
-# === Parameters
-#
-# [*options*]
-#   List. Plugin options for use in the aggregator template.
-#
-# [*plugin_type*]
-#   String. Define the telegraf plugin type to use (default is $name)
-#
-# [*ensure*]
-#   Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
+# @param options Plugin options for use in the aggregator template
+# @param plugin_type Define the telegraf plugin type to use
+# @param ensure Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
 #
 define telegraf::aggregator (
   String          $plugin_type      = $name,

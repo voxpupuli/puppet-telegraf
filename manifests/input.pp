@@ -1,17 +1,9 @@
-# == Define: telegraf::input
 #
-# A Puppet wrapper for discrete Telegraf input files
+# @summary A Puppet wrapper for discrete Telegraf input files
 #
-# === Parameters
-#
-# [*options*]
-#   List. Plugin options for use in the input template.
-#
-# [*plugin_type*]
-#   String. Define the telegraf plugin type to use (default is $name)
-#
-# [*ensure*]
-#   Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
+# @param options Plugin options for use in the input template.
+# @param plugin_type Define the telegraf plugin type to use (default is $name)
+# @param ensure Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
 #
 define telegraf::input (
   String $plugin_type               = $name,

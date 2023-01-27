@@ -4,7 +4,16 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v4.3.0](https://github.com/voxpupuli/puppet-telegraf/tree/v4.3.0) (2022-09-27)
+## [v4.3.1](https://github.com/voxpupuli/puppet-telegraf/tree/v4.3.1) (2023-01-27)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v4.3.0...v4.3.1)
+
+**Merged pull requests:**
+
+- chore: update influxdata repo gpg key [\#197](https://github.com/voxpupuli/puppet-telegraf/pull/197) ([powersj](https://github.com/powersj))
+- Update APT dependancy [\#194](https://github.com/voxpupuli/puppet-telegraf/pull/194) ([MartyEwings](https://github.com/MartyEwings))
+
+## [v4.3.0](https://github.com/voxpupuli/puppet-telegraf/tree/v4.3.0) (2022-10-02)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v4.2.0...v4.3.0)
 
