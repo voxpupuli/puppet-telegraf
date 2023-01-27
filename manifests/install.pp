@@ -128,7 +128,7 @@ class telegraf::install {
           descr    => "InfluxData Repository - ${facts['os']['name']} \$releasever",
           enabled  => 1,
           baseurl  => $_baseurl,
-          gpgkey   => "${telegraf::repo_location}influxdb.key",
+          gpgkey   => "${telegraf::repo_location}influxdata-archive_compat.key",
           gpgcheck => 1,
         }
         Yumrepo['influxdata'] -> Package[$telegraf::package_name]
