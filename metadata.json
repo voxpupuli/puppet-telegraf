@@ -81,6 +81,9 @@
         "12",
         "13"
       ]
+    },
+    {
+      "operatingsystem": "Gentoo"
     }
   ],
   "dependencies": [
