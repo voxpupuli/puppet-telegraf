@@ -223,7 +223,7 @@ class telegraf::install {
         ensure  => file,
         owner   => 'root',
         group   => 'root',
-        content => 'net-analyzer/telegraf ~amd64',
+        content => "net-analyzer/telegraf ~amd64\n",
       }
     }
     default: {
