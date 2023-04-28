@@ -23,14 +23,12 @@
     {
       "operatingsystem": "Raspbian",
       "operatingsystemrelease": [
-        "9",
         "10"
       ]
     },
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "9",
         "10",
         "11"
       ]
