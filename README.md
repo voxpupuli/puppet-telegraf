@@ -320,12 +320,7 @@ The latest version (2.0) of this module requires Puppet 4 or newer.  If you're l
 
 Furthermore, the introduction of toml-rb means that Ruby 1.9 or newer is also a requirement.
 
-This module has been developed and tested against:
-
- * Ubuntu 16.04 / 18.04
- * Debian 9/10
- * CentOS / RHEL 6 / 7 / 8
- * Windows 2008, 2008 R2, 2012, 2012 R2
+This module has been developed and tested against the operating systems and their version in [metadata.json](metadata.json)
 
 Support for other distributions / operating systems is planned.  Feel free to assist with development in this regard!
 
