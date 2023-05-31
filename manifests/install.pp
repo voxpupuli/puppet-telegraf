@@ -142,6 +142,7 @@ class telegraf::install {
           extract         => true,
           extract_command => 'tar xfz %s --strip-components=2',
           extract_path    => $telegraf::archive_install_dir,
+          creates         => "${telegraf::archive_install_dir}/usr/bin/telegraf",
           source          => $telegraf::archive_location,
           cleanup         => true,
           require         => File[$telegraf::archive_install_dir],
@@ -180,6 +181,7 @@ class telegraf::install {
           extract_command => 'tar xfz %s --strip-components=2',
           extract_path    => $telegraf::archive_install_dir,
           source          => $telegraf::archive_location,
+          creates         => "${telegraf::archive_install_dir}/usr/bin/telegraf",
           cleanup         => true,
           require         => File[$telegraf::archive_install_dir],
         }
