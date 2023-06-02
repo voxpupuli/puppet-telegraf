@@ -20,7 +20,7 @@ define telegraf::processor (
 
   file { "${telegraf::config_folder}/${name}.conf":
     ensure  => $_ensure,
-    content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'processors'=>{'${plugin_type}'=>@options}}) %>"),
+    content => stdlib::to_toml({ 'processors'=> { $plugin_type=> $options } }),
     require => Class['telegraf::config'],
     notify  => Class['telegraf::service'],
   }

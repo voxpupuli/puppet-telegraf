@@ -19,7 +19,7 @@ define telegraf::output (
 
   file { "${telegraf::config_folder}/${name}.conf":
     ensure  => $_ensure,
-    content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'outputs'=>{'${plugin_type}'=>@options}}) %>"),
+    content => stdlib::to_toml({ 'outputs'=> { $plugin_type=> $options } }),
     require => Class['telegraf::config'],
     notify  => Class['telegraf::service'],
   }

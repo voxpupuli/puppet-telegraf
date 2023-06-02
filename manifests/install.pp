@@ -238,7 +238,7 @@ class telegraf::install {
     }
   } else {
     if ! $telegraf::manage_archive {
-      ensure_packages([$telegraf::package_name],
+      stdlib::ensure_packages([$telegraf::package_name],
         {
           ensure          => $telegraf::ensure,
           install_options => $telegraf::install_options,
