@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.0.0](https://github.com/voxpupuli/puppet-telegraf/tree/v5.0.0) (2023-06-14)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v4.3.1...v5.0.0)
+
+**Breaking changes:**
+
+- use stdlib::to\_toml instead of toml gem [\#207](https://github.com/voxpupuli/puppet-telegraf/pull/207) ([bastelfreak](https://github.com/bastelfreak))
+- Drop Puppet 6, Debian 9, Ubuntu 16.04 support [\#203](https://github.com/voxpupuli/puppet-telegraf/pull/203) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add Ubuntu 20.04/22.04 support [\#209](https://github.com/voxpupuli/puppet-telegraf/pull/209) ([bastelfreak](https://github.com/bastelfreak))
+- Add Rocky/AlmaLinux/EL9 support [\#208](https://github.com/voxpupuli/puppet-telegraf/pull/208) ([bastelfreak](https://github.com/bastelfreak))
+
+**Fixed bugs:**
+
+- Add creates param to all archive resources [\#206](https://github.com/voxpupuli/puppet-telegraf/pull/206) ([m0dular](https://github.com/m0dular))
+
+**Closed issues:**
+
+- Add creates parameter to all archive resources [\#205](https://github.com/voxpupuli/puppet-telegraf/issues/205)
+
 ## [v4.3.1](https://github.com/voxpupuli/puppet-telegraf/tree/v4.3.1) (2023-01-27)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v4.3.0...v4.3.1)
