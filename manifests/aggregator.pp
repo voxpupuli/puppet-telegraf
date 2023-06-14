@@ -19,7 +19,7 @@ define telegraf::aggregator (
 
   file { "${telegraf::config_folder}/${name}.conf":
     ensure  => $_ensure,
-    content => inline_template("<%= require 'toml-rb'; TomlRB.dump({'aggregators'=>{'${plugin_type}'=>@options}}) %>"),
+    content => stdlib::to_toml({ 'aggregators'=> { $plugin_type=> $options } }),
     require => Class['telegraf::config'],
     notify  => Class['telegraf::service'],
   }

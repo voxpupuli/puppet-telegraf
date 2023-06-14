@@ -33,7 +33,7 @@ This module has the following dependencies:
 for TLS-enabled repos in place.  This can be achieved by installing the
 `apt-transport-https` package.
 
-This module **requires** the [toml-rb](https://github.com/eMancu/toml-rb) gem. Either install the gem using puppet's native gem provider, [puppetserver_gem](https://forge.puppetlabs.com/puppetlabs/puppetserver_gem), [pe_gem](https://forge.puppetlabs.com/puppetlabs/pe_gem), [pe_puppetserver_gem](https://forge.puppetlabs.com/puppetlabs/pe_puppetserver_gem), or manually using one of the following methods:
+**Up to version v4.3.1** this module **requires** the [toml-rb](https://github.com/eMancu/toml-rb) gem. Either install the gem using puppet's native gem provider, [puppetserver_gem](https://forge.puppetlabs.com/puppetlabs/puppetserver_gem), [pe_gem](https://forge.puppetlabs.com/puppetlabs/pe_gem), [pe_puppetserver_gem](https://forge.puppetlabs.com/puppetlabs/pe_puppetserver_gem), or manually using one of the following methods:
 ```
   # apply or puppet-master
   gem install toml-rb
@@ -42,6 +42,8 @@ This module **requires** the [toml-rb](https://github.com/eMancu/toml-rb) gem. E
   # AIO or PE puppetserver
   /opt/puppet/bin/puppetserver gem install toml-rb
 ```
+
+The toml-rb gem got replaced with `stdlib::to_toml`. This requires puppetlabs/stdlib 9.
 
 In addition, for Windows, the following dependencies must be met:
 
