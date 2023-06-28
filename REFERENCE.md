@@ -33,6 +33,9 @@ The following parameters are available in the `telegraf` class:
 * [`ensure`](#-telegraf--ensure)
 * [`config_file`](#-telegraf--config_file)
 * [`logfile`](#-telegraf--logfile)
+* [`logfile_rotation_interval`](#-telegraf--logfile_rotation_interval)
+* [`logfile_rotation_max_size`](#-telegraf--logfile_rotation_max_size)
+* [`logfile_rotation_max_archives`](#-telegraf--logfile_rotation_max_archives)
 * [`config_file_owner`](#-telegraf--config_file_owner)
 * [`config_file_group`](#-telegraf--config_file_group)
 * [`config_file_mode`](#-telegraf--config_file_mode)
@@ -100,6 +103,30 @@ Data type: `String`
 Path to the log file
 
 Default value: `$telegraf::params::logfile`
+
+##### <a name="-telegraf--logfile_rotation_interval"></a>`logfile_rotation_interval`
+
+Data type: `String`
+
+The logfile will be rotated after the time interval specified, e.g. "1d". 0 = off. Default = "0h"
+
+Default value: `$telegraf::params::logfile_rotation_interval`
+
+##### <a name="-telegraf--logfile_rotation_max_size"></a>`logfile_rotation_max_size`
+
+Data type: `String`
+
+The logfile will be rotated when it becomes larger than the specified size, e.g. "10MB". 0 = off.  Default = "0MB"
+
+Default value: `$telegraf::params::logfile_rotation_max_size`
+
+##### <a name="-telegraf--logfile_rotation_max_archives"></a>`logfile_rotation_max_archives`
+
+Data type: `Integer`
+
+Maximum number of rotated archives to keep, older logs are deleted.  If set to -1, no archives are removed. Default = 5
+
+Default value: `$telegraf::params::logfile_rotation_max_archives`
 
 ##### <a name="-telegraf--config_file_owner"></a>`config_file_owner`
 
