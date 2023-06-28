@@ -5,6 +5,9 @@
 # @param ensure State of the telegraf package. You can also specify a particular version to install
 # @param config_file Path to the configuration file
 # @param logfile Path to the log file
+# @param logfile_rotation_interval The logfile will be rotated after the time interval specified, e.g. "1d". 0 = off. Default = "0h"
+# @param logfile_rotation_max_size The logfile will be rotated when it becomes larger than the specified size, e.g. "10MB". 0 = off.  Default = "0MB"
+# @param logfile_rotation_max_archives Maximum number of rotated archives to keep, older logs are deleted.  If set to -1, no archives are removed. Default = 5
 # @param config_file_owner User to own the telegraf config file
 # @param config_file_group Group to own the telegraf config file
 # @param config_file_mode File mode for the telegraf config file
@@ -61,6 +64,9 @@ class telegraf (
   String  $flush_jitter                          = $telegraf::params::flush_jitter,
   String  $precision                             = $telegraf::params::precision,
   String  $logfile                               = $telegraf::params::logfile,
+  String  $logfile_rotation_interval             = $telegraf::params::logfile_rotation_interval,
+  String  $logfile_rotation_max_size             = $telegraf::params::logfile_rotation_max_size,
+  Integer $logfile_rotation_max_archives         = $telegraf::params::logfile_rotation_max_archives,
   Boolean $debug                                 = $telegraf::params::debug,
   Boolean $quiet                                 = $telegraf::params::quiet,
   Hash    $inputs                                = $telegraf::params::inputs,

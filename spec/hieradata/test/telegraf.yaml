@@ -2,6 +2,9 @@
 telegraf::ensure: "1.3.5-1"
 telegraf::interval: "60s"
 telegraf::flush_interval: "60s"
+telegraf::logfile_rotation_interval: "0h"
+telegraf::logfile_rotation_max_size: "0MB"
+telegraf::logfile_rotation_max_archives: 5
 telegraf::config_file_mode: '0640'
 telegraf::config_folder_mode: '0770'
 telegraf::archive_install_dir: null
