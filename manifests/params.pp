@@ -84,6 +84,26 @@ class telegraf::params {
       $service_hasstatus    = true
       $service_restart      = 'pkill -HUP telegraf'
     }
+    'Gentoo': {
+      $config_file          = '/etc/telegraf/telegraf.conf'
+      $config_file_owner    = 'telegraf'
+      $config_file_group    = 'telegraf'
+      $config_file_mode     = '0640'
+      $config_folder        = '/etc/telegraf/telegraf.d'
+      $config_folder_mode   = '0770'
+      $logfile              = ''
+      $manage_repo          = false
+      $manage_archive       = false
+      $manage_user          = false
+      $archive_install_dir  = undef
+      $archive_location     = undef
+      $archive_version      = undef
+      $repo_location        = undef
+      $service_enable       = true
+      $service_ensure       = running
+      $service_hasstatus    = true
+      $service_restart      = 'pkill -HUP telegraf'
+    }
     default: {
       $config_file          = '/etc/telegraf/telegraf.conf'
       $config_file_owner    = 'telegraf'
@@ -105,7 +125,11 @@ class telegraf::params {
       $service_restart      = 'pkill -HUP telegraf'
     }
   }
-  $package_name           = 'telegraf'
+  if $facts['os']['family'] == 'Gentoo' {
+    $package_name         = 'net-analyzer/telegraf'
+  } else {
+    $package_name         = 'telegraf'
+  }
   $ensure                 = 'present'
   $install_options        = []
   $hostname               = $trusted['hostname']

@@ -209,6 +209,8 @@ describe 'telegraf' do
         it { is_expected.to contain_file('/usr/local/bin/telegraf').with_ensure('link') }
         it { is_expected.to contain_file('/usr/local/etc/telegraf').with_ensure('link') }
         it { is_expected.to contain_file('/Library/LaunchDaemons/telegraf.plist') }
+      when 'Gentoo'
+        it { is_expected.to contain_package('net-analyzer/telegraf') }
       else
         it { is_expected.to contain_package('telegraf') }
       end

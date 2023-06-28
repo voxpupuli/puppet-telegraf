@@ -220,8 +220,16 @@ class telegraf::install {
     'FreeBSD': {
       # repo is not applicable to windows
     }
+    'Gentoo': {
+      file { '/etc/portage/package.accept_keywords/telegraf':
+        ensure  => file,
+        owner   => 'root',
+        group   => 'root',
+        content => "net-analyzer/telegraf ~amd64\n",
+      }
+    }
     default: {
-      fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu, Darwin, FreeBSD and Windows repositories and Suse archives are supported at this time')
+      fail('Only RedHat, CentOS, OracleLinux, Debian, Ubuntu, Darwin, FreeBSD, Gentoo and Windows repositories and Suse archives are supported at this time')
     }
   }
 
