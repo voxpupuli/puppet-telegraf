@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [Unreleased](https://github.com/voxpupuli/puppet-telegraf/tree/HEAD)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v5.0.0...HEAD)
+
+**Implemented enhancements:**
+
+- Make log rotation configurable [\#211](https://github.com/voxpupuli/puppet-telegraf/pull/211) ([AndrewLest](https://github.com/AndrewLest))
+
 ## [v5.0.0](https://github.com/voxpupuli/puppet-telegraf/tree/v5.0.0) (2023-06-14)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v4.3.1...v5.0.0)
