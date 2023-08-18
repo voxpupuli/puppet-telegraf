@@ -181,7 +181,7 @@ describe 'telegraf' do
       }
 
       it {
-        is_expected.to contain_file("#{config_dir}/telegraf.d/rename_processor.conf").\
+        is_expected.to contain_file("#{config_dir}/telegraf.d/rename_processor.conf"). \
           with_content(<<~STRING
             [[processors.rename]]
             namepass = ["diskio"]
@@ -222,7 +222,7 @@ describe 'telegraf' do
         it {
           is_expected.to contain_yumrepo('influxdata').
             with(
-              baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable"
+              baseurl: 'https://repos.influxdata.com/rhel/$releasever/$basearch/stable'
             )
         }
       end
@@ -241,7 +241,7 @@ describe 'telegraf' do
           it {
             is_expected.to contain_yumrepo('influxdata').
               with(
-                baseurl: "https://repos.influxdata.com/rhel/\$releasever/\$basearch/unstable"
+                baseurl: 'https://repos.influxdata.com/rhel/$releasever/$basearch/unstable'
               )
           }
         end
