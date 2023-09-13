@@ -85,22 +85,12 @@ class telegraf::install {
     }
     'Debian': {
       if $telegraf::manage_repo {
-        if $facts['os']['name'] == 'Raspbian' {
-          $distro = $facts['os']['family'].downcase
-        } else {
-          $distro = $facts['os']['name'].downcase
-        }
-        if $facts.dig('os','distro','codename') {
-          $release = $facts['os']['distro']['codename']
-        } else {
-          $release = $facts['os']['lsb']['codename']
-        }
         apt::source { 'influxdata':
           ensure   => $telegraf::ensure_status,
           comment  => 'Mirror for InfluxData packages',
-          location => "${telegraf::repo_location}${distro}",
-          release  => $release,
-          repos    => $telegraf::repo_type,
+          location => "${telegraf::repo_location}debian",
+          release  => 'stable',
+          repos    => 'main',
           key      => {
             'id'     => '9D539D90D3328DC7D6C8D3B9D8FF8E1F7DF8B07E',
             'source' => "${telegraf::repo_location}influxdata-archive_compat.key",
