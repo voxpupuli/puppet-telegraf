@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.2.0](https://github.com/voxpupuli/puppet-telegraf/tree/v5.2.0) (2023-09-19)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v5.1.0...v5.2.0)
+
+**Implemented enhancements:**
+
+- Add Puppet 8 support [\#214](https://github.com/voxpupuli/puppet-telegraf/pull/214) ([bastelfreak](https://github.com/bastelfreak))
+
+**Closed issues:**
+
+- Installs from influxdata repo can use stable repos [\#198](https://github.com/voxpupuli/puppet-telegraf/issues/198)
+
+**Merged pull requests:**
+
+- Always install from the stable release class on Debian and Ubuntu [\#217](https://github.com/voxpupuli/puppet-telegraf/pull/217) ([mj](https://github.com/mj))
+
 ## [v5.1.0](https://github.com/voxpupuli/puppet-telegraf/tree/v5.1.0) (2023-07-03)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v5.0.0...v5.1.0)
@@ -259,7 +275,7 @@ These should not affect the functionality of the module.
 - Provide the ability to change the package name. [\#51](https://github.com/voxpupuli/puppet-telegraf/pull/51) ([snahelou](https://github.com/snahelou))
 - Update repo url in install.pp for rhel machines. [\#50](https://github.com/voxpupuli/puppet-telegraf/pull/50) ([Joshua-Snapp](https://github.com/Joshua-Snapp))
 - Provide the ability to disable or stop the telegraf service. [\#49](https://github.com/voxpupuli/puppet-telegraf/pull/49) ([Joshua-Snapp](https://github.com/Joshua-Snapp))
-- add repo name for el systems [\#48](https://github.com/voxpupuli/puppet-telegraf/pull/48) ([nexecook](https://github.com/nexecook))
+- add repo name for el systems [\#48](https://github.com/voxpupuli/puppet-telegraf/pull/48) ([ghost](https://github.com/ghost))
 - Normalize Repository file for RHEL and CentOS [\#45](https://github.com/voxpupuli/puppet-telegraf/pull/45) ([doomnuggets](https://github.com/doomnuggets))
 - Fix failing specs [\#44](https://github.com/voxpupuli/puppet-telegraf/pull/44) ([cosmopetrich](https://github.com/cosmopetrich))
 - Add support for purging unmanaged config fragments [\#43](https://github.com/voxpupuli/puppet-telegraf/pull/43) ([cosmopetrich](https://github.com/cosmopetrich))
