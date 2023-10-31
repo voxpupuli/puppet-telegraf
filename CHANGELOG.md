@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.3.0](https://github.com/voxpupuli/puppet-telegraf/tree/v5.3.0) (2023-10-31)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v5.2.0...v5.3.0)
+
+**Implemented enhancements:**
+
+- Add OracleLinux 9 support [\#222](https://github.com/voxpupuli/puppet-telegraf/pull/222) ([bastelfreak](https://github.com/bastelfreak))
+- Add Debian 12 support [\#221](https://github.com/voxpupuli/puppet-telegraf/pull/221) ([bastelfreak](https://github.com/bastelfreak))
+
 ## [v5.2.0](https://github.com/voxpupuli/puppet-telegraf/tree/v5.2.0) (2023-09-19)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v5.1.0...v5.2.0)
