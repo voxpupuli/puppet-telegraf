@@ -10,7 +10,7 @@ describe 'telegraf' do
               path => '/bin:/usr/bin:/sbin:/usr/sbin',
             }
 
-            class { '::telegraf':
+            class { 'telegraf':
               hostname  => 'test.vagrant.dev',
               outputs   => {
                   'influxdb' => [{
