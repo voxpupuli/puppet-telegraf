@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.4.0](https://github.com/voxpupuli/puppet-telegraf/tree/v5.4.0) (2024-02-28)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v5.3.0...v5.4.0)
+
+**Implemented enhancements:**
+
+- Bump default version to 1.29.4 [\#227](https://github.com/voxpupuli/puppet-telegraf/pull/227) ([bastelfreak](https://github.com/bastelfreak))
+
+**Merged pull requests:**
+
+- Remove legacy top-scope syntax [\#224](https://github.com/voxpupuli/puppet-telegraf/pull/224) ([smortex](https://github.com/smortex))
+
 ## [v5.3.0](https://github.com/voxpupuli/puppet-telegraf/tree/v5.3.0) (2023-10-31)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v5.2.0...v5.3.0)
@@ -214,8 +226,8 @@ These should not affect the functionality of the module.
 - Modulesync, use rspec-puppet-facts and fix tests [\#111](https://github.com/voxpupuli/puppet-telegraf/pull/111) ([alexjfisher](https://github.com/alexjfisher))
 - Rubocop autofixes [\#110](https://github.com/voxpupuli/puppet-telegraf/pull/110) ([alexjfisher](https://github.com/alexjfisher))
 - Some basic Vox Pupuli migration changes [\#109](https://github.com/voxpupuli/puppet-telegraf/pull/109) ([alexjfisher](https://github.com/alexjfisher))
-- Use Ruby 2.4 [\#102](https://github.com/voxpupuli/puppet-telegraf/pull/102) ([ouroboros8](https://github.com/ouroboros8))
-- Add workaround for Amazon Linux repo location issue [\#101](https://github.com/voxpupuli/puppet-telegraf/pull/101) ([ouroboros8](https://github.com/ouroboros8))
+- Use Ruby 2.4 [\#102](https://github.com/voxpupuli/puppet-telegraf/pull/102) ([strongoose](https://github.com/strongoose))
+- Add workaround for Amazon Linux repo location issue [\#101](https://github.com/voxpupuli/puppet-telegraf/pull/101) ([strongoose](https://github.com/strongoose))
 - remove plugin\_type [\#93](https://github.com/voxpupuli/puppet-telegraf/pull/93) ([nrdmn](https://github.com/nrdmn))
 
 ## [2.0.0](https://github.com/voxpupuli/puppet-telegraf/tree/2.0.0) (2018-01-19)
