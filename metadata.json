@@ -1,6 +1,6 @@
 {
   "name": "puppet-telegraf",
-  "version": "5.4.0",
+  "version": "5.4.1-rc0",
   "author": "Vox Pupuli",
   "summary": "Configuration and management of InfluxData's Telegraf metrics collection agent",
   "license": "GPL-3.0",
