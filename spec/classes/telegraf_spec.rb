@@ -132,7 +132,7 @@ describe 'telegraf' do
             config_file_mode: '0640',
             config_folder_mode: '0770',
             archive_install_dir: '/usr/local/opt/telegraf',
-            archive_version: '1.17.2'
+            archive_version: '1.29.4'
           )
         end
       when 'FreeBSD'
@@ -149,7 +149,7 @@ describe 'telegraf' do
             config_folder_mode: '0770',
             repo_location: 'https://repos.influxdata.com/',
             archive_install_dir: '/opt/telegraf',
-            archive_location: 'https://dl.influxdata.com/telegraf/releases/telegraf-1.15.2_linux_amd64.tar.gz'
+            archive_location: 'https://dl.influxdata.com/telegraf/releases/telegraf-1.29.4_linux_amd64.tar.gz'
           )
         end
       else
@@ -201,13 +201,13 @@ describe 'telegraf' do
         it { is_expected.to contain_file('/var/log/telegraf').with_ensure('directory') }
         it { is_expected.to contain_file('/etc/systemd/system/telegraf.service') }
       when 'Darwin'
-        it { is_expected.to contain_archive('/tmp/telegraf-1.17.2.tar.gz') }
+        it { is_expected.to contain_archive('/tmp/telegraf-1.29.4.tar.gz') }
         it { is_expected.to contain_file('/usr/local/bin').with_ensure('directory') }
         it { is_expected.to contain_file('/usr/local/etc').with_ensure('directory') }
         it { is_expected.to contain_file('/usr/local/opt').with_ensure('directory') }
         it { is_expected.to contain_file('/usr/local/var').with_ensure('directory') }
         it { is_expected.to contain_file('/usr/local/var/log').with_ensure('directory') }
-        it { is_expected.to contain_file('/usr/local/opt/telegraf-1.17.2').with_ensure('directory') }
+        it { is_expected.to contain_file('/usr/local/opt/telegraf-1.29.4').with_ensure('directory') }
         it { is_expected.to contain_file('/usr/local/var/log/telegraf').with_ensure('link') }
         it { is_expected.to contain_file('/usr/local/bin/telegraf').with_ensure('link') }
         it { is_expected.to contain_file('/usr/local/etc/telegraf').with_ensure('link') }
