@@ -129,6 +129,8 @@ class telegraf::params {
   $repo_type                     = 'stable'
   $windows_package_url           = 'https://chocolatey.org/api/v2/'
 
+  $agent_extra_config            = {}
+
   $outputs = {
     'influxdb' => [
       {
