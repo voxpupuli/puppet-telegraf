@@ -10,7 +10,7 @@ describe 'telegraf' do
       end
 
       let(:config_dir) do
-        case facts[:osfamily]
+        case facts[:os]['family']
         when 'Darwin'
           '/usr/local/etc/telegraf'
         when 'FreeBSD'
@@ -111,7 +111,7 @@ describe 'telegraf' do
         )
       end
 
-      case facts[:osfamily]
+      case facts[:os]['family']
       when 'windows'
         it do
           is_expected.to contain_class('telegraf').without(
@@ -193,7 +193,7 @@ describe 'telegraf' do
                       )
       }
 
-      case facts[:osfamily]
+      case facts[:os]['family']
       when 'Suse'
         it { is_expected.to contain_archive('/tmp/telegraf.tar.gz') }
         it { is_expected.to contain_file('/etc/telegraf').with_ensure('directory') }
@@ -217,7 +217,7 @@ describe 'telegraf' do
       end
       it { is_expected.to contain_service('telegraf') }
 
-      case facts[:osfamily]
+      case facts[:os]['family']
       when 'RedHat'
         it {
           is_expected.to contain_yumrepo('influxdata').
@@ -227,7 +227,7 @@ describe 'telegraf' do
         }
       end
 
-      case facts[:osfamily]
+      case facts[:os]['family']
       when 'Darwin', 'Suse'
         it { is_expected.to contain_user('telegraf') }
         it { is_expected.to contain_group('telegraf') }
@@ -236,7 +236,7 @@ describe 'telegraf' do
       describe 'allow custom repo_type' do
         let(:params) { { repo_type: 'unstable' } }
 
-        case facts[:osfamily]
+        case facts[:os]['family']
         when 'RedHat'
           it {
             is_expected.to contain_yumrepo('influxdata').
@@ -254,7 +254,7 @@ describe 'telegraf' do
 
         it do
           is_expected.to compile.with_all_deps
-          case facts[:osfamily]
+          case facts[:os]['family']
           when 'Debian'
             is_expected.to contain_apt__source('influxdata')
             is_expected.to contain_class('apt::update').that_comes_before('Package[telegraf]')
@@ -277,7 +277,7 @@ describe 'telegraf' do
         end
 
         it do
-          case facts[:osfamily]
+          case facts[:os]['family']
           when 'Debian'
             is_expected.to compile.with_all_deps
             is_expected.to contain_package('telegraf')
@@ -308,7 +308,7 @@ describe 'telegraf' do
         end
 
         it {
-          case facts[:osfamily]
+          case facts[:os]['family']
           when 'RedHat'
             is_expected.to compile
             is_expected.to contain_archive('/tmp/telegraf.tar.gz')
@@ -333,7 +333,7 @@ describe 'telegraf' do
         end
 
         it {
-          case facts[:osfamily]
+          case facts[:os]['family']
           when 'Suse', 'Darwin'
             is_expected.to compile
             is_expected.to contain_notify('telegraf repo warn').with(loglevel: 'warning')
@@ -349,7 +349,7 @@ describe 'telegraf' do
         end
 
         it do
-          case facts[:osfamily]
+          case facts[:os]['family']
           when 'Debian'
             is_expected.to contain_package('telegraf').with(ensure: 'absent')
             is_expected.to contain_apt__source('influxdata').with(
