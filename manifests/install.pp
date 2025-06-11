@@ -61,10 +61,10 @@ class telegraf::install {
             target  => "${telegraf::archive_install_dir}-${telegraf::archive_version}/usr/bin/telegraf",
             ;
           '/usr/local/etc/telegraf':
-            target  => "${telegraf::archive_install_dir}-${telegraf::archive_version}/etc/telegraf",
+            target => "${telegraf::archive_install_dir}-${telegraf::archive_version}/etc/telegraf",
             ;
           '/usr/local/var/log/telegraf':
-            target  => "${telegraf::archive_install_dir}-${telegraf::archive_version}/var/log/telegraf",
+            target => "${telegraf::archive_install_dir}-${telegraf::archive_version}/var/log/telegraf",
             ;
         }
 

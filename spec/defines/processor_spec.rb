@@ -122,7 +122,7 @@ describe 'telegraf::processor' do
         end
 
         it do
-          dir = case facts[:osfamily]
+          dir = case facts[:os]['family']
                 when 'Darwin'
                   '/usr/local/etc/telegraf/telegraf.d'
                 when 'FreeBSD'
@@ -153,7 +153,7 @@ describe 'telegraf::processor' do
         end
 
         it do
-          dir = case facts[:osfamily]
+          dir = case facts[:os]['family']
                 when 'Darwin'
                   '/usr/local/etc/telegraf/telegraf.d'
                 when 'FreeBSD'
