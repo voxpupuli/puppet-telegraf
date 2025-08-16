@@ -92,7 +92,7 @@ class telegraf::install {
           release  => 'stable',
           repos    => 'main',
           key      => {
-            'id'     => '9D539D90D3328DC7D6C8D3B9D8FF8E1F7DF8B07E',
+            'name'   => 'influxdata-archive.key',
             'source' => "${telegraf::repo_location}influxdata-archive_compat.key",
           },
         }
