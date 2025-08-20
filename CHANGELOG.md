@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v7.0.0](https://github.com/voxpupuli/puppet-telegraf/tree/v7.0.0) (2025-08-20)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v6.0.0...v7.0.0)
+
+**Breaking changes:**
+
+- Drop puppet, update openvox minimum version to 8.19 [\#246](https://github.com/voxpupuli/puppet-telegraf/pull/246) ([TheMeier](https://github.com/TheMeier))
+- Apt: Write repo key to own file; require puppetlabs/apt 10.X [\#243](https://github.com/voxpupuli/puppet-telegraf/pull/243) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add Debian 13 support [\#248](https://github.com/voxpupuli/puppet-telegraf/pull/248) ([bastelfreak](https://github.com/bastelfreak))
+
+**Closed issues:**
+
+- Debian apt deprecation warning for repository gpg key [\#241](https://github.com/voxpupuli/puppet-telegraf/issues/241)
+
 ## [v6.0.0](https://github.com/voxpupuli/puppet-telegraf/tree/v6.0.0) (2025-07-11)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v5.4.0...v6.0.0)
