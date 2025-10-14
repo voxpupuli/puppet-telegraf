@@ -15,6 +15,7 @@ class telegraf::params {
       $manage_repo          = false
       $manage_archive       = true
       $manage_user          = true
+      $manage_package       = true
       $archive_install_dir  = '/usr/local/opt/telegraf'
       $archive_version      = '1.29.4'
       $archive_location     = "https://dl.influxdata.com/telegraf/releases/telegraf-${archive_version}_darwin_amd64.tar.gz"
@@ -34,6 +35,7 @@ class telegraf::params {
       $logfile              = '/var/log/telegraf/telegraf.log'
       $manage_repo          = false
       $manage_archive       = false
+      $manage_package       = false
       $manage_user          = false
       $archive_install_dir  = undef
       $archive_version      = undef
@@ -54,6 +56,7 @@ class telegraf::params {
       $logfile              = 'C:/Program Files/telegraf/telegraf.log'
       $manage_repo          = false
       $manage_archive       = false
+      $manage_package       = true
       $manage_user          = false
       $archive_install_dir  = undef
       $archive_location     = undef
@@ -74,6 +77,7 @@ class telegraf::params {
       $logfile              = ''
       $manage_repo          = false
       $manage_archive       = true
+      $manage_package       = true
       $manage_user          = true
       $archive_install_dir  = '/opt/telegraf'
       $archive_version      = '1.29.4'
@@ -94,6 +98,7 @@ class telegraf::params {
       $logfile              = ''
       $manage_repo          = true
       $manage_archive       = false
+      $manage_package       = true
       $manage_user          = false
       $archive_install_dir  = undef
       $archive_location     = undef
@@ -141,8 +146,8 @@ class telegraf::params {
 
   $inputs = {
     'cpu' => [{
-      'percpu'   => true,
-      'totalcpu' => true,
+        'percpu'   => true,
+        'totalcpu' => true,
     }],
   }
 }

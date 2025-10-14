@@ -56,23 +56,23 @@ class telegraf::install {
           default:
             ensure  => link,
             require => Archive["/tmp/telegraf-${telegraf::archive_version}.tar.gz"],
-          ;
+            ;
           '/usr/local/bin/telegraf':
             target  => "${telegraf::archive_install_dir}-${telegraf::archive_version}/usr/bin/telegraf",
-          ;
+            ;
           '/usr/local/etc/telegraf':
             target => "${telegraf::archive_install_dir}-${telegraf::archive_version}/etc/telegraf",
-          ;
+            ;
           '/usr/local/var/log/telegraf':
             target => "${telegraf::archive_install_dir}-${telegraf::archive_version}/var/log/telegraf",
-          ;
+            ;
         }
 
         file { '/Library/LaunchDaemons/telegraf.plist':
           ensure  => file,
           content => epp('telegraf/telegraf.plist.epp', {
-            'config_file_owner' => $telegraf::config_file_owner,
-            'config_file_group' => $telegraf::config_file_group,
+              'config_file_owner' => $telegraf::config_file_owner,
+              'config_file_group' => $telegraf::config_file_group,
           }),
         }
       }
@@ -215,25 +215,27 @@ class telegraf::install {
     }
   }
 
-  if $facts['os']['family'] == 'windows' {
-    # required to install telegraf on windows
-    require chocolatey
+  if $telegraf::manage_package {
+    if $facts['os']['family'] == 'windows' {
+      # required to install telegraf on windows
+      require chocolatey
 
-    # package install
-    package { $telegraf::package_name:
-      ensure          => $telegraf::ensure,
-      provider        => chocolatey,
-      source          => $telegraf::windows_package_url,
-      install_options => $telegraf::install_options,
-    }
-  } else {
-    if ! $telegraf::manage_archive {
-      stdlib::ensure_packages([$telegraf::package_name],
-        {
-          ensure          => $telegraf::ensure,
-          install_options => $telegraf::install_options,
-        }
-      )
+      # package install
+      package { $telegraf::package_name:
+        ensure          => $telegraf::ensure,
+        provider        => chocolatey,
+        source          => $telegraf::windows_package_url,
+        install_options => $telegraf::install_options,
+      }
+    } else {
+      if ! $telegraf::manage_archive {
+        stdlib::ensure_packages([$telegraf::package_name],
+          {
+            ensure          => $telegraf::ensure,
+            install_options => $telegraf::install_options,
+          }
+        )
+      }
     }
   }
 }
