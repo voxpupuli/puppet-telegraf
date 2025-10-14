@@ -35,7 +35,7 @@ class telegraf::params {
       $logfile              = '/var/log/telegraf/telegraf.log'
       $manage_repo          = false
       $manage_archive       = false
-      $manage_package       = false
+      $manage_package       = true
       $manage_user          = false
       $archive_install_dir  = undef
       $archive_version      = undef
