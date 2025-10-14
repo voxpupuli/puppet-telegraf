@@ -56,23 +56,23 @@ class telegraf::install {
           default:
             ensure  => link,
             require => Archive["/tmp/telegraf-${telegraf::archive_version}.tar.gz"],
-            ;
+          ;
           '/usr/local/bin/telegraf':
             target  => "${telegraf::archive_install_dir}-${telegraf::archive_version}/usr/bin/telegraf",
-            ;
+          ;
           '/usr/local/etc/telegraf':
             target => "${telegraf::archive_install_dir}-${telegraf::archive_version}/etc/telegraf",
-            ;
+          ;
           '/usr/local/var/log/telegraf':
             target => "${telegraf::archive_install_dir}-${telegraf::archive_version}/var/log/telegraf",
-            ;
+          ;
         }
 
         file { '/Library/LaunchDaemons/telegraf.plist':
           ensure  => file,
           content => epp('telegraf/telegraf.plist.epp', {
-              'config_file_owner' => $telegraf::config_file_owner,
-              'config_file_group' => $telegraf::config_file_group,
+            'config_file_owner' => $telegraf::config_file_owner,
+            'config_file_group' => $telegraf::config_file_group,
           }),
         }
       }
