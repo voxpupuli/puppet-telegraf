@@ -51,6 +51,7 @@ class telegraf::params {
       $config_file_owner    = 'Administrator'
       $config_file_group    = 'Administrators'
       $config_file_mode     = undef
+      $daemon_user          = ''
       $config_folder        = 'C:/Program Files/telegraf/telegraf.d'
       $config_folder_mode   = undef
       $logfile              = 'C:/Program Files/telegraf/telegraf.log'
