@@ -93,7 +93,7 @@ class telegraf::install {
           repos    => 'main',
           key      => {
             'name'   => 'influxdata-archive.key',
-            'source' => "${telegraf::repo_location}influxdata-archive_compat.key",
+            'source' => "${telegraf::repo_location}influxdata-archive.key",
           },
         }
         Class['apt::update'] -> Package[$telegraf::package_name]
@@ -118,7 +118,7 @@ class telegraf::install {
           descr    => "InfluxData Repository - ${facts['os']['name']} \$releasever",
           enabled  => 1,
           baseurl  => $_baseurl,
-          gpgkey   => "${telegraf::repo_location}influxdata-archive_compat.key",
+          gpgkey   => "${telegraf::repo_location}influxdata-archive.key",
           gpgcheck => 1,
         }
         Yumrepo['influxdata'] -> Package[$telegraf::package_name]
