@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v7.1.0](https://github.com/voxpupuli/puppet-telegraf/tree/v7.1.0) (2025-12-02)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v7.0.0...v7.1.0)
+
+**Implemented enhancements:**
+
+- Add Ubuntu 24.04 support [\#260](https://github.com/voxpupuli/puppet-telegraf/pull/260) ([bastelfreak](https://github.com/bastelfreak))
+- Replace deprecated InfluxData repo signing key [\#257](https://github.com/voxpupuli/puppet-telegraf/pull/257) ([trauta](https://github.com/trauta))
+
 ## [v7.0.0](https://github.com/voxpupuli/puppet-telegraf/tree/v7.0.0) (2025-08-20)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v6.0.0...v7.0.0)
