@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v7.2.0](https://github.com/voxpupuli/puppet-telegraf/tree/v7.2.0) (2025-12-04)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v7.1.0...v7.2.0)
+
+**Implemented enhancements:**
+
+- allow puppetlabs/apt 11.x [\#261](https://github.com/voxpupuli/puppet-telegraf/pull/261) ([marcusdots](https://github.com/marcusdots))
+
 ## [v7.1.0](https://github.com/voxpupuli/puppet-telegraf/tree/v7.1.0) (2025-12-02)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v7.0.0...v7.1.0)
