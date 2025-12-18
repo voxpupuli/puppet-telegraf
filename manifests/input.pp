@@ -7,7 +7,7 @@
 #
 define telegraf::input (
   String $plugin_type               = $name,
-  Array  $options                   = [],
+  Optional[Array]  $options         = undef,
   Enum['present', 'absent'] $ensure = 'present',
 ) {
   include telegraf
