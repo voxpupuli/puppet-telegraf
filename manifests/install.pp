@@ -107,17 +107,12 @@ class telegraf::install {
     }
     'RedHat': {
       if $telegraf::manage_repo {
-        if $facts['os']['name'] == 'Amazon' {
-          $_baseurl = "https://repos.influxdata.com/rhel/6/\$basearch/${telegraf::repo_type}"
-        } else {
-          $_baseurl = "https://repos.influxdata.com/rhel/\$releasever/\$basearch/${telegraf::repo_type}"
-        }
         yumrepo { 'influxdata':
           ensure   => $telegraf::ensure_status,
           name     => 'influxdata',
           descr    => "InfluxData Repository - ${facts['os']['name']} \$releasever",
           enabled  => 1,
-          baseurl  => $_baseurl,
+          baseurl  => "${telegraf::repo_location}${telegraf::repo_type}/\$basearch/main",
           gpgkey   => "${telegraf::repo_location}influxdata-archive.key",
           gpgcheck => 1,
         }
