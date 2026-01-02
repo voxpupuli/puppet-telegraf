@@ -31,6 +31,7 @@
 # @param manage_service Whether to manage the telegraf service or not
 # @param manage_repo Whether or not to manage InfluxData's repo
 # @param manage_archive Whether or not to manage InfluxData's tar archive
+# @param manage_package Whether or not to manage the telegraf package
 # @param manage_user Whether or not to manage the 'telegraf' user when installing from archive
 # @param repo_location Alternate repo location. E.g. an interal mirror
 # @param archive_location Alternate archive location. E.g. an interal mirror
@@ -76,6 +77,7 @@ class telegraf (
   Boolean $manage_service                        = $telegraf::params::manage_service,
   Boolean $manage_repo                           = $telegraf::params::manage_repo,
   Boolean $manage_archive                        = $telegraf::params::manage_archive,
+  Boolean $manage_package                        = $telegraf::params::manage_package,
   Boolean $manage_user                           = $telegraf::params::manage_user,
   Optional[String] $repo_location                = $telegraf::params::repo_location,
   Optional[String] $archive_location             = $telegraf::params::archive_location,
