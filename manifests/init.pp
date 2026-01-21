@@ -87,6 +87,8 @@ class telegraf (
   Boolean $service_enable                        = $telegraf::params::service_enable,
   String  $service_ensure                        = $telegraf::params::service_ensure,
   Array   $install_options                       = $telegraf::params::install_options,
+
+  Hash    $agent_extra_config                    = $telegraf::params::agent_extra_config,
 ) inherits telegraf::params {
   $service_hasstatus = $telegraf::params::service_hasstatus
   $service_restart   = $telegraf::params::service_restart
