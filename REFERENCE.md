@@ -59,6 +59,7 @@ The following parameters are available in the `telegraf` class:
 * [`manage_service`](#-telegraf--manage_service)
 * [`manage_repo`](#-telegraf--manage_repo)
 * [`manage_archive`](#-telegraf--manage_archive)
+* [`manage_package`](#-telegraf--manage_package)
 * [`manage_user`](#-telegraf--manage_user)
 * [`repo_location`](#-telegraf--repo_location)
 * [`archive_location`](#-telegraf--archive_location)
@@ -311,6 +312,14 @@ Data type: `Boolean`
 Whether or not to manage InfluxData's tar archive
 
 Default value: `$telegraf::params::manage_archive`
+
+##### <a name="-telegraf--manage_package"></a>`manage_package`
+
+Data type: `Boolean`
+
+Whether or not to manage the telegraf package
+
+Default value: `$telegraf::params::manage_package`
 
 ##### <a name="-telegraf--manage_user"></a>`manage_user`
 
