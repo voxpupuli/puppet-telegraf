@@ -31,6 +31,7 @@ The following parameters are available in the `telegraf` class:
 
 * [`package_name`](#-telegraf--package_name)
 * [`ensure`](#-telegraf--ensure)
+* [`daemon_user`](#-telegraf--daemon_user)
 * [`config_file`](#-telegraf--config_file)
 * [`logfile`](#-telegraf--logfile)
 * [`logfile_rotation_interval`](#-telegraf--logfile_rotation_interval)
@@ -87,6 +88,14 @@ Data type: `String`
 State of the telegraf package. You can also specify a particular version to install
 
 Default value: `$telegraf::params::ensure`
+
+##### <a name="-telegraf--daemon_user"></a>`daemon_user`
+
+Data type: `String`
+
+User to run the daemon
+
+Default value: `$telegraf::params::daemon_user`
 
 ##### <a name="-telegraf--config_file"></a>`config_file`
 
