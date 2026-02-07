@@ -93,7 +93,9 @@ class telegraf::install {
           repos    => 'main',
           key      => {
             'name'   => 'influxdata-archive.key',
-            'source' => "${telegraf::repo_location}influxdata-archive.key",
+            # server sends different timestamp for each request, which triggers corrective changes
+            # source:  https://repos.influxdata.com/influxdata-archive.key
+            'source' => 'puppet:///modules/telegraf/influxdata-archive.key',
           },
         }
         Class['apt::update'] -> Package[$telegraf::package_name]
