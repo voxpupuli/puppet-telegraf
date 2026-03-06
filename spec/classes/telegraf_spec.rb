@@ -43,37 +43,37 @@ describe 'telegraf' do
           global_tags: {
             'dc' => 'dc',
             'env' => 'production',
-            'role' => 'telegraf'
+            'role' => 'telegraf',
           },
           inputs: [{
             'cpu' => [{
               'percpu' => true,
               'totalcpu' => true,
-              'fielddrop' => ['time_*']
+              'fielddrop' => ['time_*'],
             }],
             'disk' => [{
-              'ignore_fs' => %w[tmpfs devtmpfs]
+              'ignore_fs' => %w[tmpfs devtmpfs],
             }],
             'diskio' => [{}],
             'kernel' => [{}],
             'exec' => [
               {
-                'commands' => ['who | wc -l']
+                'commands' => ['who | wc -l'],
               },
               {
-                'commands' => ["cat /proc/uptime | awk '{print $1}'"]
-              }
+                'commands' => ["cat /proc/uptime | awk '{print $1}'"],
+              },
             ],
             'mem' => [{}],
             'net' => [{
               'interfaces' => ['eth0'],
-              'drop' => ['net_icmp']
+              'drop' => ['net_icmp'],
             }],
             'netstat' => [{}],
             'ping' => [{
               'urls' => ['10.10.10.1'],
               'count' => 1,
-              'timeout' => 1.0
+              'timeout' => 1.0,
             }],
             'statsd' => [{
               'service_address' => ':8125',
@@ -85,18 +85,18 @@ describe 'telegraf' do
               'allowed_pending_messages' => 10_000,
               'convert_names' => true,
               'percentile_limit' => 1000,
-              'udp_packet_size' => 1500
+              'udp_packet_size' => 1500,
             }],
             'swap' => [{}],
-            'system' => [{}]
+            'system' => [{}],
           }],
           outputs: [{
             'influxdb' => [{
               'urls' => ['http://influxdb.example.com:8086'],
               'database' => 'telegraf',
               'username' => 'telegraf',
-              'password' => 'telegraf'
-            }]
+              'password' => 'telegraf',
+            }],
           }],
           processors: [{
             'rename_processor' => {
@@ -104,10 +104,10 @@ describe 'telegraf' do
               'options' => [{
                 'order' => 1,
                 'namepass' => ['diskio'],
-                'replace' => { 'tag' => 'foo', 'dest' => 'bar' }
-              }]
-            }
-          }]
+                'replace' => { 'tag' => 'foo', 'dest' => 'bar' },
+              }],
+            },
+          }],
         )
       end
 
@@ -123,7 +123,7 @@ describe 'telegraf' do
               archive_version
               repo_location
               service_restart
-            ]
+            ],
           )
         end
       when 'Darwin'
@@ -132,14 +132,14 @@ describe 'telegraf' do
             config_file_mode: '0640',
             config_folder_mode: '0770',
             archive_install_dir: '/usr/local/opt/telegraf',
-            archive_version: '1.29.4'
+            archive_version: '1.29.4',
           )
         end
       when 'FreeBSD'
         it do
           is_expected.to contain_class('telegraf').with(
             config_file_mode: '0640',
-            config_folder_mode: '0770'
+            config_folder_mode: '0770',
           )
         end
       when 'Suse'
@@ -149,7 +149,7 @@ describe 'telegraf' do
             config_folder_mode: '0770',
             repo_location: 'https://repos.influxdata.com/',
             archive_install_dir: '/opt/telegraf',
-            archive_location: 'https://dl.influxdata.com/telegraf/releases/telegraf-1.29.4_linux_amd64.tar.gz'
+            archive_location: 'https://dl.influxdata.com/telegraf/releases/telegraf-1.29.4_linux_amd64.tar.gz',
           )
         end
       else
@@ -157,7 +157,7 @@ describe 'telegraf' do
           is_expected.to contain_class('telegraf').with(
             config_file_mode: '0640',
             config_folder_mode: '0770',
-            repo_location: 'https://repos.influxdata.com/'
+            repo_location: 'https://repos.influxdata.com/',
           )
         end
 
@@ -167,7 +167,7 @@ describe 'telegraf' do
               archive_install_dir
               archive_location
               archive_version
-            ]
+            ],
           )
         end
       end
@@ -176,13 +176,13 @@ describe 'telegraf' do
       it { is_expected.to contain_file(main_config).with_ensure('file') }
 
       it {
-        is_expected.to contain_file("#{config_dir}/telegraf.d").
-          with_purge(false)
+        is_expected.to contain_file("#{config_dir}/telegraf.d")
+          .with_purge(false)
       }
 
       it {
-        is_expected.to contain_file("#{config_dir}/telegraf.d/rename_processor.conf"). \
-          with_content(<<~STRING
+        is_expected.to contain_file("#{config_dir}/telegraf.d/rename_processor.conf")
+          .with_content(<<~STRING,
             [[processors.rename]]
             namepass = ["diskio"]
             order = 1
@@ -190,7 +190,7 @@ describe 'telegraf' do
             dest = "bar"
             tag = "foo"
           STRING
-                      )
+                       )
       }
 
       case facts[:os]['family']
@@ -220,9 +220,9 @@ describe 'telegraf' do
       case facts[:os]['family']
       when 'RedHat'
         it {
-          is_expected.to contain_yumrepo('influxdata').
-            with(
-              baseurl: 'https://repos.influxdata.com/rhel/$releasever/$basearch/stable'
+          is_expected.to contain_yumrepo('influxdata')
+            .with(
+              baseurl: 'https://repos.influxdata.com/rhel/$releasever/$basearch/stable',
             )
         }
       end
@@ -239,9 +239,9 @@ describe 'telegraf' do
         case facts[:os]['family']
         when 'RedHat'
           it {
-            is_expected.to contain_yumrepo('influxdata').
-              with(
-                baseurl: 'https://repos.influxdata.com/rhel/$releasever/$basearch/unstable'
+            is_expected.to contain_yumrepo('influxdata')
+              .with(
+                baseurl: 'https://repos.influxdata.com/rhel/$releasever/$basearch/unstable',
               )
           }
         end
@@ -353,7 +353,7 @@ describe 'telegraf' do
           when 'Debian'
             is_expected.to contain_package('telegraf').with(ensure: 'absent')
             is_expected.to contain_apt__source('influxdata').with(
-              ensure: 'absent'
+              ensure: 'absent',
             )
           when 'RedHat'
             is_expected.to contain_package('telegraf').with(ensure: 'absent')
@@ -364,12 +364,12 @@ describe 'telegraf' do
           end
 
           is_expected.to contain_file(main_config).with(
-            ensure: 'absent'
+            ensure: 'absent',
           )
 
           is_expected.to contain_file("#{config_dir}/telegraf.d").with(
             ensure: 'absent',
-            force: true
+            force: true,
           )
 
           is_expected.not_to contain_service('telegraf')
