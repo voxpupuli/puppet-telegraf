@@ -17,9 +17,9 @@ describe 'telegraf::aggregator' do
             options: [
               {
                 'period' => '30s',
-                'drop_original' => false
-              }
-            ]
+                'drop_original' => false,
+              },
+            ],
           }
         end
 
@@ -72,7 +72,7 @@ describe 'telegraf::aggregator' do
                 end
 
           is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
-            ensure: 'absent'
+            ensure: 'absent',
           )
         end
       end
@@ -103,7 +103,7 @@ describe 'telegraf::aggregator' do
                 end
 
           is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
-            ensure: 'absent'
+            ensure: 'absent',
           )
         end
       end

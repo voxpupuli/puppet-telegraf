@@ -15,8 +15,8 @@ describe 'telegraf::input' do
           {
             plugin_type: 'influxdb',
             options: [
-              { 'urls' => ['http://localhost:8086'] }
-            ]
+              { 'urls' => ['http://localhost:8086'] },
+            ],
           }
         end
 
@@ -56,18 +56,18 @@ describe 'telegraf::input' do
               {
                 'interval' => '60s',
                 'tags' => {
-                  'environment' => 'development'
+                  'environment' => 'development',
                 },
                 'host' => [
                   {
                     'address' => 'snmp_host1:161',
                     'community' => 'read_only',
                     'version' => 2,
-                    'get_oids' => ['1.3.6.1.2.1.1.5']
-                  }
-                ]
-              }
-            ]
+                    'get_oids' => ['1.3.6.1.2.1.1.5'],
+                  },
+                ],
+              },
+            ],
           }
         end
 
@@ -109,7 +109,7 @@ describe 'telegraf::input' do
         let(:title) { 'my_haproxy' }
         let(:params) do
           {
-            plugin_type: 'haproxy'
+            plugin_type: 'haproxy',
           }
         end
 
@@ -161,7 +161,7 @@ describe 'telegraf::input' do
                 end
 
           is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
-            ensure: 'absent'
+            ensure: 'absent',
           )
         end
       end
@@ -192,7 +192,7 @@ describe 'telegraf::input' do
                 end
 
           is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
-            ensure: 'absent'
+            ensure: 'absent',
           )
         end
       end

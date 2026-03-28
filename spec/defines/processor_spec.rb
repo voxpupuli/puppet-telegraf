@@ -20,11 +20,11 @@ describe 'telegraf::processor' do
                   {
                     'key' => 'foo',
                     'pattern' => %r{^a*b+\d$}.source,
-                    'replacement' => 'c${1}d'
-                  }
-                ]
-              }
-            ]
+                    'replacement' => 'c${1}d',
+                  },
+                ],
+              },
+            ],
           }
         end
 
@@ -71,12 +71,12 @@ describe 'telegraf::processor' do
                     'value_mappings' => {
                       'green' => 1,
                       'amber' => 2,
-                      'red' => 3
-                    }
-                  }
-                ]
-              }
-            ]
+                      'red' => 3,
+                    },
+                  },
+                ],
+              },
+            ],
           }
         end
 
@@ -134,7 +134,7 @@ describe 'telegraf::processor' do
                 end
 
           is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
-            ensure: 'absent'
+            ensure: 'absent',
           )
         end
       end
@@ -165,7 +165,7 @@ describe 'telegraf::processor' do
                 end
 
           is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
-            ensure: 'absent'
+            ensure: 'absent',
           )
         end
       end

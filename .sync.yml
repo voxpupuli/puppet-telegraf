@@ -1,4 +1,8 @@
 ---
+Gemfile:
+  optional:
+    ':test':
+      - gem: 'rexml'
 spec/spec_helper.rb:
   hiera_config: "'spec/hiera.yaml'"
 .puppet-lint.rc:

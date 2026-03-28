@@ -15,8 +15,8 @@ describe 'telegraf::output' do
           {
             plugin_type: 'influxdb',
             options: [
-              { 'urls' => ['http://localhost:8086'] }
-            ]
+              { 'urls' => ['http://localhost:8086'] },
+            ],
           }
         end
 
@@ -68,7 +68,7 @@ describe 'telegraf::output' do
                 end
 
           is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
-            ensure: 'absent'
+            ensure: 'absent',
           )
         end
       end
@@ -99,7 +99,7 @@ describe 'telegraf::output' do
                 end
 
           is_expected.to contain_file("#{dir}/my_basicstats.conf").with(
-            ensure: 'absent'
+            ensure: 'absent',
           )
         end
       end
