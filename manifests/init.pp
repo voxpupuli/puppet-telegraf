@@ -3,6 +3,7 @@
 #
 # @param package_name Package name
 # @param ensure State of the telegraf package. You can also specify a particular version to install
+# @param daemon_user User to run the daemon
 # @param config_file Path to the configuration file
 # @param logfile Path to the log file
 # @param logfile_rotation_interval The logfile will be rotated after the time interval specified, e.g. "1d". 0 = off. Default = "0h"
@@ -47,6 +48,7 @@
 class telegraf (
   String  $package_name                          = $telegraf::params::package_name,
   String  $ensure                                = $telegraf::params::ensure,
+  String  $daemon_user                           = $telegraf::params::daemon_user,
   String  $config_file                           = $telegraf::params::config_file,
   String  $config_file_owner                     = $telegraf::params::config_file_owner,
   String  $config_file_group                     = $telegraf::params::config_file_group,
