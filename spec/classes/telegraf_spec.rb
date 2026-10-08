@@ -202,12 +202,7 @@ describe 'telegraf' do
         it { is_expected.to contain_file('/etc/systemd/system/telegraf.service') }
       when 'Darwin'
         it { is_expected.to contain_archive('/tmp/telegraf-1.29.4.tar.gz') }
-        it { is_expected.to contain_file('/usr/local/bin').with_ensure('directory') }
-        it { is_expected.to contain_file('/usr/local/etc').with_ensure('directory') }
-        it { is_expected.to contain_file('/usr/local/opt').with_ensure('directory') }
-        it { is_expected.to contain_file('/usr/local/var').with_ensure('directory') }
-        it { is_expected.to contain_file('/usr/local/var/log').with_ensure('directory') }
-        it { is_expected.to contain_file('/usr/local/opt/telegraf-1.29.4').with_ensure('directory') }
+        it { is_expected.to contain_file('/usr/local/opt/telegraf').with_ensure('directory') }
         it { is_expected.to contain_file('/usr/local/var/log/telegraf').with_ensure('link') }
         it { is_expected.to contain_file('/usr/local/bin/telegraf').with_ensure('link') }
         it { is_expected.to contain_file('/usr/local/etc/telegraf').with_ensure('link') }
