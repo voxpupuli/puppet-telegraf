@@ -341,6 +341,36 @@ describe 'telegraf' do
         }
       end
 
+      describe 'skip_processors_after_aggregators' do
+        context 'when not set' do
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_class('telegraf').without_skip_processors_after_aggregators }
+          it { is_expected.to contain_file(main_config).without_content(%r{skip_processors_after_aggregators}) }
+        end
+
+        context 'when true' do
+          let(:params) { { skip_processors_after_aggregators: true } }
+
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_class('telegraf').with_skip_processors_after_aggregators(true) }
+          it { is_expected.to contain_file(main_config).with_content(%r{^skip_processors_after_aggregators = true$}) }
+        end
+
+        context 'when false' do
+          let(:params) { { skip_processors_after_aggregators: false } }
+
+          it { is_expected.to compile.with_all_deps }
+          it { is_expected.to contain_class('telegraf').with_skip_processors_after_aggregators(false) }
+          it { is_expected.to contain_file(main_config).with_content(%r{^skip_processors_after_aggregators = false$}) }
+        end
+
+        context 'with an invalid value' do
+          let(:params) { { skip_processors_after_aggregators: 'yes' } }
+
+          it { is_expected.to compile.and_raise_error(%r{skip_processors_after_aggregators.*expects a value of type Undef or Boolean}) }
+        end
+      end
+
       describe 'with ensure absent' do
         let(:pre_condition) do
           [

@@ -22,7 +22,10 @@ class telegraf::config inherits telegraf {
     'logfile_rotation_max_archives' => $telegraf::logfile_rotation_max_archives,
     'debug'                         => $telegraf::debug,
     'quiet'                         => $telegraf::quiet,
-  }
+  } + ($telegraf::skip_processors_after_aggregators =~ Undef ? {
+    true    => {},
+    default => { 'skip_processors_after_aggregators' => $telegraf::skip_processors_after_aggregators },
+  })
   $config = stdlib::to_toml({ 'global_tags' => $telegraf::global_tags, 'agent' => $agent, 'outputs' => $telegraf::outputs, 'inputs' => $telegraf::inputs })
   file { $telegraf::config_file:
     ensure  => $telegraf::ensure_file,
