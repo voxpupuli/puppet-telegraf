@@ -24,6 +24,7 @@
 # @param flush_jitter Jitter the flush interval by an amount
 # @param debug Run telegraf in debug mode
 # @param quiet Run telegraf in quiet mode
+# @param skip_processors_after_aggregators Skip running processors after aggregators. When undef, telegraf's default applies
 # @param outputs Specify output plugins and their options
 # @param inputs Specify input plugins and their options
 # @param global_tags Global tags as a key-value pair
@@ -69,6 +70,7 @@ class telegraf (
   Integer $logfile_rotation_max_archives         = $telegraf::params::logfile_rotation_max_archives,
   Boolean $debug                                 = $telegraf::params::debug,
   Boolean $quiet                                 = $telegraf::params::quiet,
+  Optional[Boolean] $skip_processors_after_aggregators = undef,
   Hash    $inputs                                = $telegraf::params::inputs,
   Hash    $outputs                               = $telegraf::params::outputs,
   Hash    $global_tags                           = $telegraf::params::global_tags,
