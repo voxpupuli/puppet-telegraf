@@ -578,4 +578,3 @@ Data type: `Enum['present', 'absent']`
 Set if the ensure params of the config file. If telegraf::ensure is absent the value is automatically absent
 
 Default value: `'present'`
-
