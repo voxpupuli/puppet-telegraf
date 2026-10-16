@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v7.3.0](https://github.com/voxpupuli/puppet-telegraf/tree/v7.3.0) (2026-10-16)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v7.2.1...v7.3.0)
+
+**Implemented enhancements:**
+
+- puppet/archive: Allow 9.x & puppetlabs/stdlib: Allow 10.x [\#275](https://github.com/voxpupuli/puppet-telegraf/pull/275) ([bastelfreak](https://github.com/bastelfreak))
+- Update requirements to allow OpenVox 9 [\#273](https://github.com/voxpupuli/puppet-telegraf/pull/273) ([sebastianrakel](https://github.com/sebastianrakel))
+
 ## [v7.2.1](https://github.com/voxpupuli/puppet-telegraf/tree/v7.2.1) (2026-03-29)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-telegraf/compare/v7.2.0...v7.2.1)
